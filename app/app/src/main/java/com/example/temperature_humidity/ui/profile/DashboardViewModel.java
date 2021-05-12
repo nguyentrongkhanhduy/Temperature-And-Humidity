@@ -1,4 +1,4 @@
-package com.example.temperature_humidity.ui.dashboard;
+package com.example.temperature_humidity.ui.profile;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
