@@ -14,4 +14,13 @@
         <!-- <item name="android:windowLightStatusBar">true</item> -->
         <!-- Customize your theme here. -->
     </style>
+
+    <style name="Theme.Temperature_Humidity.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
+    <style name="Theme.Temperature_Humidity.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+
+    <style name="Theme.Temperature_Humidity.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 </resources>

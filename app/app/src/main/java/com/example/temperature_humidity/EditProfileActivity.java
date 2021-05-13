@@ -11,26 +11,15 @@ import com.example.temperature_humidity.databinding.ActivityEditprofileBinding;
 
 public class EditProfileActivity extends AppCompatActivity {
 
-    private ActivityEditprofileBinding binding;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(binding.getRoot());
-
         //Hide status bar
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_editprofile);
 
-        binding = ActivityEditprofileBinding.inflate(getLayoutInflater());
-        setContentView(binding.getRoot());
 
-        Bundle bundle = getIntent().getExtras();
-        if (bundle != null){
-            if(bundle.getString("some") != null){
-                Toast.makeText(getApplicationContext(), "data:" + bundle.getString("some")
-                        , Toast.LENGTH_SHORT).show();
-            }
-        }
+
     }
 }
