@@ -121,6 +121,7 @@
             </LinearLayout>
         </LinearLayout>
         <RelativeLayout
+            android:id="@+id/btnEdit"
             android:layout_marginBottom="?attr/actionBarSize"
             android:gravity="center_horizontal"
             android:layout_width="match_parent"
