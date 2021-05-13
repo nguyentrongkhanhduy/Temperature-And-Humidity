@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <EditText
+        android:id="@+id/editTextTextPersonName9"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginStart="28dp"
+        android:layout_marginLeft="28dp"
+        android:layout_marginTop="59dp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:text="Thêm phòng"
+        android:textStyle="normal|bold" />
+
+    <EditText
+        android:id="@+id/editTextTextPersonName10"
+        android:layout_width="270dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginStart="89dp"
+        android:layout_marginLeft="89dp"
+        android:layout_marginTop="154dp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:text="Chọn tòa để tạo thêm phòng"
+        android:textStyle="normal|bold" />
+
+    <Button
+        android:id="@+id/btnBack4"
+        android:layout_width="40dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="23dp"
+        android:layout_marginLeft="23dp"
+        android:layout_marginTop="13dp"
+        app:backgroundTint="#C0F9FA"
+        app:icon="@drawable/ic_back"
+        app:iconTint="#000000" />
+
+    <ImageView
+        android:id="@+id/imageView4"
+        android:layout_width="83dp"
+        android:layout_height="79dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginTop="12dp"
+        android:layout_marginEnd="21dp"
+        android:layout_marginRight="21dp"
+        app:srcCompat="@drawable/presentation" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="400dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginStart="0dp"
+        android:layout_marginLeft="0dp"
+        android:layout_marginTop="289dp"
+        android:layout_marginBottom="66dp"
+        android:background="#88CEFB"
+        android:orientation="vertical">
+
+
+        <Button
+            android:id="@+id/h1"
+            app:backgroundTint="#C0F9FA"
+            android:layout_width="match_parent"
+            android:layout_height="80dp"
+            android:text="Tòa H1"
+            android:textColor="#9A9A9A"
+            android:textSize="20sp" />
+
+        <Button
+            android:id="@+id/h2"
+            app:backgroundTint="#C0F9FA"
+            android:layout_width="match_parent"
+            android:layout_height="80dp"
+            android:text="Tòa H2"
+            android:textColor="#9A9A9A"
+            android:textSize="20sp" />
+
+        <Button
+            android:id="@+id/h3"
+            app:backgroundTint="#C0F9FA"
+            android:layout_width="match_parent"
+            android:layout_height="80dp"
+            android:text="Tòa H3"
+            android:textColor="#9A9A9A"
+            android:textSize="20sp" />
+
+        <Button
+            android:id="@+id/h6"
+            android:layout_width="match_parent"
+            android:layout_height="80dp"
+            android:text="Tòa H6"
+            android:textColor="#9A9A9A"
+            android:textSize="20sp"
+            app:backgroundTint="#C0F9FA" />
+
+    </LinearLayout>
+</RelativeLayout>

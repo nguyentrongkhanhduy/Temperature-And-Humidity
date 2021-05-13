@@ -114,7 +114,9 @@
         android:layout_marginStart="23dp"
         android:layout_marginLeft="23dp"
         android:layout_marginTop="13dp"
-        app:icon="@drawable/ic_back" />
+        app:backgroundTint="#C0F9FA"
+        app:icon="@drawable/ic_back"
+        app:iconTint="#000000" />
 
     <ImageView
         android:id="@+id/imageView"
