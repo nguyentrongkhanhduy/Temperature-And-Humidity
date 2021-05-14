@@ -3,8 +3,10 @@ package com.example.temperature_humidity;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.Toast;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
@@ -17,6 +19,13 @@ import androidx.navigation.ui.NavigationUI;
 
 import com.example.temperature_humidity.databinding.ActivityMainBinding;
 
+import org.eclipse.paho.client.mqttv3.IMqttDeliveryToken;
+import org.eclipse.paho.client.mqttv3.MqttCallbackExtended;
+import org.eclipse.paho.client.mqttv3.MqttException;
+import org.eclipse.paho.client.mqttv3.MqttMessage;
+
+import java.nio.charset.Charset;
+
 public class MainActivity extends AppCompatActivity {
 
     private ActivityMainBinding binding;
@@ -24,6 +33,28 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        MQTTService mqttService = new MQTTService( this);
+        mqttService.setCallback(new MqttCallbackExtended() {
+            @Override public void connectComplete(boolean reconnect, String serverURI) {
+
+            }
+            @Override public void connectionLost( Throwable cause){
+
+            }
+
+            @Override public void messageArrived(String topic, MqttMessage message) throws Exception {
+                String data_to_microbit = message.toString();
+                //port.write(data_to_microbit.getBytes(),1000);
+                Toast.makeText(MainActivity.this,data_to_microbit,Toast.LENGTH_LONG).show();
+                System.out.println(data_to_microbit);
+            }
+            @Override public void deliveryComplete(IMqttDeliveryToken token)
+            {
+
+            }
+        });
+
 
         //Hide status bar
         requestWindowFeature(Window.FEATURE_NO_TITLE);
@@ -55,6 +86,12 @@ public class MainActivity extends AppCompatActivity {
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_activity_main);
         NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
         NavigationUI.setupWithNavController(binding.navView, navController);
+
+
+
+
     }
+
+
 
 }
