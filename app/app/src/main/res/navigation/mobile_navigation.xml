@@ -15,13 +15,24 @@
         android:id="@+id/navigation_profile"
         android:name="com.example.temperature_humidity.ui.profile.ProfileFragment"
         android:label="@string/title_profile"
-        tools:layout="@layout/fragment_profile"/>
+        tools:layout="@layout/fragment_profile">
+        <action
+            android:id="@+id/profile_to_editprofile"
+            app:destination="@id/navigation_editprofile"/>
+
+    </fragment>
 
     <fragment
         android:id="@+id/navigation_notifications"
         android:name="com.example.temperature_humidity.ui.notifications.NotificationsFragment"
         android:label="@string/title_notifications"
         tools:layout="@layout/fragment_notifications" />
+
+    <fragment
+        android:id="@+id/navigation_editprofile"
+        android:name="com.example.temperature_humidity.ui.profile.EditProfileFragment"
+        android:label="@string/title_editprofile"
+        tools:layout="@layout/fragment_editprofile"/>
 
 
 </navigation>

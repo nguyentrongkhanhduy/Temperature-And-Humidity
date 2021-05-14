@@ -3,7 +3,7 @@
     <string name="title_home">Trang chủ</string>
     <string name="title_profile">Hồ sơ</string>
     <string name="title_notifications">Thông báo</string>
-    <string name="title_activity_sub">SubActivity</string>
+    <string name="title_editprofile">Chỉnh sửa thông tin</string>
     <!-- Strings used for fragments for navigation -->
     <string name="first_fragment_label">First Fragment</string>
     <string name="second_fragment_label">Second Fragment</string>
