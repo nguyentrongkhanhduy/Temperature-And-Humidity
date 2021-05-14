@@ -30,7 +30,7 @@ public class ProfileFragment extends Fragment {
         binding.btnEdit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Navigation.findNavController(root).navigate(R.id.profile_to_editprofile);
+                Navigation.findNavController(root).navigate(R.id.to_register_room);
             }
         });
 
