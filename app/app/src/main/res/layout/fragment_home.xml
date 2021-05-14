@@ -72,7 +72,10 @@
                 android:orientation="vertical"
                 android:layout_centerVertical="true"
                 android:layout_centerInParent="true">
+
                 <ImageView
+                    android:id="@+id/register_room"
+                    android:clickable="true"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:paddingTop="15dp"
