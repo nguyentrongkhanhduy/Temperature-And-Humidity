@@ -32,7 +32,11 @@
         android:id="@+id/navigation_editprofile"
         android:name="com.example.temperature_humidity.ui.profile.EditProfileFragment"
         android:label="@string/title_editprofile"
-        tools:layout="@layout/fragment_editprofile"/>
+        tools:layout="@layout/fragment_editprofile">
+        <action
+            android:id="@+id/editprofile_to_profile"
+            app:destination="@id/navigation_profile" />
+    </fragment>
 
 
 </navigation>

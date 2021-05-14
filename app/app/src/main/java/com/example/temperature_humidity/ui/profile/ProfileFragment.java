@@ -1,4 +1,4 @@
- package com.example.temperature_humidity.ui.profile;
+package com.example.temperature_humidity.ui.profile;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -36,6 +36,7 @@ public class ProfileFragment extends Fragment {
 
         return root;
     }
+
 
 
     @Override

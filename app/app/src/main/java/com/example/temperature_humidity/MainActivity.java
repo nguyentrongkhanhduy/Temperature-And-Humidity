@@ -42,6 +42,7 @@ public class MainActivity extends AppCompatActivity {
         // Set BackgroundDrawable
         actionBar.setBackgroundDrawable(colorDrawable);
 
+
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
