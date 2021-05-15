@@ -4,12 +4,25 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/mobile_navigation"
     app:startDestination="@+id/navigation_home">
+    <fragment
+        android:id="@+id/navigation_roomtime"
+        android:name="com.example.temperature_humidity.ui.registerroom.RoomTimeFragment"
+        android:label="@string/title_registerroom"
+        tools:layout="@layout/fragment_roomtime">
+        <action
+            android:id="@+id/to_home"
+            app:destination="@id/navigation_home"/>
+    </fragment>
 
     <fragment
         android:id="@+id/navigation_selectroom"
         android:name="com.example.temperature_humidity.ui.registerroom.SelectRoomFragment"
         android:label="@string/title_registerroom"
-        tools:layout="@layout/fragment_selectroom"/>
+        tools:layout="@layout/fragment_selectroom" >
+        <action
+            android:id="@+id/to_room_name"
+            app:destination="@id/navigation_roomtime" />
+        </fragment>
 
     <fragment
         android:id="@+id/navigation_registerroom"

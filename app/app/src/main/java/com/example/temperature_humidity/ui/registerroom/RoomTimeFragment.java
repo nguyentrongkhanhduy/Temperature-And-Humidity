@@ -12,18 +12,18 @@ import androidx.fragment.app.Fragment;
 import androidx.navigation.Navigation;
 
 import com.example.temperature_humidity.R;
-
+import com.example.temperature_humidity.databinding.FragmentRoomtimeBinding;
 import com.example.temperature_humidity.databinding.FragmentSelectroomBinding;
 
-public class SelectRoomFragment extends Fragment {
-    private FragmentSelectroomBinding binding;
+public class RoomTimeFragment extends Fragment {
+    private FragmentRoomtimeBinding binding;
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
 
 
 
 
-        binding = FragmentSelectroomBinding.inflate(inflater, container, false);
+        binding = FragmentRoomtimeBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
 
         //hien thi action bar
@@ -33,10 +33,10 @@ public class SelectRoomFragment extends Fragment {
         ActionBar actionBar = ((AppCompatActivity) getActivity()).getSupportActionBar();
         actionBar.setDisplayHomeAsUpEnabled(false);
 
-        binding.btn101.setOnClickListener(new View.OnClickListener() {
+        binding.btnDk.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Navigation.findNavController(root).navigate(R.id.to_room_name);
+                Navigation.findNavController(root).navigate(R.id.to_home);
             }
         });
 
