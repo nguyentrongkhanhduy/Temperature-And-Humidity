@@ -39,11 +39,14 @@ public class LoginActivity extends AppCompatActivity {
             public void onClick(View v) {
                 boolean isAdmin = false;
                 if (binding.checkkbox.isChecked()) {
-                    isAdmin = true;
+                    Intent intent = new Intent(getBaseContext(), MainAdminActivity.class);
+                    startActivity(intent);
                 }
-                Intent intent = new Intent(getBaseContext(), MainActivity.class);
-                intent.putExtra("isAdmin", isAdmin);
-                startActivity(intent);
+                else {
+                    Intent intent = new Intent(getBaseContext(), MainActivity.class);
+                    startActivity(intent);
+                }
+
             }
         });;
     }

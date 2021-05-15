@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/homeAdminFragment"
+        android:title="Trang chủ"
+        android:icon="@drawable/ic_home_black_24dp"
+        />
+    <item
+        android:id="@+id/profileFragment"
+        android:title="Hồ sơ"
+        android:icon="@drawable/ic_profile_24dp"
+        />
+    <item
+        android:id="@+id/notificationsFragment"
+        android:title="Thông báo"
+        android:icon="@drawable/ic_notifications_black_24dp"
+        />
+</menu>
