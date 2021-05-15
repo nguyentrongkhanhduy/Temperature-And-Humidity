@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     tools:context=".ui.registerroom.RoomTimeFragment">
 
-    <TextView
+    <EditText
         android:id="@+id/txtEnd"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -14,45 +14,12 @@
         android:layout_alignParentLeft="true"
 
         android:layout_alignParentBottom="true"
-        android:layout_marginStart="336dp"
-        android:layout_marginLeft="336dp"
+        android:layout_marginStart="241dp"
+        android:layout_marginLeft="241dp"
 
-        android:layout_marginBottom="214dp"
-        android:text="TextView" />
-
-    <EditText
-        android:id="@+id/editTextTextPersonName8"
-        android:layout_width="107dp"
-        android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginStart="229dp"
-        android:layout_marginLeft="229dp"
-        android:layout_marginTop="487dp"
-        android:ems="10"
-        android:inputType="textPersonName"
-        android:text="Tiết kết thúc:"
-        android:textSize="16sp"
-        android:textStyle="normal|bold" />
-
-    <EditText
-        android:id="@+id/editTextTextPersonName7"
-        android:layout_width="107dp"
-        android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginStart="39dp"
-        android:layout_marginLeft="39dp"
-        android:layout_marginTop="487dp"
-        android:ems="10"
-        android:inputType="textPersonName"
-        android:text="Tiết bắt đầu:"
-        android:textSize="16sp"
-        android:textStyle="normal|bold" />
+        android:layout_marginBottom="197dp"
+        android:hint="Tiết kết thúc"
+        android:textColorHint="@color/gray" />
 
     <TextView
         android:id="@+id/textView8"
@@ -68,6 +35,8 @@
         android:text="101"
         android:textSize="16sp" />
 
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
     <TextView
         android:id="@+id/textView4"
         android:layout_width="200dp"
@@ -111,17 +80,18 @@
         android:text="Nhập thông tin đăng ký"
         android:textStyle="normal|bold" />
 
-    <TextView
+    <EditText
         android:id="@+id/txtStart"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentBottom="true"
-        android:layout_marginStart="147dp"
-        android:layout_marginLeft="147dp"
-        android:layout_marginBottom="214dp"
-        android:text="TextView" />
+        android:layout_marginStart="81dp"
+        android:layout_marginLeft="81dp"
+        android:layout_marginBottom="198dp"
+        android:hint="Tiết bắt đầu"
+        android:textColorHint="@color/gray"/>
 
     <Button
         android:id="@+id/btnDk"
@@ -129,7 +99,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="130dp"
+        android:layout_marginBottom="129dp"
         android:text="Đăng ký"
         android:textColor="#000000"
         app:backgroundTint="#64E987" />

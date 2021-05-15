@@ -121,6 +121,11 @@
             app:destination="@id/navigation_example"/>
     </fragment>
 
+    <activity
+        android:id="@+id/navigation_login"
+        android:name="com.example.temperature_humidity.LoginActivity"
+        tools:layout="@layout/activity_login"
+        />
 
     <fragment
         android:id="@+id/navigation_home"
@@ -137,6 +142,11 @@
             >
 
         </action>
+
+        <action
+            android:id="@+id/to_log_in"
+            app:destination="@id/navigation_login"
+            />
 
     </fragment>
 
