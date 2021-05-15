@@ -1,4 +1,4 @@
-package com.example.temperature_humidity.ui.registerroom;
+package com.example.temperature_humidity.ui.createroom;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -13,17 +13,17 @@ import androidx.navigation.Navigation;
 
 import com.example.temperature_humidity.R;
 
-import com.example.temperature_humidity.databinding.FragmentSelectroomBinding;
+import com.example.temperature_humidity.databinding.FragmentRoomnameBinding;
 
-public class SelectRoomFragment extends Fragment {
-    private FragmentSelectroomBinding binding;
+public class RoomNameFragment extends Fragment {
+    private FragmentRoomnameBinding binding;
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
 
 
 
 
-        binding = FragmentSelectroomBinding.inflate(inflater, container, false);
+        binding = FragmentRoomnameBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
 
         //hien thi action bar
@@ -33,12 +33,7 @@ public class SelectRoomFragment extends Fragment {
         ActionBar actionBar = ((AppCompatActivity) getActivity()).getSupportActionBar();
         actionBar.setDisplayHomeAsUpEnabled(false);
 
-        binding.btn101.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Navigation.findNavController(root).navigate(R.id.to_room_name);
-            }
-        });
+
 
 
         return root;
@@ -49,4 +44,6 @@ public class SelectRoomFragment extends Fragment {
         super.onDestroyView();
         binding = null;
     }
+
+
 }
