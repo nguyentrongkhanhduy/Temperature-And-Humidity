@@ -4,22 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    tools:context=".ui.historyactivity.LookUpRoomFragment"
     >
-    <TextView
-        android:id="@+id/view_Text_history"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginStart="7dp"
-        android:layout_marginLeft="28dp"
-        android:layout_marginTop="59dp"
-        android:ems="10"
-        android:inputType="textPersonName"
-        android:text="Lịch sử hoạt động"
-        android:textSize="25sp"
-        android:textStyle="normal|bold" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -30,8 +16,8 @@
         android:layout_alignParentBottom="true"
         android:layout_marginStart="0dp"
         android:layout_marginLeft="0dp"
-        android:layout_marginTop="172dp"
-        android:layout_marginBottom="63dp"
+        android:layout_marginTop="150dp"
+        android:layout_marginBottom="80dp"
         android:background="#C0F9FA"
         android:orientation="vertical">
 
@@ -45,7 +31,7 @@
             android:layout_marginStart="0dp"
             android:layout_marginLeft="0dp"
             android:layout_marginTop="20dp"
-            android:layout_marginBottom="66dp"
+            android:layout_marginBottom="80dp"
             android:background="#88CEFB"
             android:orientation="vertical">
 
@@ -231,39 +217,12 @@
         android:layout_centerHorizontal="true"
         android:layout_marginStart="72dp"
         android:layout_marginLeft="72dp"
-        android:layout_marginTop="117dp"
+        android:layout_marginTop="80dp"
         android:gravity="center"
         android:inputType="textPersonName"
         android:text="Chọn tòa nhà để tra cứu"
-        android:textSize="20sp"
+        android:textSize="25sp"
         android:textStyle="normal|bold" />
-
-
-    <Button
-        android:id="@+id/btnBack"
-        android:layout_width="40dp"
-        android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginStart="23dp"
-        android:layout_marginLeft="23dp"
-        android:layout_marginTop="13dp"
-        app:backgroundTint="#C0F9FA"
-        app:icon="@drawable/ic_back"
-        app:iconTint="#000000" />
-    <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="83dp"
-        android:layout_height="79dp"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentRight="true"
-        android:layout_marginTop="12dp"
-        android:layout_marginEnd="21dp"
-        android:layout_marginRight="21dp"
-        app:srcCompat="@drawable/ic_history" />
-
 
 
 </RelativeLayout>
