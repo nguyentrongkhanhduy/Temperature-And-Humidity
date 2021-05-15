@@ -9,10 +9,8 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
-import androidx.navigation.Navigation;
 
-import com.example.temperature_humidity.R;
-
+import com.example.temperature_humidity.databinding.FragmentRegisterroomBinding;
 import com.example.temperature_humidity.databinding.FragmentSelectroomBinding;
 
 public class SelectRoomFragment extends Fragment {
@@ -33,12 +31,7 @@ public class SelectRoomFragment extends Fragment {
         ActionBar actionBar = ((AppCompatActivity) getActivity()).getSupportActionBar();
         actionBar.setDisplayHomeAsUpEnabled(false);
 
-        binding.btn101.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Navigation.findNavController(root).navigate(R.id.to_room_name);
-            }
-        });
+
 
 
         return root;
