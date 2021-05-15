@@ -1,5 +1,6 @@
 package com.example.temperature_humidity;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
@@ -80,9 +81,24 @@ public class MainActivity extends AppCompatActivity {
         BottomNavigationView navView = findViewById(R.id.nav_view);
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
-        AppBarConfiguration appBarConfiguration = new AppBarConfiguration.Builder(
+
+        // Get the Intent that started this activity and extract the string
+        Intent intent = getIntent();
+        boolean isAdmin = intent.getBooleanExtra("isAdmin", false);
+        AppBarConfiguration appBarConfiguration;
+        System.out.println(isAdmin);
+        if (isAdmin) {
+            System.out.println("ahihi");
+            appBarConfiguration = new AppBarConfiguration.Builder(
+                    R.id.navigation_home_admin, R.id.navigation_profile, R.id.navigation_notifications)
+                    .build();
+        }
+        else {
+            System.out.println("ihaha");
+            appBarConfiguration = new AppBarConfiguration.Builder(
                 R.id.navigation_home, R.id.navigation_profile, R.id.navigation_notifications)
                 .build();
+        }
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_activity_main);
         NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
         NavigationUI.setupWithNavController(binding.navView, navController);
