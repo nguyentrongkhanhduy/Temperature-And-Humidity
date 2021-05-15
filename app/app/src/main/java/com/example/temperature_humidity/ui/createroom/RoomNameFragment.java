@@ -12,7 +12,7 @@ import androidx.fragment.app.Fragment;
 import androidx.navigation.Navigation;
 
 import com.example.temperature_humidity.R;
-
+import com.example.temperature_humidity.databinding.FragementListroomaddBinding;
 import com.example.temperature_humidity.databinding.FragmentRoomnameBinding;
 
 public class RoomNameFragment extends Fragment {
@@ -34,8 +34,6 @@ public class RoomNameFragment extends Fragment {
         actionBar.setDisplayHomeAsUpEnabled(false);
 
 
-
-
         return root;
     }
 
@@ -44,6 +42,5 @@ public class RoomNameFragment extends Fragment {
         super.onDestroyView();
         binding = null;
     }
-
 
 }

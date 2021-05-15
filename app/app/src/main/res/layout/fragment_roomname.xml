@@ -48,7 +48,7 @@
         android:text="Tòa H1"
         android:textSize="16sp" />
 
-    <TextView
+<TextView
         android:id="@+id/txtName"
         android:layout_width="300dp"
         android:layout_height="35dp"

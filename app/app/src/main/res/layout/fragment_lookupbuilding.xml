@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.historyactivity.LookUpBuildingFragment"
+    >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="400dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginStart="0dp"
+        android:layout_marginLeft="0dp"
+        android:layout_marginTop="150dp"
+        android:layout_marginBottom="80dp"
+        android:background="#C0F9FA"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="456dp"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginStart="0dp"
+            android:layout_marginLeft="0dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="66dp"
+            android:background="#88CEFB"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/textView"
+                android:layout_width="270dp"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentTop="true"
+                android:layout_centerHorizontal="true"
+                android:layout_marginStart="72dp"
+                android:layout_marginLeft="72dp"
+                android:layout_marginTop="5dp"
+                android:gravity="center"
+                android:text="Thứ 2,Ngày 26,tháng 4,2021"
+                android:textColor="#FFFFFF"
+                android:textSize="20sp" />
+
+            <Button
+                android:id="@+id/h1"
+                android:layout_width="match_parent"
+                android:layout_height="90dp"
+                android:text="Tòa H1"
+                android:textColor="#9A9A9A"
+                android:textSize="20sp"
+                app:backgroundTint="#C0F9FA" />
+
+            <Button
+                android:id="@+id/h2"
+                android:layout_width="match_parent"
+                android:layout_height="90dp"
+                android:text="Tòa H2"
+                android:textColor="#9A9A9A"
+                android:textSize="20sp"
+                app:backgroundTint="#C0F9FA" />
+
+            <Button
+                android:id="@+id/h3"
+                android:layout_width="match_parent"
+                android:layout_height="90dp"
+                android:text="Tòa H3"
+                android:textColor="#9A9A9A"
+                android:textSize="20sp"
+                app:backgroundTint="#C0F9FA" />
+
+            <Button
+                android:id="@+id/h6"
+                android:layout_width="match_parent"
+                android:layout_height="90dp"
+                android:text="Tòa H6"
+                android:textColor="#9A9A9A"
+                android:textSize="20sp"
+                app:backgroundTint="#C0F9FA" />
+
+        </LinearLayout>
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/view_Text_choose"
+        android:layout_width="270dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginStart="72dp"
+        android:layout_marginLeft="72dp"
+        android:layout_marginTop="80dp"
+        android:gravity="center"
+        android:inputType="textPersonName"
+        android:text="Chọn tòa nhà để tra cứu"
+        android:textSize="25sp"
+        android:textStyle="normal|bold" />
+
+
+</RelativeLayout>

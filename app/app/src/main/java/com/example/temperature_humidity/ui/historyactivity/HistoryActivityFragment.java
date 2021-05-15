@@ -1,4 +1,4 @@
-package com.example.temperature_humidity.ui.registerroom;
+package com.example.temperature_humidity.ui.historyactivity;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -9,21 +9,15 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
-import androidx.navigation.Navigation;
 
-import com.example.temperature_humidity.R;
-import com.example.temperature_humidity.databinding.FragmentRoomtimeBinding;
-import com.example.temperature_humidity.databinding.FragmentSelectroomBinding;
+import com.example.temperature_humidity.databinding.FragmentHistoryBinding;
+import com.example.temperature_humidity.databinding.FragmentLookuproomBinding;
 
-public class RoomTimeFragment extends Fragment {
-    private FragmentRoomtimeBinding binding;
+public class HistoryActivityFragment extends Fragment {
+    private FragmentHistoryBinding binding;
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-
-
-
-
-        binding = FragmentRoomtimeBinding.inflate(inflater, container, false);
+        binding = FragmentHistoryBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
 
         //hien thi action bar
@@ -33,10 +27,8 @@ public class RoomTimeFragment extends Fragment {
         ActionBar actionBar = ((AppCompatActivity) getActivity()).getSupportActionBar();
         actionBar.setDisplayHomeAsUpEnabled(false);
 
-
         return root;
     }
-
     @Override
     public void onDestroyView() {
         super.onDestroyView();

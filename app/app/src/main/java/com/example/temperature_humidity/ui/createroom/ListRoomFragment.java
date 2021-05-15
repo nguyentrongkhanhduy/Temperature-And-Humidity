@@ -12,18 +12,19 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.navigation.Navigation;
 
 import com.example.temperature_humidity.R;
-import com.example.temperature_humidity.databinding.FragmentListroomaddBinding;
+
+import com.example.temperature_humidity.databinding.FragementListroomaddBinding;
 import com.example.temperature_humidity.databinding.FragmentRoomnameBinding;
 
 public class ListRoomFragment extends Fragment {
-    private FragmentListroomaddBinding binding;
+    private FragementListroomaddBinding binding;
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
 
 
 
 
-        binding = FragmentListroomaddBinding.inflate(inflater, container, false);
+        binding = FragementListroomaddBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
 
         //hien thi action bar

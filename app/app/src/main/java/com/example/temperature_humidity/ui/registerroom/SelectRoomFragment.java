@@ -12,7 +12,7 @@ import androidx.fragment.app.Fragment;
 import androidx.navigation.Navigation;
 
 import com.example.temperature_humidity.R;
-
+import com.example.temperature_humidity.databinding.FragmentRegisterroomBinding;
 import com.example.temperature_humidity.databinding.FragmentSelectroomBinding;
 
 public class SelectRoomFragment extends Fragment {
@@ -39,6 +39,7 @@ public class SelectRoomFragment extends Fragment {
                 Navigation.findNavController(root).navigate(R.id.to_room_time);
             }
         });
+
 
 
         return root;
