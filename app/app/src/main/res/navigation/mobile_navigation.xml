@@ -91,6 +91,12 @@
         tools:layout="@layout/fragment_roomtime"/>
 
     <fragment
+        android:id="@+id/navigation_home_admin"
+        android:name="com.example.temperature_humidity.ui.home.HomeAdminFragment"
+        android:label="@string/title_home"
+        tools:layout="@layout/fragment_home_admin"/>
+
+    <fragment
         android:id="@+id/navigation_selectroom"
         android:name="com.example.temperature_humidity.ui.registerroom.SelectRoomFragment"
         android:label="@string/title_registerroom"

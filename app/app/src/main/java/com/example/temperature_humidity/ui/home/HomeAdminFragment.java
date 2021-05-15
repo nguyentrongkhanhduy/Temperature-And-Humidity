@@ -1,4 +1,4 @@
-package com.example.temperature_humidity.ui.profile;
+package com.example.temperature_humidity.ui.home;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -12,31 +12,22 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.Navigation;
 
 import com.example.temperature_humidity.R;
+import com.example.temperature_humidity.databinding.FragmentHomeAdminBinding;
 import com.example.temperature_humidity.databinding.FragmentProfileBinding;
+import com.example.temperature_humidity.ui.profile.DashboardViewModel;
 
-public class ProfileFragment extends Fragment {
+public class HomeAdminFragment extends Fragment {
 
-    private DashboardViewModel dashboardViewModel;
-    private FragmentProfileBinding binding;
+    private FragmentHomeAdminBinding binding;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        dashboardViewModel =
-                new ViewModelProvider(this).get(DashboardViewModel.class);
-        ((AppCompatActivity) getActivity()).getSupportActionBar().show();
-        binding = FragmentProfileBinding.inflate(inflater, container, false);
+        ((AppCompatActivity) getActivity()).getSupportActionBar().hide();
+        binding = FragmentHomeAdminBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
-
-        binding.btnEdit.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Navigation.findNavController(root).navigate(R.id.profile_to_editprofile);
-            }
-        });
 
         return root;
     }
-
 
 
     @Override

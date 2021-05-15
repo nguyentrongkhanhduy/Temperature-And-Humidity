@@ -23,4 +23,5 @@
     <style name="Theme.Temperature_Humidity.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
 
     <style name="Theme.Temperature_Humidity.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+
 </resources>
