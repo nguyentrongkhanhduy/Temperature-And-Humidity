@@ -33,20 +33,14 @@ public class LoginActivity extends AppCompatActivity {
         ActionBar actionBar = getSupportActionBar();
         actionBar.hide();
 
-        binding.checkkbox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                Toast.makeText(LoginActivity.this,
-                        "Trạng thái checked là " + isChecked,
-                        Toast.LENGTH_SHORT).show();
-            }
-        });
-
-        boolean isAdmin = binding.checkkbox.isChecked();
 
         binding.btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                boolean isAdmin = false;
+                if (binding.checkkbox.isChecked()) {
+                    isAdmin = true;
+                }
                 Intent intent = new Intent(getBaseContext(), MainActivity.class);
                 intent.putExtra("isAdmin", isAdmin);
                 startActivity(intent);
