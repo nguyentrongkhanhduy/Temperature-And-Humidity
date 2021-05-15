@@ -4,6 +4,44 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/mobile_navigation"
     app:startDestination="@+id/navigation_home">
+
+
+    <fragment
+        android:id="@+id/navigation_createroom"
+        android:name="com.example.temperature_humidity.ui.createroom.CreateRoomFragment"
+        android:label="@string/title_createroom"
+        tools:layout="@layout/fragment_createroom">
+        <action
+            android:id="@+id/to_list_room"
+            app:destination="@id/navigation_selectcreateroom"/>
+    </fragment>
+
+    <fragment
+        android:id="@+id/navigation_selectcreateroom"
+        android:name="com.example.temperature_humidity.ui.createroom.ListRoomFragment"
+        android:label="@string/title_createroom"
+        tools:layout="@layout/fragement_listroomadd">
+        <action
+            android:id="@+id/to_room_name"
+            app:destination="@id/navigation_roomname"/>
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/navigation_roomname"
+        android:name="com.example.temperature_humidity.ui.createroom.RoomNameFragment"
+        android:label="@string/title_createroom"
+        tools:layout="@layout/fragment_roomname">
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/navigation_example"
+        android:name="com.example.temperature_humidity.ui.registerroom.ExampleFragment"
+        android:label="@string/title_example"
+        tools:layout="@layout/fragment_example"/>
+
+
     <fragment
         android:id="@+id/navigation_lookuproom"
         android:name="com.example.temperature_humidity.ui.historyactivity.LookUpRoomFragment"
@@ -14,13 +52,16 @@
             android:id="@+id/to_historycontent"
             app:destination="@id/navigation_HistoryActivity"
             />
-        ></fragment>
+    </fragment>
+
     <fragment
         android:id="@+id/navigation_HistoryActivity"
         android:name="com.example.temperature_humidity.ui.historyactivity.HistoryActivityFragment"
         android:label="@string/title_hitoryactivity"
         tools:layout="@layout/fragment_history"
-        ></fragment>
+        >
+    </fragment>
+
     <fragment
         android:id="@+id/navigation_lookupbuilding"
         android:name="com.example.temperature_humidity.ui.historyactivity.LookUpBuildingFragment"
@@ -42,6 +83,13 @@
             android:id="@+id/to_lookupbuilding"
             app:destination="@id/navigation_lookupbuilding"/>
     </fragment>
+
+    <fragment
+        android:id="@+id/navigation_roomtime"
+        android:name="com.example.temperature_humidity.ui.registerroom.RoomTimeFragment"
+        android:label="@string/title_registerroom"
+        tools:layout="@layout/fragment_roomtime"/>
+
     <fragment
         android:id="@+id/navigation_home_admin"
         android:name="com.example.temperature_humidity.ui.home.HomeAdminFragment"
@@ -52,7 +100,12 @@
         android:id="@+id/navigation_selectroom"
         android:name="com.example.temperature_humidity.ui.registerroom.SelectRoomFragment"
         android:label="@string/title_registerroom"
-        tools:layout="@layout/fragment_selectroom"/>
+
+        tools:layout="@layout/fragment_selectroom" >
+        <action
+            android:id="@+id/to_room_time"
+            app:destination="@id/navigation_roomtime" />
+        </fragment>
 
     <fragment
         android:id="@+id/navigation_registerroom"
@@ -63,6 +116,9 @@
         <action
             android:id="@+id/to_select_room"
             app:destination="@id/navigation_selectroom" />
+        <action
+            android:id="@+id/to_example"
+            app:destination="@id/navigation_example"/>
     </fragment>
 
 
@@ -74,10 +130,13 @@
         <action
             android:id="@+id/to_register_room"
             app:destination="@id/navigation_registerroom"/>
+
         <action
             android:id="@+id/to_lookupdate"
             app:destination="@id/navigation_lookupdate"
-            ></action>
+            >
+
+        </action>
 
     </fragment>
 

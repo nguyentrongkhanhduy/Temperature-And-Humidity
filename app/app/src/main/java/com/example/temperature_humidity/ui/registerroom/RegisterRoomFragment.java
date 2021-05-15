@@ -43,6 +43,13 @@ public class RegisterRoomFragment extends Fragment {
             }
         });
 
+        binding.h2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Navigation.findNavController(root).navigate(R.id.to_select_room);
+            }
+        });
+
         return root;
     }
 
