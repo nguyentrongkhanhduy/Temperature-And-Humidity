@@ -18,7 +18,7 @@ public class MQTTService {
     final String clientId ="Client1";
     final String subscriptionTopic ="dadn/feeds/bbc-led";
     final String username ="dadn"; //username
-    final String password ="aio_JtGZ82MBiXgObQKzDXP6IrnJ61tg"; // key
+    final String password ="aio_NiED00cdEVUW9ccNU5CcRW0ebW0y"; // key
     public MqttAndroidClient mqttAndroidClient;
 
     public MQTTService(Context context){
