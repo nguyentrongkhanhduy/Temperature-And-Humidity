@@ -150,6 +150,8 @@
                 android:layout_centerInParent="true">
 
                 <ImageView
+                    android:id="@+id/classroom_admin"
+                    android:clickable="true"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:background="@drawable/rounded_rectangle"

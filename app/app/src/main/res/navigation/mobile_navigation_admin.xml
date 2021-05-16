@@ -5,6 +5,43 @@
     android:id="@+id/admin_nav"
     app:startDestination="@id/navigation_home_admin">
 
+    <fragment
+        android:id="@+id/navigation_classroom"
+        android:name="com.example.temperature_humidity.ui.adminaction.ClassroomFragment"
+        android:label="Phòng học"
+        tools:layout="@layout/fragment_classroom_admin">
+        <action
+            android:id="@+id/to_create_room"
+            app:destination="@id/navigation_createroom"/>
+    </fragment>
+    <fragment
+        android:id="@+id/navigation_createroom"
+        android:name="com.example.temperature_humidity.ui.createroom.CreateRoomFragment"
+        android:label="@string/title_createroom"
+        tools:layout="@layout/fragment_createroom">
+        <action
+            android:id="@+id/to_list_room"
+            app:destination="@id/navigation_selectcreateroom"/>
+    </fragment>
+
+    <fragment
+        android:id="@+id/navigation_selectcreateroom"
+        android:name="com.example.temperature_humidity.ui.createroom.ListRoomFragment"
+        android:label="@string/title_createroom"
+        tools:layout="@layout/fragment_listroomadd">
+        <action
+            android:id="@+id/to_room_name"
+            app:destination="@id/navigation_roomname"/>
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/navigation_roomname"
+        android:name="com.example.temperature_humidity.ui.createroom.RoomNameFragment"
+        android:label="@string/title_createroom"
+        tools:layout="@layout/fragment_roomname">
+
+    </fragment>
 
     <activity
         android:id="@+id/navigation_login_admin"
@@ -21,6 +58,9 @@
             android:id="@+id/to_log_in"
             app:destination="@id/navigation_login_admin"
             />
+        <action
+            android:id="@+id/to_classroom"
+            app:destination="@id/navigation_classroom"/>
     </fragment>
     <fragment
         android:id="@+id/navigation_profile_admin"

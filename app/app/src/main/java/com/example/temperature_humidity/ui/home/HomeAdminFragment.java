@@ -34,6 +34,13 @@ public class HomeAdminFragment extends Fragment {
             }
         });
 
+        binding.classroomAdmin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Navigation.findNavController(root).navigate(R.id.to_classroom);
+            }
+        });
+
         return root;
     }
 

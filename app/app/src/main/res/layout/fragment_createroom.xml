@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <EditText
+    <TextView
         android:id="@+id/editTextTextPersonName10"
         android:layout_width="270dp"
         android:layout_height="wrap_content"
@@ -18,6 +18,8 @@
         android:ems="10"
         android:inputType="textPersonName"
         android:text="Chọn tòa để tạo thêm phòng"
+        android:textColor="#000000"
+        android:textSize="20sp"
         android:textStyle="normal|bold" />
 
     <LinearLayout
