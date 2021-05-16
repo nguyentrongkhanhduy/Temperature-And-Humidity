@@ -88,17 +88,10 @@ public class MainActivity extends AppCompatActivity {
         boolean isAdmin = intent.getBooleanExtra("isAdmin", false);
 
         AppBarConfiguration appBarConfiguration = new AppBarConfiguration.Builder(
-                R.id.navigation_home_admin, R.id.navigation_profile, R.id.navigation_notifications)
+                R.id.navigation_home, R.id.navigation_profile, R.id.navigation_notifications)
                 .build();
 
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_activity_main);
-        NavGraph navGraph = navController.getNavInflater().inflate(R.navigation.mobile_navigation);
-        if (isAdmin) {
-            navGraph.setStartDestination(R.id.navigation_home_admin);
-        } else {
-            navGraph.setStartDestination(R.id.navigation_home);
-        }
-        navController.setGraph(navGraph);
         NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
         NavigationUI.setupWithNavController(binding.navView, navController);
 

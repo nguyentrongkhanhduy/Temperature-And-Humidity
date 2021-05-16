@@ -61,7 +61,7 @@ public class MainAdminActivity extends AppCompatActivity {
                 R.id.navigation_home_admin, R.id.navigation_profile, R.id.navigation_notifications)
                 .build();
 
-        NavController navController = Navigation.findNavController(this, R.id.fragment);
+        NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_activity_main_admin);
         NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
         NavigationUI.setupWithNavController(binding.navViewAdmin, navController);
 
