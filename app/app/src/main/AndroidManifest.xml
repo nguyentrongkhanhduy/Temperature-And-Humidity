@@ -23,6 +23,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".MainActivity"></activity>
+        <activity android:name=".MainAdminActivity"></activity>
         <service android:name="org.eclipse.paho.android.service.MqttService"/>
 
     </application>

@@ -26,6 +26,14 @@ public class HomeAdminFragment extends Fragment {
         binding = FragmentHomeAdminBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
 
+
+        binding.btnLogout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Navigation.findNavController(root).navigate(R.id.to_log_in);
+            }
+        });
+
         return root;
     }
 
