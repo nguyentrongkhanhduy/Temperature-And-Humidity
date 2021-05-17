@@ -61,6 +61,9 @@
         <action
             android:id="@+id/to_classroom"
             app:destination="@id/navigation_classroom"/>
+        <action
+            android:id="@+id/to_manage_accounts"
+            app:destination="@id/navigation_manage_accounts" />
     </fragment>
     <fragment
         android:id="@+id/navigation_profile_admin"
@@ -86,5 +89,19 @@
             android:id="@+id/editprofile_to_profile"
             app:destination="@id/navigation_profile_admin" />
     </fragment>
+    <fragment
+        android:id="@+id/navigation_manage_accounts"
+        android:name="com.example.temperature_humidity.ui.manageaccounts.ManageAccountsFragment"
+        android:label="@string/title_manageaccounts"
+        tools:layout="@layout/fragment_manage_accounts" >
+        <action
+            android:id="@+id/to_add_account"
+            app:destination="@id/navigation_add_account" />
+    </fragment>
+    <fragment
+        android:id="@+id/navigation_add_account"
+        android:name="com.example.temperature_humidity.ui.manageaccounts.AddAccountFragment"
+        android:label="@string/btn_ConfirmAddAccount"
+        tools:layout="@layout/fragment_add_account" />
 
 </navigation>

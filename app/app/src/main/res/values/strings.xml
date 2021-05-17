@@ -8,7 +8,13 @@
     <string name="title_example">Ví dụ</string>
     <string name="title_createroom">Thêm phòng</string>
     <string name="title_hitoryactivity">Lịch sử hoạt động</string>
-
+    <string name="title_manageaccounts">Quản lý tài khoản</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="hint_AddAccountName">Nhập tên tài khoản...</string>
+    <string name="hint_AddAccountPassword">Nhập mật khẩu...</string>
+    <string name="checkBox_isAdmin">Là quản trị viên?</string>
+    <string name="btn_ConfirmAddAccount">Tạo tài khoản</string>
 
 
 </resources>
