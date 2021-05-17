@@ -1,4 +1,4 @@
-package com.example.temperature_humidity.ui.adminaction;
+package com.example.temperature_humidity.ui.roombrowsing;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -12,18 +12,14 @@ import androidx.fragment.app.Fragment;
 import androidx.navigation.Navigation;
 
 import com.example.temperature_humidity.R;
-import com.example.temperature_humidity.databinding.FragmentClassroomAdminBinding;
-import com.example.temperature_humidity.databinding.FragmentCreateroomBinding;
+import com.example.temperature_humidity.databinding.FragmentLookupdateBinding;
+import com.example.temperature_humidity.databinding.FragmentRoombrowsingBinding;
 
-public class ClassroomFragment extends Fragment {
-    private FragmentClassroomAdminBinding binding;
+public class RoomBrowsingFragment extends Fragment {
+    private FragmentRoombrowsingBinding binding;
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-
-
-
-
-        binding = FragmentClassroomAdminBinding.inflate(inflater, container, false);
+        binding = FragmentRoombrowsingBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
 
         //hien thi action bar
@@ -32,29 +28,13 @@ public class ClassroomFragment extends Fragment {
         //xoa nut back tren action bar
         ActionBar actionBar = ((AppCompatActivity) getActivity()).getSupportActionBar();
         actionBar.setDisplayHomeAsUpEnabled(false);
-
-        binding.createRoom.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Navigation.findNavController(root).navigate(R.id.to_create_room);
-            }
-        });
-        binding.registerRoom.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Navigation.findNavController(root).navigate(R.id.to_room_browsing);
-            }
-        });
-
-
-
-
         return root;
     }
-
     @Override
     public void onDestroyView() {
         super.onDestroyView();
         binding = null;
     }
+
+
 }

@@ -6,6 +6,12 @@
     app:startDestination="@id/navigation_home_admin">
 
     <fragment
+        android:id="@+id/navigation_room_browsing"
+        android:name="com.example.temperature_humidity.ui.roombrowsing.RoomBrowsingFragment"
+        android:label="@string/title_roombrowsing"
+        tools:layout="@layout/fragment_roombrowsing">
+    </fragment>
+    <fragment
         android:id="@+id/navigation_classroom"
         android:name="com.example.temperature_humidity.ui.adminaction.ClassroomFragment"
         android:label="Phòng học"
@@ -13,6 +19,10 @@
         <action
             android:id="@+id/to_create_room"
             app:destination="@id/navigation_createroom"/>
+        <action
+            android:id="@+id/to_room_browsing"
+            app:destination="@+id/navigation_room_browsing"
+            />
     </fragment>
     <fragment
         android:id="@+id/navigation_createroom"
@@ -42,6 +52,7 @@
         tools:layout="@layout/fragment_roomname">
 
     </fragment>
+
 
     <activity
         android:id="@+id/navigation_login_admin"
