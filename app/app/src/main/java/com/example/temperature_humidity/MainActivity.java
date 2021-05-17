@@ -27,10 +27,45 @@ import org.eclipse.paho.client.mqttv3.MqttException;
 import org.eclipse.paho.client.mqttv3.MqttMessage;
 
 import java.nio.charset.Charset;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.locks.ReentrantLock;
 
 import org.json.*;
 
 public class MainActivity extends AppCompatActivity {
+    int i = 0;
+    private ReentrantLock mutex = new ReentrantLock();
+    private boolean virgin = true;
+    private void sendDataMQTT(String data, MQTTService mqttService ){
+        try {
+            mutex.lock();
+            MqttMessage msg = new MqttMessage();
+            msg.setId(i++);
+            msg.setQos(0);
+            msg.setRetained(true);
+            byte[] b = data.getBytes(Charset.forName("UTF-8"));
+            msg.setPayload(b);
+            Log.d("ABC", "Publish:" + msg);
+            try {
+                mqttService.mqttAndroidClient.publish("dadn/feeds/bbc-led", msg);
+
+            } catch (MqttException e) {
+
+            }
+        }
+        finally {
+            try {
+                Thread.sleep(1000);
+            }catch(Exception e){
+
+            }
+            mutex.unlock();
+        }
+
+
+    }
+
 
     private ActivityMainBinding binding;
 
@@ -38,10 +73,11 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+
         MQTTService mqttService = new MQTTService( this);
         mqttService.setCallback(new MqttCallbackExtended() {
             @Override public void connectComplete(boolean reconnect, String serverURI) {
-
+                virgin = false;
             }
             @Override public void connectionLost( Throwable cause){
 
@@ -61,7 +97,21 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        ExecutorService executor = Executors.newSingleThreadExecutor();
+        executor.submit(() -> {
+            while(virgin){
 
+            }
+            sendDataMQTT("8",mqttService);
+            sendDataMQTT("7",mqttService);
+            sendDataMQTT("6",mqttService);
+            sendDataMQTT("5",mqttService);
+            sendDataMQTT("4",mqttService);
+            sendDataMQTT("3",mqttService);
+            sendDataMQTT("2",mqttService);
+            sendDataMQTT("1",mqttService);
+
+        });
 
         //Hide status bar
         requestWindowFeature(Window.FEATURE_NO_TITLE);
