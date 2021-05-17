@@ -119,6 +119,8 @@
                 android:layout_centerInParent="true">
 
                 <ImageView
+                    android:id="@+id/device_control"
+                    android:clickable="true"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:background="@drawable/rounded_rectangle"

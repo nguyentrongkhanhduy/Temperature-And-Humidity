@@ -14,11 +14,12 @@ import org.eclipse.paho.client.mqttv3.MqttException;
 import org.eclipse.paho.client.mqttv3.MqttMessage;
 
 public class MQTTService {
+    public boolean virgin = true;
     final String serverUri ="tcp://io.adafruit.com:1883";
     final String clientId ="Client1";
     final String subscriptionTopic ="dadn/feeds/bbc-led";
     final String username ="dadn"; //username
-    final String password ="aio_AtfE38Zk1mAJgAwKX5TjRZMA3vQp"; // key
+    final String password ="aio_vASr72wFP0zIVLW2P6pAVn9q9JzZ"; // key
     public MqttAndroidClient mqttAndroidClient;
 
     public MQTTService(Context context){
@@ -56,6 +57,7 @@ public class MQTTService {
         try {
             mqttAndroidClient.connect(mqttConnectOptions, null, new IMqttActionListener() {
                 @Override public void onSuccess( IMqttToken asyncActionToken) {
+                    virgin = false;
                     DisconnectedBufferOptions disconnectedBufferOptions = new DisconnectedBufferOptions();
                     disconnectedBufferOptions.setBufferEnabled(true);
                     disconnectedBufferOptions.setBufferSize(100);
@@ -77,7 +79,7 @@ public class MQTTService {
         try {
             mqttAndroidClient.subscribe(subscriptionTopic, 0, null, new IMqttActionListener() {
                 @Override public void onSuccess( IMqttToken asyncActionToken) {
-                    Log.w("Mqtt","Subscribed!");
+                    Log.w("Mqtt","Subscribed! " + subscriptionTopic);
                 }
                 @Override public void onFailure(IMqttToken asyncActionToken, Throwable exception) {
                     Log.w("Mqtt","Subscribedfail!");

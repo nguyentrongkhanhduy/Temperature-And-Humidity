@@ -64,6 +64,9 @@
         <action
             android:id="@+id/to_manage_accounts"
             app:destination="@id/navigation_manage_accounts" />
+        <action
+            android:id="@+id/to_device_control"
+            app:destination="@id/navigation_fan_control" />
     </fragment>
     <fragment
         android:id="@+id/navigation_profile_admin"
@@ -103,5 +106,10 @@
         android:name="com.example.temperature_humidity.ui.manageaccounts.AddAccountFragment"
         android:label="@string/btn_ConfirmAddAccount"
         tools:layout="@layout/fragment_add_account" />
+    <fragment
+        android:id="@+id/navigation_fan_control"
+        android:name="com.example.temperature_humidity.ui.devicecontrol.FanControlFragment"
+        android:label="Điều khiển quạt"
+        tools:layout="@layout/fragment_fan_control" />
 
 </navigation>

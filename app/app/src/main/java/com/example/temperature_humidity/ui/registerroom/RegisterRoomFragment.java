@@ -1,9 +1,11 @@
 package com.example.temperature_humidity.ui.registerroom;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
@@ -12,18 +14,27 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.Navigation;
 
+import com.example.temperature_humidity.MQTTService;
+import com.example.temperature_humidity.MainActivity;
 import com.example.temperature_humidity.R;
 import com.example.temperature_humidity.databinding.FragmentEditprofileBinding;
 import com.example.temperature_humidity.databinding.FragmentRegisterroomBinding;
 import com.example.temperature_humidity.ui.profile.DashboardViewModel;
 
+import org.eclipse.paho.client.mqttv3.IMqttDeliveryToken;
+import org.eclipse.paho.client.mqttv3.MqttCallbackExtended;
+import org.eclipse.paho.client.mqttv3.MqttException;
+import org.eclipse.paho.client.mqttv3.MqttMessage;
+import org.json.JSONObject;
+
+import java.nio.charset.Charset;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+
 public class RegisterRoomFragment extends Fragment {
     private FragmentRegisterroomBinding binding;
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-
-
-
 
         binding = FragmentRegisterroomBinding.inflate(inflater, container, false);
         View root = binding.getRoot();

@@ -36,7 +36,6 @@ import org.json.*;
 public class MainActivity extends AppCompatActivity {
     int i = 0;
     private ReentrantLock mutex = new ReentrantLock();
-    private boolean virgin = true;
     private void sendDataMQTT(String data, MQTTService mqttService ){
         try {
             mutex.lock();
@@ -77,7 +76,7 @@ public class MainActivity extends AppCompatActivity {
         MQTTService mqttService = new MQTTService( this);
         mqttService.setCallback(new MqttCallbackExtended() {
             @Override public void connectComplete(boolean reconnect, String serverURI) {
-                virgin = false;
+
             }
             @Override public void connectionLost( Throwable cause){
 
@@ -85,21 +84,20 @@ public class MainActivity extends AppCompatActivity {
 
             @Override public void messageArrived(String topic, MqttMessage message) throws Exception {
                 String data_to_microbit = message.toString();
-                JSONObject data = new JSONObject(data_to_microbit);
-                String name = data.getString("name");
                 //port.write(data_to_microbit.getBytes(),1000);
-                Toast.makeText(MainActivity.this,name,Toast.LENGTH_LONG).show();
+                Toast.makeText(MainActivity.this,data_to_microbit,Toast.LENGTH_LONG).show();
                 System.out.println(data_to_microbit);
+                Log.d("receive dc bo'","yoosho");
             }
             @Override public void deliveryComplete(IMqttDeliveryToken token)
             {
-
+                Log.d("receive xong ho bo'","yoosho");
             }
         });
 
         ExecutorService executor = Executors.newSingleThreadExecutor();
         executor.submit(() -> {
-            while(virgin){
+            while(mqttService.virgin){
 
             }
             sendDataMQTT("8",mqttService);
@@ -149,8 +147,8 @@ public class MainActivity extends AppCompatActivity {
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_activity_main);
         NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
         NavigationUI.setupWithNavController(binding.navView, navController);
-
-
+//
+//
 
 
     }
