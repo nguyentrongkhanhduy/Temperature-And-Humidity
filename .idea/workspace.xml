@@ -23,14 +23,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="693acb35-c425-4233-afd3-5f461175b2e8" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/app/app/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/app/app/build.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/app/proguard-rules.pro" beforeDir="false" afterPath="$PROJECT_DIR$/app/app/proguard-rules.pro" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/app/src/androidTest/java/com/example/temperature_humidity/ExampleInstrumentedTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/app/src/androidTest/java/com/example/temperature_humidity/ExampleInstrumentedTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/app/src/main/java/com/example/temperature_humidity/ui/home/HomeAdminFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/app/src/main/java/com/example/temperature_humidity/ui/home/HomeAdminFragment.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/app/src/main/res/layout/fragment_home_admin.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/app/src/main/res/layout/fragment_home_admin.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/app/src/main/res/navigation/mobile_navigation_admin.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/app/src/main/res/navigation/mobile_navigation_admin.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/app/src/main/res/values/strings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/app/src/main/res/values/strings.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/app/src/test/java/com/example/temperature_humidity/ExampleUnitTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/app/src/test/java/com/example/temperature_humidity/ExampleUnitTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/Temperature-And-Humidity.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/Temperature-And-Humidity.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/app/src/main/java/com/example/temperature_humidity/DatabaseHelper.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/app/src/main/java/com/example/temperature_humidity/DatabaseHelper.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -77,12 +72,13 @@
         </entry>
       </map>
     </option>
+    <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="549" y="187" key="FileChooserDialogImpl" timestamp="1621229352524">
+    <state x="549" y="187" key="FileChooserDialogImpl" timestamp="1621231523823">
       <screen x="0" y="0" width="1536" height="864" />
     </state>
-    <state x="549" y="187" key="FileChooserDialogImpl/0.0.1536.864@0.0.1536.864" timestamp="1621229352524" />
+    <state x="549" y="187" key="FileChooserDialogImpl/0.0.1536.864@0.0.1536.864" timestamp="1621231523823" />
     <state x="361" y="165" key="Vcs.Push.Dialog.v2" timestamp="1621230123769">
       <screen x="0" y="0" width="1536" height="864" />
     </state>
