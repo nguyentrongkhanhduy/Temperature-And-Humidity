@@ -28,6 +28,8 @@ import org.eclipse.paho.client.mqttv3.MqttMessage;
 
 import java.nio.charset.Charset;
 
+import org.json.*;
+
 public class MainActivity extends AppCompatActivity {
 
     private ActivityMainBinding binding;
@@ -47,8 +49,10 @@ public class MainActivity extends AppCompatActivity {
 
             @Override public void messageArrived(String topic, MqttMessage message) throws Exception {
                 String data_to_microbit = message.toString();
+                JSONObject data = new JSONObject(data_to_microbit);
+                String name = data.getString("name");
                 //port.write(data_to_microbit.getBytes(),1000);
-                Toast.makeText(MainActivity.this,data_to_microbit,Toast.LENGTH_LONG).show();
+                Toast.makeText(MainActivity.this,name,Toast.LENGTH_LONG).show();
                 System.out.println(data_to_microbit);
             }
             @Override public void deliveryComplete(IMqttDeliveryToken token)
@@ -56,6 +60,7 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
+
 
 
         //Hide status bar

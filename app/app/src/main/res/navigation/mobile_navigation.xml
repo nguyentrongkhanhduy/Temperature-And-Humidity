@@ -6,34 +6,7 @@
     app:startDestination="@id/navigation_home">
 
 
-    <fragment
-        android:id="@+id/navigation_createroom"
-        android:name="com.example.temperature_humidity.ui.createroom.CreateRoomFragment"
-        android:label="@string/title_createroom"
-        tools:layout="@layout/fragment_createroom">
-        <action
-            android:id="@+id/to_list_room"
-            app:destination="@id/navigation_selectcreateroom"/>
-    </fragment>
 
-    <fragment
-        android:id="@+id/navigation_selectcreateroom"
-        android:name="com.example.temperature_humidity.ui.createroom.ListRoomFragment"
-        android:label="@string/title_createroom"
-        tools:layout="@layout/fragement_listroomadd">
-        <action
-            android:id="@+id/to_room_name"
-            app:destination="@id/navigation_roomname"/>
-
-    </fragment>
-
-    <fragment
-        android:id="@+id/navigation_roomname"
-        android:name="com.example.temperature_humidity.ui.createroom.RoomNameFragment"
-        android:label="@string/title_createroom"
-        tools:layout="@layout/fragment_roomname">
-
-    </fragment>
 
     <fragment
         android:id="@+id/navigation_example"

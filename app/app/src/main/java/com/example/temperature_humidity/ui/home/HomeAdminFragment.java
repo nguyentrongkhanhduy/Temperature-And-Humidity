@@ -34,6 +34,20 @@ public class HomeAdminFragment extends Fragment {
             }
         });
 
+        binding.btnManageAccounts.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Navigation.findNavController(root).navigate(R.id.to_manage_accounts);
+            }
+        });
+
+        binding.classroomAdmin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Navigation.findNavController(root).navigate(R.id.to_classroom);
+            }
+        });
+
         return root;
     }
 
