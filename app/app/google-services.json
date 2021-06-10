@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "783134234100",
+    "project_id": "temperatureandhumidity-14a04",
+    "storage_bucket": "temperatureandhumidity-14a04.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:783134234100:android:775674eb0dc4463d77d5a1",
+        "android_client_info": {
+          "package_name": "com.example.temperature_humidity"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "783134234100-ivenb5ubfr41jgv1n291jjros3lungfb.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBDrceVg4WmZTDDwkxGQW7b0AbOk6IWIbw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "783134234100-ivenb5ubfr41jgv1n291jjros3lungfb.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
