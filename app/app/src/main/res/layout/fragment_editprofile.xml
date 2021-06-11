@@ -44,11 +44,11 @@
                         android:text="ID"
                         />
                     <EditText
+                        android:id="@+id/edtID"
                         android:textSize="20dp"
                         android:textStyle="bold"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="123456789"/>
+                        android:layout_height="wrap_content"/>
                 </LinearLayout>
                 <LinearLayout
                     android:layout_marginTop="15dp"
@@ -64,12 +64,12 @@
                         android:text="Họ và tên"
                         />
                     <EditText
+                        android:id="@+id/edtName"
                         android:textSize="20dp"
                         android:textStyle="bold"
                         android:inputType="text"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="Lê Tiến Dũng"/>
+                        android:layout_height="wrap_content"/>
                 </LinearLayout>
                 <LinearLayout
                     android:layout_marginTop="30dp"
@@ -85,12 +85,12 @@
                         android:text="Năm sinh"
                         />
                     <EditText
+                        android:id="@+id/edtBornYear"
                         android:textSize="20dp"
                         android:textStyle="bold"
                         android:inputType="number"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="2000"/>
+                        android:layout_height="wrap_content"/>
                 </LinearLayout>
                 <LinearLayout
                     android:layout_marginTop="15dp"
@@ -106,11 +106,11 @@
                         android:text="Email"
                         />
                     <EditText
+                        android:id="@+id/edtEmail"
                         android:textSize="20dp"
                         android:textStyle="bold"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="ltd@gmail.com"/>
+                        android:layout_height="wrap_content"/>
                 </LinearLayout>
             </LinearLayout>
             <RelativeLayout

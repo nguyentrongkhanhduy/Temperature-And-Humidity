@@ -15,9 +15,17 @@ import com.example.temperature_humidity.R;
 import com.example.temperature_humidity.databinding.FragmentHomeAdminBinding;
 import com.example.temperature_humidity.databinding.FragmentProfileBinding;
 import com.example.temperature_humidity.ui.profile.DashboardViewModel;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
+import org.jetbrains.annotations.NotNull;
 
 public class HomeAdminFragment extends Fragment {
-
+    private DatabaseReference mDatabase;
     private FragmentHomeAdminBinding binding;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
@@ -52,6 +60,27 @@ public class HomeAdminFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 Navigation.findNavController(root).navigate(R.id.to_device_control);
+            }
+        });
+
+        mDatabase = FirebaseDatabase.getInstance().getReference();
+
+
+        String userID = FirebaseAuth.getInstance().getCurrentUser().getUid();
+        mDatabase.child("Accounts").child(userID).child("Profile").child("name").addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull @NotNull DataSnapshot snapshot) {
+                if (snapshot.exists()){
+
+                    String name = snapshot.getValue(String.class);
+                    System.out.println("hihihii" + name);
+                    binding.tvUsername.setText(name);
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull @NotNull DatabaseError error) {
+
             }
         });
 

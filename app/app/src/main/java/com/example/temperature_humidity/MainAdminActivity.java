@@ -18,10 +18,15 @@ import androidx.navigation.ui.NavigationUI;
 import com.example.temperature_humidity.databinding.ActivityMainAdminBinding;
 import com.example.temperature_humidity.databinding.ActivityMainBinding;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 
 public class MainAdminActivity extends AppCompatActivity {
     private ActivityMainAdminBinding binding;
+    private DatabaseReference mDatabase;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,6 +50,9 @@ public class MainAdminActivity extends AppCompatActivity {
         // Set BackgroundDrawable
         actionBar.setBackgroundDrawable(colorDrawable);
 
+        actionBar.setDisplayHomeAsUpEnabled(false);
+        actionBar.setHomeButtonEnabled(false);
+
 
         binding = ActivityMainAdminBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
@@ -64,6 +72,10 @@ public class MainAdminActivity extends AppCompatActivity {
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_activity_main_admin);
         NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
         NavigationUI.setupWithNavController(binding.navViewAdmin, navController);
+
+
+        mDatabase = FirebaseDatabase.getInstance().getReference();
+
 
 
     }

@@ -49,12 +49,12 @@
                     android:text="ID:"
                     />
                 <TextView
+                    android:id="@+id/tvID"
                     android:textSize="20dp"
                     android:textStyle="bold"
                     android:paddingLeft="10dp"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="123456789"/>
+                    android:layout_height="wrap_content" />
             </LinearLayout>
             <LinearLayout
                 android:layout_marginTop="30dp"
@@ -70,12 +70,12 @@
                     android:text="Họ và tên:"
                     />
                 <TextView
+                    android:id="@+id/tvName"
                     android:textSize="20dp"
                     android:textStyle="bold"
                     android:paddingLeft="10dp"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Lê Tiến Dũng"/>
+                    android:layout_height="wrap_content"/>
             </LinearLayout>
             <LinearLayout
                 android:layout_marginTop="30dp"
@@ -91,12 +91,12 @@
                     android:text="Năm sinh:"
                     />
                 <TextView
+                    android:id="@+id/tvBornYear"
                     android:textSize="20dp"
                     android:textStyle="bold"
                     android:paddingLeft="10dp"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="2000"/>
+                    android:layout_height="wrap_content"/>
             </LinearLayout>
             <LinearLayout
                 android:layout_marginTop="30dp"
@@ -112,12 +112,12 @@
                     android:text="Email:"
                     />
                 <TextView
+                    android:id="@+id/tvEmail"
                     android:textSize="20dp"
                     android:textStyle="bold"
                     android:paddingLeft="10dp"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="ltd@gmail.com"/>
+                    android:layout_height="wrap_content"/>
             </LinearLayout>
         </LinearLayout>
         <RelativeLayout

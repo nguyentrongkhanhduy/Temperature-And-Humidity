@@ -16,9 +16,17 @@ import androidx.navigation.Navigation;
 
 import com.example.temperature_humidity.R;
 import com.example.temperature_humidity.databinding.FragmentHomeBinding;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
+import org.jetbrains.annotations.NotNull;
 
 public class HomeFragment extends Fragment {
-
+    private DatabaseReference mDatabase;
     private HomeViewModel homeViewModel;
     private FragmentHomeBinding binding;
 
@@ -49,6 +57,27 @@ public class HomeFragment extends Fragment {
                 Navigation.findNavController(root).navigate(R.id.to_log_in);
             }
         });
+
+        mDatabase = FirebaseDatabase.getInstance().getReference();
+
+
+        String userID = FirebaseAuth.getInstance().getCurrentUser().getUid();
+        mDatabase.child("Accounts").child(userID).child("Profile").child("name").addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull @NotNull DataSnapshot snapshot) {
+                if (snapshot.exists()){
+
+                    String name = snapshot.getValue(String.class);
+                    binding.tvUsername.setText(name);
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull @NotNull DatabaseError error) {
+
+            }
+        });
+
         return root;
     }
 

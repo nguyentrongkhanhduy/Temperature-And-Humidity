@@ -99,6 +99,7 @@
                     android:layout_height="wrap_content"
                     android:inputType="textEmailAddress"
                     android:maxLength="20"
+                    android:text="user@gmail.com"
                     android:hint="Tên đăng nhập"/>
             </com.google.android.material.textfield.TextInputLayout>
             <com.google.android.material.textfield.TextInputLayout
@@ -118,6 +119,7 @@
                     android:layout_height="wrap_content"
                     android:inputType="textPassword"
                     android:maxLength="20"
+                    android:text="123456789"
                     android:hint="Mật khẩu"/>
             </com.google.android.material.textfield.TextInputLayout>
             <LinearLayout
