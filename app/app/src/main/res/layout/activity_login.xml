@@ -58,8 +58,8 @@
         >
 
         <ImageView
-            android:layout_width="150dp"
-            android:layout_height="150dp"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
             android:src="@drawable/logo" />
 
         <LinearLayout
@@ -70,7 +70,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="HCMUT"
-                android:textSize="30dp"
+                android:textSize="20dp"
                 android:textStyle="bold"
                 android:fontFamily="sans-serif"
                 />
@@ -141,11 +141,9 @@
         </LinearLayout>
     </LinearLayout>
     <LinearLayout
-        android:gravity="bottom"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
         <LinearLayout
-            android:paddingBottom="50dp"
             android:gravity="center"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">

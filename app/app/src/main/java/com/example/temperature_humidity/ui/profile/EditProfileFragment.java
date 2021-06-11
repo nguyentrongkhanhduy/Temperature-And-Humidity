@@ -52,6 +52,22 @@ public class EditProfileFragment extends Fragment {
         String userID = mAuth.getCurrentUser().getUid();
         System.out.println(userID);
 
+        mDatabase.child("Accounts").child(userID).child("Profile").addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull @NotNull DataSnapshot snapshot) {
+                ProfileModel post = snapshot.getValue(ProfileModel.class);
+                binding.edtID.setText(post.getId());
+                binding.edtBornYear.setText(post.getBornYear());
+                binding.edtEmail.setText(post.getEmail());
+                binding.edtName.setText(post.getName());
+            }
+
+            @Override
+            public void onCancelled(@NonNull @NotNull DatabaseError error) {
+
+            }
+        });
+
         binding.btnDone.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
