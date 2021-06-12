@@ -1,108 +1,78 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center_horizontal"
     tools:context=".ui.registerroom.RoomTimeFragment">
 
-    <EditText
-        android:id="@+id/txtEnd"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentLeft="true"
-
-        android:layout_alignParentBottom="true"
-        android:layout_marginStart="241dp"
-        android:layout_marginLeft="241dp"
-
-        android:layout_marginBottom="197dp"
-        android:hint="Tiết kết thúc"
-        android:textColorHint="@color/gray" />
-
     <TextView
-        android:id="@+id/textView8"
-        android:layout_width="68dp"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentRight="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="403dp"
-        android:layout_marginEnd="146dp"
-        android:layout_marginRight="146dp"
-        android:text="101"
-        android:textSize="16sp" />
-
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent"
-    <TextView
-        android:id="@+id/textView4"
-        android:layout_width="200dp"
-        android:layout_height="30dp"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentRight="true"
-        android:layout_marginTop="286dp"
-        android:layout_marginEnd="59dp"
-        android:layout_marginRight="59dp"
-        android:text="Thứ 2, 26 tháng 4"
-        android:textSize="16sp" />
-
-    <TextView
-        android:id="@+id/textView5"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentRight="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="352dp"
-        android:layout_marginEnd="170dp"
-        android:layout_marginRight="170dp"
-        android:text="Tòa H1"
-        android:textSize="16sp" />
-
-    <TextView
+        android:gravity="center"
         android:id="@+id/editTextTextPersonName6"
-        android:layout_width="272dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginStart="104dp"
-        android:layout_marginLeft="104dp"
-        android:layout_marginTop="193dp"
-        android:ems="10"
-        android:inputType="textPersonName"
+        android:layout_marginTop="50dp"
         android:text="Nhập thông tin đăng ký"
         android:textColor="#000000"
         android:textSize="20sp"
         android:textStyle="normal|bold" />
 
-    <EditText
-        android:id="@+id/txtStart"
-        android:layout_width="wrap_content"
+    <TextView
+        android:gravity="center"
+        android:id="@+id/textView4"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentBottom="true"
-        android:layout_marginStart="81dp"
-        android:layout_marginLeft="81dp"
-        android:layout_marginBottom="198dp"
-        android:hint="Tiết bắt đầu"
-        android:textColorHint="@color/gray"/>
+        android:layout_marginTop="20dp"
+        android:text="Thứ 2, 26 tháng 4"
+        android:textSize="16sp" />
+
+    <TextView
+        android:gravity="center"
+        android:id="@+id/tvBD"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:text="Tòa H1"
+        android:textSize="16sp" />
+
+    <TextView
+        android:gravity="center"
+        android:id="@+id/tvRoom"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:text="101"
+        android:textSize="16sp" />
+
+    <LinearLayout
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <EditText
+            android:id="@+id/edtStart"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="Tiết bắt đầu"
+            android:textColorHint="@color/gray"/>
+
+        <EditText
+            android:id="@+id/edtEnd"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="50dp"
+            android:hint="Tiết kết thúc"
+            android:textColorHint="@color/gray" />
+    </LinearLayout>
 
     <Button
         android:id="@+id/btnDk"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="129dp"
+        android:layout_marginTop="50dp"
         android:text="Đăng ký"
         android:textColor="#000000"
         app:backgroundTint="#64E987" />
-</RelativeLayout>
+</LinearLayout>

@@ -47,19 +47,54 @@ public class RegisterRoomFragment extends Fragment {
         actionBar.setDisplayHomeAsUpEnabled(false);
 
 
-        binding.h1.setOnClickListener(new View.OnClickListener() {
+        binding.btnH1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Navigation.findNavController(root).navigate(R.id.to_select_room);
+                Bundle bundle = new Bundle();
+                bundle.putString("building", "H1"); // Put anything what you want
+
+                SelectRoomFragment fragment2 = new SelectRoomFragment();
+                fragment2.setArguments(bundle);
+                Navigation.findNavController(root).navigate(R.id.to_select_room, bundle);
             }
         });
 
-        binding.h2.setOnClickListener(new View.OnClickListener() {
+        binding.btnH2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Navigation.findNavController(root).navigate(R.id.to_select_room);
+                Bundle bundle = new Bundle();
+                bundle.putString("building", "H2"); // Put anything what you want
+
+                SelectRoomFragment fragment2 = new SelectRoomFragment();
+                fragment2.setArguments(bundle);
+                Navigation.findNavController(root).navigate(R.id.to_select_room, bundle);
             }
         });
+
+        binding.btnH3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Bundle bundle = new Bundle();
+                bundle.putString("building", "H3"); // Put anything what you want
+
+                SelectRoomFragment fragment2 = new SelectRoomFragment();
+                fragment2.setArguments(bundle);
+                Navigation.findNavController(root).navigate(R.id.to_select_room, bundle);
+            }
+        });
+
+        binding.btnH6.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Bundle bundle = new Bundle();
+                bundle.putString("building", "H6"); // Put anything what you want
+
+                SelectRoomFragment fragment2 = new SelectRoomFragment();
+                fragment2.setArguments(bundle);
+                Navigation.findNavController(root).navigate(R.id.to_select_room, bundle);
+            }
+        });
+
 
         return root;
     }

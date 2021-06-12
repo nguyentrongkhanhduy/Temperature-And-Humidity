@@ -33,7 +33,11 @@ public class RoomTimeFragment extends Fragment {
         ActionBar actionBar = ((AppCompatActivity) getActivity()).getSupportActionBar();
         actionBar.setDisplayHomeAsUpEnabled(false);
 
-
+//        System.out.println(getArguments().getString("roomname"));
+        String building = getArguments().getString("building");
+        String room = getArguments().getString("roomname");
+        binding.tvBD.setText("Toà " + building);
+        binding.tvRoom.setText(room);
         return root;
     }
 
