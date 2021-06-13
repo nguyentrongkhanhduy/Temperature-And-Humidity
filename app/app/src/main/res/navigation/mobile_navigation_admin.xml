@@ -50,6 +50,14 @@
         android:name="com.example.temperature_humidity.ui.createroom.RoomNameFragment"
         android:label="@string/title_createroom"
         tools:layout="@layout/fragment_roomname">
+        <action
+            android:id="@+id/cancel_add_room"
+            app:destination="@id/navigation_home_admin"
+            />
+        <action
+            android:id="@+id/done_add_room"
+            app:destination="@id/navigation_selectcreateroom"
+            />
 
     </fragment>
 

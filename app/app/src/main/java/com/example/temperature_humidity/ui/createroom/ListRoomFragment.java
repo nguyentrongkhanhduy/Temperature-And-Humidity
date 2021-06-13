@@ -97,7 +97,9 @@ public class ListRoomFragment extends Fragment {
         binding.btnAdd2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Navigation.findNavController(root).navigate(R.id.to_room_name);
+                Bundle bundle = new Bundle();
+                bundle.putString("add",building);
+                Navigation.findNavController(root).navigate(R.id.to_room_name,bundle);
             }
         });
 
