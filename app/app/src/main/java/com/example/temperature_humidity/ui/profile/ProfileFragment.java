@@ -81,7 +81,7 @@ public class ProfileFragment extends Fragment {
 //        };
 //        mDatabase.child("Accounts").child(userID).child("Profile").addValueEventListener(valueEventListener);
 
-        mDatabase.child("Accounts").child(userID).child("Profile").addListenerForSingleValueEvent(new ValueEventListener() {
+        mDatabase.child("Accounts").child(userID).child("profileModel").addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull @NotNull DataSnapshot snapshot) {
                 ProfileModel post = snapshot.getValue(ProfileModel.class);

@@ -91,6 +91,8 @@ public class ManageAccountsFragment extends Fragment {
 
         listView_Accounts = binding.listViewAccounts;
 
+
+
         mDatabase.child("Accounts").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull @NotNull DataSnapshot snapshot) {
@@ -98,7 +100,7 @@ public class ManageAccountsFragment extends Fragment {
                 for (DataSnapshot post: snapshot.getChildren()){
                     String uid= post.getKey();
                     Boolean admin = post.child("isAdmin").getValue(Boolean.class);
-                    ProfileModel pro5 = post.child("Profile").getValue(ProfileModel.class);
+                    ProfileModel pro5 = post.child("profileModel").getValue(ProfileModel.class);
                     AccountModel accountModel = new AccountModel(uid, admin, pro5);
                     System.out.println(accountModel.getUid());
 
