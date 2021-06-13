@@ -4,6 +4,8 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -28,26 +30,50 @@ import com.google.firebase.database.ValueEventListener;
 
 import org.jetbrains.annotations.NotNull;
 
+import java.util.ArrayList;
+
 public class ListRoomFragment extends Fragment {
     private FragmentListroomaddBinding binding;
     private DatabaseReference mData;
+    ListView lvRoom;
+    ArrayList<String> arrayRoom;
+    ArrayAdapter adapter = null;
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         binding = FragmentListroomaddBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
+
+        lvRoom = binding.listViewRoom;
+        arrayRoom = new ArrayList<String>();
+
+        adapter = new ArrayAdapter(getActivity(), android.R.layout.simple_list_item_1, arrayRoom);
+        lvRoom.setAdapter(adapter);
+
         String building = getArguments().getString("building");
         binding.textView9.setText("Toà " + building);
 
         mData = FirebaseDatabase.getInstance().getReference();
 
-        mData.child("Buildings").child(building).addValueEventListener(new ValueEventListener() {
+        mData.child("Buildings").child(building).addChildEventListener(new ChildEventListener() {
             @Override
-            public void onDataChange(@NonNull @NotNull DataSnapshot snapshot) {
-                for (DataSnapshot postsnapshot: snapshot.getChildren()){
-                    RoomModel room = postsnapshot.getValue(RoomModel.class);
-                    System.out.println(room.getIdRoom());
-                    System.out.println("_____________________");
-                }
+            public void onChildAdded(@NonNull @NotNull DataSnapshot snapshot, @Nullable @org.jetbrains.annotations.Nullable String previousChildName) {
+                RoomModel room = snapshot.getValue(RoomModel.class);
+                arrayRoom.add(room.getIdRoom());
+                adapter.notifyDataSetChanged();
+            }
+
+            @Override
+            public void onChildChanged(@NonNull @NotNull DataSnapshot snapshot, @Nullable @org.jetbrains.annotations.Nullable String previousChildName) {
+
+            }
+
+            @Override
+            public void onChildRemoved(@NonNull @NotNull DataSnapshot snapshot) {
+
+            }
+
+            @Override
+            public void onChildMoved(@NonNull @NotNull DataSnapshot snapshot, @Nullable @org.jetbrains.annotations.Nullable String previousChildName) {
 
             }
 
