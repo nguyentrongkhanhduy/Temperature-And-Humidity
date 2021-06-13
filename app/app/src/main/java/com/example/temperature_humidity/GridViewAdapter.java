@@ -7,11 +7,13 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
 
+import java.util.List;
+
 public class GridViewAdapter extends BaseAdapter {
     private Context context;
-    private String[] roomName;
+    private List<String> roomName;
 
-    public GridViewAdapter(Context context, String[] roomName) {
+    public GridViewAdapter(Context context, List<String> roomName) {
         this.context = context;
         this.roomName = roomName;
     }
@@ -19,7 +21,7 @@ public class GridViewAdapter extends BaseAdapter {
 
     @Override
     public int getCount() {
-        return roomName.length;
+        return roomName.size();
     }
 
     @Override
@@ -39,7 +41,7 @@ public class GridViewAdapter extends BaseAdapter {
             convertView = LayoutInflater.from(context).inflate(R.layout.item_button, null);
         TextView tv = (TextView)convertView.findViewById(R.id.tvRoomName);
 
-        tv.setText(roomName[position]);
+        tv.setText(roomName.get(position));
         return convertView;
     }
 }

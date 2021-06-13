@@ -25,8 +25,13 @@ import com.example.temperature_humidity.R;
 import com.example.temperature_humidity.databinding.FragmentRegisterroomBinding;
 import com.example.temperature_humidity.databinding.FragmentSelectroomBinding;
 import com.example.temperature_humidity.model.RoomModel;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
+import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -62,11 +67,31 @@ public class SelectRoomFragment extends Fragment {
         ActionBar actionBar = ((AppCompatActivity) getActivity()).getSupportActionBar();
         actionBar.setDisplayHomeAsUpEnabled(false);
 
+        String building = getArguments().getString("building");
+        binding.tvBuilding.setText("Toà " + building);
 
         mDatabase = FirebaseDatabase.getInstance().getReference();
 
         gridView = binding.gv1;
-        GridViewAdapter gridViewAdapter = new GridViewAdapter(getActivity().getBaseContext(),rooms);
+        mDatabase.child("Buildings").child(building).addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull @NotNull DataSnapshot snapshot) {
+                List<String> lst_rooms = new ArrayList<>();
+                System.out.println(snapshot);
+                for (DataSnapshot post: snapshot.getChildren()){
+                    lst_rooms.add(post.getKey());
+                    System.out.println(post.getKey());
+                }
+                GridViewAdapter gridViewAdapter = new GridViewAdapter(getActivity().getBaseContext(),lst_rooms);
+                gridView.setAdapter(gridViewAdapter);
+            }
+
+            @Override
+            public void onCancelled(@NonNull @NotNull DatabaseError error) {
+
+            }
+        });
+
 
 
 //        ArrayAdapter<String> adapter = new ArrayAdapter<String>(getActivity().getBaseContext(), android.R.layout.simple_list_item_1, rooms);
@@ -77,7 +102,7 @@ public class SelectRoomFragment extends Fragment {
 
 //        ButtonsAdapter btnsAdapter = new ButtonsAdapter(btns,getActivity());
 
-        gridView.setAdapter(gridViewAdapter);
+
 //        gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 //            public void onItemClick(AdapterView<?> parent, View v,
 //                                    int position, long id) {
@@ -85,8 +110,7 @@ public class SelectRoomFragment extends Fragment {
 //                        ((TextView) v).getText(), Toast.LENGTH_SHORT).show();
 //            }
 //        });
-        String building = getArguments().getString("building");
-        binding.tvBuilding.setText("Toà " + building);
+
         gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {

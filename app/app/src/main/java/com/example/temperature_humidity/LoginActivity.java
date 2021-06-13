@@ -108,7 +108,6 @@ public class LoginActivity extends AppCompatActivity {
                                 });
                         }
                         else{
-                            System.out.println(task.getResult());
                             binding.txtResult.setVisibility(View.VISIBLE);
                             edtUsername.requestFocus();
                             binding.txtResult.setText("Sai email hoặc mật khẩu!");

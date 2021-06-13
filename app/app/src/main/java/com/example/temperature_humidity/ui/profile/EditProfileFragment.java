@@ -50,7 +50,6 @@ public class EditProfileFragment extends Fragment {
         mDatabase = FirebaseDatabase.getInstance().getReference();
 
         String userID = mAuth.getCurrentUser().getUid();
-        System.out.println(userID);
 
         mDatabase.child("Accounts").child(userID).child("profileModel").addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
@@ -81,7 +80,6 @@ public class EditProfileFragment extends Fragment {
                     String bornyear = binding.edtBornYear.getText().toString();
                     String name = binding.edtName.getText().toString();
                     String email = binding.edtEmail.getText().toString();
-                    System.out.println(id + " " + bornyear + " " + name + " " + email);
                     ProfileModel edtPro5 = new ProfileModel(id, email, name, bornyear);
                     mDatabase.child("Accounts").child(userID).child("profileModel").setValue(edtPro5);
                     Navigation.findNavController(root).navigate(R.id.editprofile_to_profile);

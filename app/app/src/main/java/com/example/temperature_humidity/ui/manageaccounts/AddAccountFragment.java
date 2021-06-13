@@ -114,7 +114,10 @@ public class AddAccountFragment extends Fragment {
                     String uid = user.getUid();
                     ProfileModel pro5 = new ProfileModel(id, email, name, year);
                     AccountModel accountModel = new AccountModel(uid, isAdmin, pro5);
-                    mDatabase.child("Accounts").child(uid).setValue(accountModel);
+//                    mDatabase.child("Accounts").child(uid).setValue(accountModel);
+                    mDatabase.child("Accounts").child(uid).child("uid").setValue(uid);
+                    mDatabase.child("Accounts").child(uid).child("isAdmin").setValue(isAdmin);
+                    mDatabase.child("Accounts").child(uid).child("profileModel").setValue(pro5);
                 }
                 else{
                     Toast.makeText(getActivity(), "Đăng ký thất bại", Toast.LENGTH_SHORT).show();

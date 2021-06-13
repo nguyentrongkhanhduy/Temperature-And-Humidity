@@ -99,14 +99,13 @@ public class ManageAccountsFragment extends Fragment {
                 List<AccountModel> lst = new ArrayList<>();
                 for (DataSnapshot post: snapshot.getChildren()){
                     String uid= post.getKey();
-                    Boolean admin = post.child("isAdmin").getValue(Boolean.class);
+                    Boolean isAdmin = post.child("isAdmin").getValue(Boolean.class);
                     ProfileModel pro5 = post.child("profileModel").getValue(ProfileModel.class);
-                    AccountModel accountModel = new AccountModel(uid, admin, pro5);
-                    System.out.println(accountModel.getUid());
+                    AccountModel accountModel = new AccountModel(uid, isAdmin, pro5);
 
                     lst.add(accountModel);
                 }
-                ItemsAdapter item = new ItemsAdapter(getActivity().getBaseContext(),lst);
+                ItemsAdapter item = new ItemsAdapter(getActivity(),lst);
                 listView_Accounts.setAdapter(item);
 
             }
