@@ -52,7 +52,7 @@ public class EditProfileFragment extends Fragment {
         String userID = mAuth.getCurrentUser().getUid();
         System.out.println(userID);
 
-        mDatabase.child("Accounts").child(userID).child("Profile").addListenerForSingleValueEvent(new ValueEventListener() {
+        mDatabase.child("Accounts").child(userID).child("profileModel").addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull @NotNull DataSnapshot snapshot) {
                 ProfileModel post = snapshot.getValue(ProfileModel.class);
@@ -83,7 +83,7 @@ public class EditProfileFragment extends Fragment {
                     String email = binding.edtEmail.getText().toString();
                     System.out.println(id + " " + bornyear + " " + name + " " + email);
                     ProfileModel edtPro5 = new ProfileModel(id, email, name, bornyear);
-                    mDatabase.child("Accounts").child(userID).child("Profile").setValue(edtPro5);
+                    mDatabase.child("Accounts").child(userID).child("profileModel").setValue(edtPro5);
                     Navigation.findNavController(root).navigate(R.id.editprofile_to_profile);
                 }
             }
