@@ -37,10 +37,42 @@ public class CreateRoomFragment extends Fragment {
         binding.h1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Navigation.findNavController(root).navigate(R.id.to_list_room);
+                Bundle bundle = new Bundle();
+                bundle.putString("building", "H1"); // Put anything what you want
+
+                Navigation.findNavController(root).navigate(R.id.to_list_room,bundle);
             }
         });
 
+        binding.h2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Bundle bundle = new Bundle();
+                bundle.putString("building", "H2"); // Put anything what you want
+
+                Navigation.findNavController(root).navigate(R.id.to_list_room,bundle);
+            }
+        });
+
+        binding.h3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Bundle bundle = new Bundle();
+                bundle.putString("building", "H3"); // Put anything what you want
+
+                Navigation.findNavController(root).navigate(R.id.to_list_room,bundle);
+            }
+        });
+
+        binding.h6.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Bundle bundle = new Bundle();
+                bundle.putString("building", "H6"); // Put anything what you want
+
+                Navigation.findNavController(root).navigate(R.id.to_list_room,bundle);
+            }
+        });
 
         return root;
     }

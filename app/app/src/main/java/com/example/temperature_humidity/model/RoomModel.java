@@ -1,29 +1,24 @@
 package com.example.temperature_humidity.model;
 
+import java.util.List;
+
 public class RoomModel {
-    private Boolean isUsed;
-    private String startPeriod;
-    private String endPeriod;
+
+    private String idRoom;
+    private List<TimeModel> listtime;
 
     public RoomModel(){
 
     }
 
-    public RoomModel(Boolean isUsed, String startPeriod, String endPeriod){
-        this.isUsed = isUsed;
-        this.startPeriod = startPeriod;
-        this.endPeriod = endPeriod;
+    public RoomModel( String idRoom, List<TimeModel> listtime){
+        this.idRoom = idRoom;
+        this.listtime = listtime;
     }
 
-    public String getEndPeriod() {
-        return endPeriod;
-    }
+    public String getIdRoom() { return idRoom; }
 
-    public Boolean getIsUsed() {
-        return isUsed;
-    }
-
-    public String getStartPeriod() {
-        return startPeriod;
+    public List<TimeModel> getListtime() {
+        return listtime;
     }
 }
