@@ -67,13 +67,12 @@ public class HomeAdminFragment extends Fragment {
 
 
         String userID = FirebaseAuth.getInstance().getCurrentUser().getUid();
-        mDatabase.child("Accounts").child(userID).child("Profile").child("name").addListenerForSingleValueEvent(new ValueEventListener() {
+        mDatabase.child("Accounts").child(userID).child("profileModel").child("name").addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull @NotNull DataSnapshot snapshot) {
                 if (snapshot.exists()){
 
                     String name = snapshot.getValue(String.class);
-                    System.out.println("hihihii" + name);
                     binding.tvUsername.setText(name);
                 }
             }
