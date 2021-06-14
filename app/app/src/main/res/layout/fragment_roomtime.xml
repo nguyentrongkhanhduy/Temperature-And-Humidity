@@ -1,78 +1,116 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/linearLayout2"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     android:gravity="center_horizontal"
     tools:context=".ui.registerroom.RoomTimeFragment">
 
     <TextView
-        android:gravity="center"
         android:id="@+id/editTextTextPersonName6"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="50dp"
+        android:layout_width="0dp"
+        android:layout_height="27dp"
+        android:layout_marginTop="24dp"
+        android:gravity="center"
         android:text="Nhập thông tin đăng ký"
         android:textColor="#000000"
         android:textSize="20sp"
-        android:textStyle="normal|bold" />
+        android:textStyle="normal|bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:gravity="center"
-        android:id="@+id/textView4"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:text="Thứ 2, 26 tháng 4"
-        android:textSize="16sp" />
-
-    <TextView
-        android:gravity="center"
         android:id="@+id/tvBD"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="16dp"
+        android:gravity="center"
         android:text="Tòa H1"
-        android:textSize="16sp" />
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName6" />
 
     <TextView
-        android:gravity="center"
         android:id="@+id/tvRoom"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:text="101"
-        android:textSize="16sp" />
-
-    <LinearLayout
+        android:layout_marginTop="16dp"
         android:gravity="center"
-        android:orientation="horizontal"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-        <EditText
-            android:id="@+id/edtStart"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:hint="Tiết bắt đầu"
-            android:textColorHint="@color/gray"/>
+        android:text="101"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvBD" />
 
-        <EditText
-            android:id="@+id/edtEnd"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="50dp"
-            android:hint="Tiết kết thúc"
-            android:textColorHint="@color/gray" />
-    </LinearLayout>
+
+    <EditText
+        android:id="@+id/edtStart"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="64dp"
+        android:layout_marginEnd="8dp"
+        android:hint="Tiết bắt đầu"
+        android:textColorHint="@color/gray"
+        app:layout_constraintEnd_toStartOf="@+id/edtEnd"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvRoom" />
+
+    <EditText
+        android:id="@+id/edtEnd"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="64dp"
+        android:hint="Tiết kết thúc"
+        android:textColorHint="@color/gray"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/edtStart"
+        app:layout_constraintTop_toBottomOf="@+id/tvRoom" />
+
 
     <Button
         android:id="@+id/btnDk"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="24dp"
         android:text="Đăng ký"
         android:textColor="#000000"
-        app:backgroundTint="#64E987" />
-</LinearLayout>
+        app:backgroundTint="#64E987"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtChoice" />
+
+    <CalendarView
+        android:id="@+id/calView"
+        android:layout_width="356dp"
+        android:layout_height="293dp"
+        android:layout_marginTop="48dp"
+        android:layout_marginEnd="28dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvRoom" />
+
+    <TextView
+        android:id="@+id/txtChoice"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="24dp"
+        android:text="1/1/2021"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/calView" />
+
+    <TextView
+        android:id="@+id/txtEmail"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="32dp"
+        android:text="Email"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/calView" />
+</androidx.constraintlayout.widget.ConstraintLayout>

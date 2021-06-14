@@ -39,6 +39,9 @@
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/app" />
+    <property name="project.structure.last.edited" value="Project" />
+    <property name="project.structure.proportion" value="0.0" />
+    <property name="project.structure.side.proportion" value="0.0" />
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -71,10 +74,14 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="686" y="225" key="FileChooserDialogImpl" timestamp="1621259498287">
-      <screen x="0" y="0" width="1920" height="1040" />
+    <state x="249" y="7" key="#Project_Structure" timestamp="1623479737643">
+      <screen x="0" y="0" width="1536" height="864" />
     </state>
-    <state x="549" y="187" key="FileChooserDialogImpl/0.0.1536.864@0.0.1536.864" timestamp="1621231523823" />
+    <state x="249" y="7" key="#Project_Structure/0.0.1536.864@0.0.1536.864" timestamp="1623479737643" />
+    <state x="549" y="187" key="FileChooserDialogImpl" timestamp="1623479743062">
+      <screen x="0" y="0" width="1536" height="864" />
+    </state>
+    <state x="549" y="187" key="FileChooserDialogImpl/0.0.1536.864@0.0.1536.864" timestamp="1623479743062" />
     <state x="686" y="225" key="FileChooserDialogImpl/0.0.1920.1040@0.0.1920.1040" timestamp="1621259498287" />
     <state x="361" y="165" key="Vcs.Push.Dialog.v2" timestamp="1621230123769">
       <screen x="0" y="0" width="1536" height="864" />
