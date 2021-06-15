@@ -1,5 +1,6 @@
 package com.example.temperature_humidity.ui.registerroom;
 
+import android.os.Build;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,6 +11,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
@@ -21,6 +23,8 @@ import com.example.temperature_humidity.databinding.FragmentSelectroomBinding;
 import com.example.temperature_humidity.model.ProfileModel;
 import com.example.temperature_humidity.model.RequestModel;
 import com.example.temperature_humidity.model.TimeModel;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -29,6 +33,12 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import org.jetbrains.annotations.NotNull;
+
+import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.Calendar;
+import java.util.Date;
 
 public class RoomTimeFragment extends Fragment {
 
@@ -79,29 +89,39 @@ public class RoomTimeFragment extends Fragment {
                     }
                 });
 
+        SimpleDateFormat fmt = new SimpleDateFormat("dd/MM/yyyy");
+        Date d = new Date();
+        binding.txtChoice.setText(fmt.format(d));
+
 
         calendarView.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
 
             @Override
             public void onSelectedDayChange(CalendarView view, int year, int month,
                                             int dayOfMonth) {
-                String tempDate = dayOfMonth + "/" + (month+1) + "/" + year + " ";
-                binding.txtChoice.setText(tempDate);
+
+                SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+                Calendar calendar = Calendar.getInstance();
+                calendar.set(year, month, dayOfMonth);
+                String selectedDate = sdf.format(calendar.getTime());
+//                String tempDate = dayOfMonth + "/" + (month+1) + "/" + year;
+                binding.txtChoice.setText(selectedDate);
                 //Toast.makeText(getActivity(),date,Toast.LENGTH_SHORT).show();
             }
         });
 
         btnDk.setOnClickListener(new View.OnClickListener() {
+            @RequiresApi(api = Build.VERSION_CODES.O)
             public void onClick(View v) {
+                String date = binding.txtChoice.getText().toString();
+
                 EditText edtStart = (EditText) root.findViewById(R.id.edtStart);
-                String startTime = binding.txtChoice.getText().toString() +
-                                    edtStart.getText().toString();
+                String startTime = edtStart.getText().toString();
 
                 EditText edtEnd = (EditText) root.findViewById(R.id.edtEnd);
-                String endTime = binding.txtChoice.getText().toString() +
-                                    edtEnd.getText().toString();
+                String endTime = edtEnd.getText().toString();
 
-                TimeModel timeModel = new TimeModel(startTime,endTime);
+                TimeModel timeModel = new TimeModel(startTime,endTime, date);
 
                 // get user email, in txtEmail
 
@@ -109,11 +129,24 @@ public class RoomTimeFragment extends Fragment {
 
                 // create RequestModel
 
-                String requestID = "No100";     // can only make 1 new request
+                DateTimeFormatter dtf = DateTimeFormatter.ofPattern("ddMMyyyy_HHmmss");
+                LocalDateTime now = LocalDateTime.now();
+
+                String requestID = dtf.format(now);     // can only make 1 new request
                 RequestModel requestModel = new
                         RequestModel(requestID,timeModel,binding.txtEmail.getText().toString(),room,building);
 
-                mDatabase.child("Request").child(requestID).child("requestModel").setValue(requestModel);
+                mDatabase.child("Request").child(requestID).setValue(requestModel).addOnCompleteListener(new OnCompleteListener<Void>() {
+                    @Override
+                    public void onComplete(@NonNull @NotNull Task<Void> task) {
+                        if (task.isSuccessful()){
+                            Toast.makeText(getActivity(), "Đăng ký thành công", Toast.LENGTH_SHORT).show();
+                        }
+                        else {
+                            Toast.makeText(getActivity(), "Đăng ký thất bại", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                });
 
                 //Toast.makeText(getActivity(),timeModel.toString(), Toast.LENGTH_SHORT).show();
 

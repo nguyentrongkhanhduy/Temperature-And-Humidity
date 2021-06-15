@@ -32,6 +32,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import org.jetbrains.annotations.NotNull;
+import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -114,9 +115,10 @@ public class SelectRoomFragment extends Fragment {
         gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Toast.makeText(getActivity().getBaseContext(),rooms[position], Toast.LENGTH_SHORT).show();
+                String roomname = ((TextView)view.findViewById(R.id.tvRoomName)).getText().toString();
+//                Toast.makeText(getActivity().getBaseContext(),roomname, Toast.LENGTH_SHORT).show();
                 Bundle bundle = new Bundle();
-                bundle.putString("roomname",rooms[position]); // Put anything what you want
+                bundle.putString("roomname",roomname); // Put anything what you want
                 bundle.putString("building", building);
                 RoomTimeFragment fragment2 = new RoomTimeFragment();
                 fragment2.setArguments(bundle);

@@ -42,6 +42,7 @@ public class GridViewAdapter extends BaseAdapter {
         TextView tv = (TextView)convertView.findViewById(R.id.tvRoomName);
 
         tv.setText(roomName.get(position));
+
         return convertView;
     }
 }

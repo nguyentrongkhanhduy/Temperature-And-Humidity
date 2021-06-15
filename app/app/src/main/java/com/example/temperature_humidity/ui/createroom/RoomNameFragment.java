@@ -75,7 +75,7 @@ public class RoomNameFragment extends Fragment {
                             }
                         }
                         if (!check) {
-                            TimeModel time = new TimeModel("empty","empty");
+                            TimeModel time = new TimeModel("empty","empty","empty");
                             mData.child("Buildings").child(building).child(name).child("timeModel").child("1").setValue(time);
                             mData.child("Buildings").child(building).child(name).child("idRoom").setValue(name);
                             Toast.makeText(getActivity(),"Thêm phòng thành công",Toast.LENGTH_SHORT).show();

@@ -3,6 +3,7 @@ package com.example.temperature_humidity.model;
 public class TimeModel {
     private String startTime;
     private String endTime;
+    private String date;
 
     /*
         TimeModel exampleTime {
@@ -11,9 +12,14 @@ public class TimeModel {
         }
     */
 
+    public String getDate() {
+        return date;
+    }
+
     public TimeModel() {}
 
-    public TimeModel(String startTime, String endTime){
+    public TimeModel(String startTime, String endTime, String date){
+        this.date = date;
         this.endTime = endTime;
         this.startTime = startTime;
     }
