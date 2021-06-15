@@ -5,20 +5,20 @@ import java.util.List;
 public class RoomModel {
 
     private String idRoom;
-    private List<TimeModel> timeModel;
+    private List<ApprovedModel> approvedModel;
 
     public RoomModel(){
 
     }
 
-    public RoomModel( String idRoom, List<TimeModel> timeModel){
+    public RoomModel( String idRoom, List<ApprovedModel> approvedModel){
         this.idRoom = idRoom;
-        this.timeModel = timeModel;
+        this.approvedModel = approvedModel;
     }
 
     public String getIdRoom() { return idRoom; }
 
-    public List<TimeModel> getListtime() {
-        return timeModel;
+    public List<ApprovedModel> getListtime() {
+        return approvedModel;
     }
 }

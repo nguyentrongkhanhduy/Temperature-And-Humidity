@@ -132,9 +132,10 @@ public class RoomTimeFragment extends Fragment {
                 DateTimeFormatter dtf = DateTimeFormatter.ofPattern("ddMMyyyy_HHmmss");
                 LocalDateTime now = LocalDateTime.now();
 
+
                 String requestID = dtf.format(now);     // can only make 1 new request
                 RequestModel requestModel = new
-                        RequestModel(requestID,timeModel,binding.txtEmail.getText().toString(),room,building);
+                        RequestModel(requestID,timeModel,binding.txtEmail.getText().toString(),room,building, userID);
 
                 mDatabase.child("Request").child(requestID).setValue(requestModel).addOnCompleteListener(new OnCompleteListener<Void>() {
                     @Override

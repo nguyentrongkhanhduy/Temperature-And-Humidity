@@ -6,6 +6,7 @@ public class RequestModel {
     private String email;
     private String room;
     private String building;
+    private String uid;
 
     public TimeModel getTimeModel() {
         return timeModel;
@@ -27,15 +28,20 @@ public class RequestModel {
         return reqID;
     }
 
+    public String getUid() {
+        return uid;
+    }
+
     public RequestModel(){
 
     }
 
-    public RequestModel(String reqID, TimeModel timeModel, String email, String room, String building){
+    public RequestModel(String reqID, TimeModel timeModel, String email, String room, String building, String uid){
         this.reqID = reqID;
         this.timeModel = timeModel;
         this.email = email;
         this.room = room;
         this.building = building;
+        this.uid = uid;
     }
 }

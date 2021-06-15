@@ -23,6 +23,7 @@ import com.example.temperature_humidity.R;
 import com.example.temperature_humidity.databinding.FragmentLookupdateBinding;
 import com.example.temperature_humidity.databinding.FragmentRoombrowsingBinding;
 import com.example.temperature_humidity.model.AccountModel;
+import com.example.temperature_humidity.model.ApprovedModel;
 import com.example.temperature_humidity.model.ProfileModel;
 import com.example.temperature_humidity.model.RequestModel;
 import com.example.temperature_humidity.model.TimeModel;
@@ -132,6 +133,12 @@ public class RoomBrowsingFragment extends Fragment {
             imApprove.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
+                    ApprovedModel approvedModel = new ApprovedModel(list.get(position).getEmail(), list.get(position).getTimeModel());
+                    mDatabase.child("Buildings")
+                            .child(list.get(position).getBuilding())
+                            .child(list.get(position).getRoom())
+                            .child("approvedModel")
+                            .push().setValue(approvedModel);
                     mDatabase.child("Request").child(list.get(position).getReqID()).removeValue();
                     Toast.makeText(getContext(), "Đã chấp nhận yêu cầu", Toast.LENGTH_SHORT).show();
                 }
@@ -140,7 +147,7 @@ public class RoomBrowsingFragment extends Fragment {
                 @Override
                 public void onClick(View v) {
                     mDatabase.child("Request").child(list.get(position).getReqID()).removeValue();
-                    Toast.makeText(getContext(), "Đã xoá0 yêu cầu", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getContext(), "Đã xoá yêu cầu", Toast.LENGTH_SHORT).show();
                 }
             });
             return convertView;

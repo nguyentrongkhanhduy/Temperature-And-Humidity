@@ -17,6 +17,7 @@ import com.example.temperature_humidity.MQTTService;
 import com.example.temperature_humidity.R;
 import com.example.temperature_humidity.databinding.FragmentListroomaddBinding;
 import com.example.temperature_humidity.databinding.FragmentRoomnameBinding;
+import com.example.temperature_humidity.model.ApprovedModel;
 import com.example.temperature_humidity.model.RoomModel;
 import com.example.temperature_humidity.model.TimeModel;
 import com.google.firebase.database.DataSnapshot;
@@ -75,8 +76,11 @@ public class RoomNameFragment extends Fragment {
                             }
                         }
                         if (!check) {
-                            TimeModel time = new TimeModel("empty","empty","empty");
-                            mData.child("Buildings").child(building).child(name).child("timeModel").child("1").setValue(time);
+//                            ApprovedModel approvedModel = new ApprovedModel("", null);
+//                            RoomModel roomModel = new RoomModel(name, null);
+//                            mData.child("Buildings").child(building).child(name).setValue(approvedModel);
+//                            TimeModel time = new TimeModel("empty","empty","empty");
+//                            mData.child("Buildings").child(building).child(name).child("approvedModel").push().setValue(approvedModel);
                             mData.child("Buildings").child(building).child(name).child("idRoom").setValue(name);
                             Toast.makeText(getActivity(),"Thêm phòng thành công",Toast.LENGTH_SHORT).show();
                             Bundle bundle = new Bundle();
