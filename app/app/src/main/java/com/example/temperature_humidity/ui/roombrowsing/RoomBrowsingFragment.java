@@ -1,9 +1,17 @@
 package com.example.temperature_humidity.ui.roombrowsing;
 
+import android.content.Context;
+import android.media.Image;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.BaseAdapter;
+import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.ListView;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
@@ -14,8 +22,25 @@ import androidx.navigation.Navigation;
 import com.example.temperature_humidity.R;
 import com.example.temperature_humidity.databinding.FragmentLookupdateBinding;
 import com.example.temperature_humidity.databinding.FragmentRoombrowsingBinding;
+import com.example.temperature_humidity.model.AccountModel;
+import com.example.temperature_humidity.model.ProfileModel;
+import com.example.temperature_humidity.model.RequestModel;
+import com.example.temperature_humidity.model.TimeModel;
+import com.example.temperature_humidity.ui.manageaccounts.ManageAccountsFragment;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
+import org.jetbrains.annotations.NotNull;
+import org.w3c.dom.Text;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class RoomBrowsingFragment extends Fragment {
+    private DatabaseReference mDatabase;
     private FragmentRoombrowsingBinding binding;
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -28,6 +53,30 @@ public class RoomBrowsingFragment extends Fragment {
         //xoa nut back tren action bar
         ActionBar actionBar = ((AppCompatActivity) getActivity()).getSupportActionBar();
         actionBar.setDisplayHomeAsUpEnabled(false);
+
+        mDatabase = FirebaseDatabase.getInstance().getReference();
+
+        ListView lvDuyet = binding.lvDuyet;
+
+        mDatabase.child("Request").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull @NotNull DataSnapshot snapshot) {
+                List<RequestModel> lst = new ArrayList<>();
+                for (DataSnapshot post: snapshot.getChildren()){
+                    RequestModel requestModel = post.getValue(RequestModel.class);
+                    lst.add(requestModel);
+                }
+                ItemsAdapter item = new ItemsAdapter(getActivity(),lst);
+                lvDuyet.setAdapter(item);
+            }
+
+            @Override
+            public void onCancelled(@NonNull @NotNull DatabaseError error) {
+
+            }
+        });
+
+
         return root;
     }
     @Override
@@ -35,6 +84,67 @@ public class RoomBrowsingFragment extends Fragment {
         super.onDestroyView();
         binding = null;
     }
+    public class ItemsAdapter extends BaseAdapter {
+        private List<RequestModel> list;
+        private Context context;
 
+        public ItemsAdapter(Context context, List<RequestModel> list) {
+            this.list = list;
+            this.context = context;
+        }
+
+        @Override
+        public int getCount() {
+            return list.size();
+        }
+
+        @Override
+        public Object getItem(int position) {
+            return list.get(position);
+        }
+
+        @Override
+        public long getItemId(int position) {
+            return 0;
+        }
+
+        @Override
+        public View getView(int position, View convertView, ViewGroup parent) {
+            LayoutInflater layoutInflater = (LayoutInflater)context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+            if(convertView == null)
+                convertView = LayoutInflater.from(context).inflate(R.layout.item_duyet, null);
+            TextView tvRoom, tvPeriod, tvDate, tvEmail;
+            tvRoom = convertView.findViewById(R.id.tvRoom);
+            tvPeriod = convertView.findViewById(R.id.tvPeriod);
+            tvDate = convertView.findViewById(R.id.tvDate);
+            tvEmail = convertView.findViewById(R.id.tvEmail);
+            TimeModel timeModel = list.get(position).getTimeModel();
+
+            tvRoom.setText(list.get(position).getBuilding() + " - " + list.get(position).getRoom());
+            tvDate.setText(timeModel.getDate());
+            tvPeriod.setText(timeModel.getStartTime() + " - " + timeModel.getEndTime());
+            tvEmail.setText(list.get(position).getEmail());
+
+            ImageView imApprove, imDecline;
+            imApprove = convertView.findViewById(R.id.imApprove);
+            imDecline = convertView.findViewById(R.id.imDecline);
+
+            imApprove.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    mDatabase.child("Request").child(list.get(position).getReqID()).removeValue();
+                    Toast.makeText(getContext(), "Đã chấp nhận yêu cầu", Toast.LENGTH_SHORT).show();
+                }
+            });
+            imDecline.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    mDatabase.child("Request").child(list.get(position).getReqID()).removeValue();
+                    Toast.makeText(getContext(), "Đã xoá0 yêu cầu", Toast.LENGTH_SHORT).show();
+                }
+            });
+            return convertView;
+        }
+    }
 
 }

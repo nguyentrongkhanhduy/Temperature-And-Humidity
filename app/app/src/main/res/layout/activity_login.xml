@@ -99,7 +99,7 @@
                     android:layout_height="wrap_content"
                     android:inputType="textEmailAddress"
                     android:maxLength="20"
-                    android:text="user@gmail.com"
+                    android:text="demo@gmail.com"
                     android:hint="Tên đăng nhập"/>
             </com.google.android.material.textfield.TextInputLayout>
             <com.google.android.material.textfield.TextInputLayout
