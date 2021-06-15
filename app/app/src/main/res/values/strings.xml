@@ -15,6 +15,8 @@
     <string name="checkBox_isAdmin">Là quản trị viên?</string>
     <string name="btn_ConfirmAddAccount">Tạo tài khoản</string>
     <string name="title_roombrowsing">Duyệt Phòng</string>
-
+    <string name="title_usableRooms">Phòng học</string>
+    <string name="title_devicemanagement">Quản lý thiết bị</string>
+    <string name="title_adddevice">Thêm thiết bị</string>
 
 </resources>

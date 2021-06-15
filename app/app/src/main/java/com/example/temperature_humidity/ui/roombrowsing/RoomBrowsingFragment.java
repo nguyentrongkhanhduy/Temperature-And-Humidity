@@ -27,7 +27,10 @@ import com.example.temperature_humidity.model.ApprovedModel;
 import com.example.temperature_humidity.model.ProfileModel;
 import com.example.temperature_humidity.model.RequestModel;
 import com.example.temperature_humidity.model.TimeModel;
+import com.example.temperature_humidity.model.UsableRooms;
 import com.example.temperature_humidity.ui.manageaccounts.ManageAccountsFragment;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -42,6 +45,7 @@ import java.util.List;
 
 public class RoomBrowsingFragment extends Fragment {
     private DatabaseReference mDatabase;
+    private FirebaseAuth mAuth;
     private FragmentRoombrowsingBinding binding;
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -56,6 +60,7 @@ public class RoomBrowsingFragment extends Fragment {
         actionBar.setDisplayHomeAsUpEnabled(false);
 
         mDatabase = FirebaseDatabase.getInstance().getReference();
+        mAuth = FirebaseAuth.getInstance();
 
         ListView lvDuyet = binding.lvDuyet;
 
@@ -133,12 +138,18 @@ public class RoomBrowsingFragment extends Fragment {
             imApprove.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    ApprovedModel approvedModel = new ApprovedModel(list.get(position).getEmail(), list.get(position).getTimeModel());
+                    ApprovedModel approvedModel = new ApprovedModel(list.get(position).getEmail(), list.get(position).getUid(), list.get(position).getTimeModel());
                     mDatabase.child("Buildings")
                             .child(list.get(position).getBuilding())
                             .child(list.get(position).getRoom())
                             .child("approvedModel")
                             .push().setValue(approvedModel);
+                    UsableRooms usableRooms = new UsableRooms(list.get(position).getBuilding(),list.get(position).getRoom());
+                    mDatabase.child("Accounts")
+                            .child(list.get(position).getUid())
+                            .child("usableRooms")
+                            .child(usableRooms.getBuilding() + "-" + usableRooms.getRoom())
+                            .setValue(usableRooms);
                     mDatabase.child("Request").child(list.get(position).getReqID()).removeValue();
                     Toast.makeText(getContext(), "Đã chấp nhận yêu cầu", Toast.LENGTH_SHORT).show();
                 }

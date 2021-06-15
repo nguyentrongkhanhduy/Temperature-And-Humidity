@@ -95,6 +95,12 @@
         />
 
     <fragment
+        android:id="@+id/navigation_usableRooms"
+        android:name="com.example.temperature_humidity.ui.usablerooms.UsableRoomsFragment"
+        android:label="@string/title_usableRooms"
+        tools:layout="@layout/fragment_usablerooms"></fragment>
+
+    <fragment
         android:id="@+id/navigation_home"
         android:name="com.example.temperature_humidity.ui.home.HomeFragment"
         android:label="@string/title_home"
@@ -114,7 +120,9 @@
             android:id="@+id/to_log_in"
             app:destination="@id/navigation_login"
             />
-
+        <action
+            android:id="@+id/to_usableRooms"
+            app:destination="@id/navigation_usableRooms"/>
     </fragment>
 
     <fragment

@@ -5,15 +5,22 @@ import java.util.List;
 
 public class ApprovedModel {
     private String email;
-    private TimeModel timeModel;;
+    private String uid;
+    private TimeModel timeModel;
 
-    public ApprovedModel(String email, TimeModel timeModel) {
+
+    public ApprovedModel(String email, String uid, TimeModel timeModel) {
         this.email = email;
+        this.uid = uid;
         this.timeModel = timeModel;
     }
 
     public ApprovedModel(){
 
+    }
+
+    public String getUid() {
+        return uid;
     }
 
     public String getEmail() {

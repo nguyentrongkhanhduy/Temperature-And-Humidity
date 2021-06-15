@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.usablerooms.UsableRoomsFragment">
+    <GridView
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:listSelector="@drawable/slt"
+        android:id="@+id/gv2"
+        android:numColumns="3"
+        android:columnWidth="60dp"
+        android:horizontalSpacing="15dp"
+        android:verticalSpacing="20dp"
+        android:gravity="center"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+    </GridView>
+</LinearLayout>

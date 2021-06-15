@@ -46,10 +46,35 @@
     </fragment>
 
     <fragment
+        android:id="@+id/navigation_device_management"
+        android:name="com.example.temperature_humidity.ui.devicemanagement.DeviceManagementFragment"
+        android:label="@string/title_devicemanagement"
+        tools:layout="@layout/fragment_devicemanagement">
+        <action
+            android:id="@+id/to_add_device"
+            app:destination="@id/navigation_add_device"/>
+        <action
+            android:id="@+id/done_add_room"
+            app:destination="@id/navigation_selectcreateroom"
+            />
+    </fragment>
+
+    <fragment
+        android:id="@+id/navigation_add_device"
+        android:name="com.example.temperature_humidity.ui.devicemanagement.AddDeviceFragment"
+        android:label="@string/title_adddevice"
+        tools:layout="@layout/fragment_adddevice">
+
+    </fragment>
+
+    <fragment
         android:id="@+id/navigation_roomname"
         android:name="com.example.temperature_humidity.ui.createroom.RoomNameFragment"
         android:label="@string/title_createroom"
         tools:layout="@layout/fragment_roomname">
+        <action
+            android:id="@+id/to_device_management"
+            app:destination="@id/navigation_device_management"/>
         <action
             android:id="@+id/cancel_add_room"
             app:destination="@id/navigation_home_admin"

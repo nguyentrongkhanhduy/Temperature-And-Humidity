@@ -20,6 +20,8 @@ import com.example.temperature_humidity.databinding.FragmentRoomnameBinding;
 import com.example.temperature_humidity.model.ApprovedModel;
 import com.example.temperature_humidity.model.RoomModel;
 import com.example.temperature_humidity.model.TimeModel;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -81,11 +83,20 @@ public class RoomNameFragment extends Fragment {
 //                            mData.child("Buildings").child(building).child(name).setValue(approvedModel);
 //                            TimeModel time = new TimeModel("empty","empty","empty");
 //                            mData.child("Buildings").child(building).child(name).child("approvedModel").push().setValue(approvedModel);
-                            mData.child("Buildings").child(building).child(name).child("idRoom").setValue(name);
-                            Toast.makeText(getActivity(),"Thêm phòng thành công",Toast.LENGTH_SHORT).show();
-                            Bundle bundle = new Bundle();
-                            bundle.putString("building",building);
-                            Navigation.findNavController(root).navigate(R.id.done_add_room, bundle);
+                            mData.child("Buildings").child(building).child(name).child("idRoom").setValue(name).addOnCompleteListener(new OnCompleteListener<Void>() {
+                                @Override
+                                public void onComplete(@NonNull @NotNull Task<Void> task) {
+                                    if (task.isSuccessful()){
+                                        Bundle bundle = new Bundle();
+                                        bundle.putString("building",building);
+                                        bundle.putString("room", name);
+                                        Toast.makeText(root.getContext(),"Thêm phòng thành công",Toast.LENGTH_SHORT).show();
+                                        Navigation.findNavController(root).navigate(R.id.to_device_management, bundle);
+                                    }
+                                }
+                            });
+//
+
                         }
                         else {
                             Toast.makeText(getActivity(),"Phòng đã tồn tại",Toast.LENGTH_SHORT).show();

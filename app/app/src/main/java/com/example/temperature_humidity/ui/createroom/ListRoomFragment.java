@@ -4,8 +4,10 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -100,6 +102,17 @@ public class ListRoomFragment extends Fragment {
                 Bundle bundle = new Bundle();
                 bundle.putString("add",building);
                 Navigation.findNavController(root).navigate(R.id.to_room_name,bundle);
+            }
+        });
+
+        binding.listViewRoom.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                String roomname = ((TextView)view).getText().toString();
+                Bundle bundle = new Bundle();
+                bundle.putString("building", building);
+                bundle.putString("room", roomname);
+//                Navigation.findNavController(root).navigate();
             }
         });
 

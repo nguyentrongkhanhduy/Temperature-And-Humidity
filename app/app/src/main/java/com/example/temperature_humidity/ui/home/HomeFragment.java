@@ -51,12 +51,21 @@ public class HomeFragment extends Fragment {
             }
         });
 
+        binding.usableRooms.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Navigation.findNavController(root).navigate(R.id.to_usableRooms);
+            }
+        });
+
         binding.btnLogout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Navigation.findNavController(root).navigate(R.id.to_log_in);
             }
         });
+
+
 
         mDatabase = FirebaseDatabase.getInstance().getReference();
 
