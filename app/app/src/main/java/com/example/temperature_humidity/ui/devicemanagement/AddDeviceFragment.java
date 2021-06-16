@@ -19,8 +19,11 @@ import com.example.temperature_humidity.databinding.FragmentDevicemanagementBind
 import com.example.temperature_humidity.model.DeviceModel;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import org.jetbrains.annotations.NotNull;
 
@@ -28,6 +31,7 @@ public class AddDeviceFragment extends Fragment {
     FragmentAdddeviceBinding binding;
     Spinner spinner;
     private DatabaseReference mData;
+    private boolean exists = false;
     final String[] names = {"TEMP-HUMID", "RELAY"};
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -79,55 +83,57 @@ public class AddDeviceFragment extends Fragment {
                 String deviceName = spinner.getSelectedItem().toString();
                 String deviceID = binding.edtID.getText().toString();
 
-                String on = "";
-                String off = "";
 
-                String unit = "C-%";
-                String data = "0";
-
-                if (deviceName.equals("RELAY")){
-                    on = binding.edtOnThreshold.getText().toString();
-                    off = binding.edtOffThreshold.getText().toString();
-                    unit = "";
-                }
-                DeviceModel deviceModel = new DeviceModel(deviceID, deviceName, data, unit, on, off);
-//                        Toast.makeText(root.getContext(), selectedItem + " " + deviceID,Toast.LENGTH_SHORT).show();
-                        mData.child("Buildings")
-                                .child(building)
-                                .child(room)
-                                .child("deviceModel")
-                                .child(deviceID)
-                                .setValue(deviceModel).addOnCompleteListener(new OnCompleteListener<Void>() {
+//                mData.child("Devices").child(deviceName).child(deviceID).child("id").setValue(deviceID);
+//                mData.child("Devices").child(deviceName).child(deviceID).child("name").setValue(deviceName);
+//                mData.child("Devices").child(deviceName).child(deviceID).child("data").setValue(data);
+//                mData.child("Devices").child(deviceName).child(deviceID).child("unit").setValue(unit);
+//                mData.child("Devices").child(deviceName).child(deviceID).child("onThreshold").setValue(on);
+//                mData.child("Devices").child(deviceName).child(deviceID).child("offThreshold").setValue(off);
+//                mData.child("Devices").child(deviceName).child(deviceID).child("building").setValue()
+                mData.child("Devices").child(deviceName).orderByKey().equalTo(deviceID)
+                        .addListenerForSingleValueEvent(new ValueEventListener() {
                             @Override
-                            public void onComplete(@NonNull @NotNull Task<Void> task) {
-                                if (task.isSuccessful()) {
-                                    Toast.makeText(root.getContext(), "Thêm thiết bị thành công", Toast.LENGTH_SHORT).show();
+                            public void onDataChange(@NonNull @NotNull DataSnapshot snapshot) {
+                                if (snapshot.exists()){
+                                    Toast.makeText(root.getContext(), "Đã tồn tại thiết bị", Toast.LENGTH_SHORT).show();
+                                }
+                                else {
+                                    String on = "";
+                                    String off = "";
+
+                                    String unit = "C-%";
+                                    String data = "0";
+
+                                    if (deviceName.equals("RELAY")){
+                                        on = binding.edtOnThreshold.getText().toString();
+                                        off = binding.edtOffThreshold.getText().toString();
+                                        unit = "";
+                                    }
+                                    DeviceModel deviceModel = new DeviceModel(deviceID, deviceName, data, unit, on, off, building, room);
+                                    mData.child("Devices").child(deviceName).child(deviceID).setValue(deviceModel);
+//                        Toast.makeText(root.getContext(), selectedItem + " " + deviceID,Toast.LENGTH_SHORT).show();
+                                    mData.child("Buildings")
+                                            .child(building)
+                                            .child(room)
+                                            .child("deviceModel")
+                                            .child(deviceID)
+                                            .setValue(deviceModel).addOnCompleteListener(new OnCompleteListener<Void>() {
+                                        @Override
+                                        public void onComplete(@NonNull @NotNull Task<Void> task) {
+                                            if (task.isSuccessful()) {
+                                                Toast.makeText(root.getContext(), "Thêm thiết bị thành công", Toast.LENGTH_SHORT).show();
+                                            }
+                                        }
+                                    });
                                 }
                             }
+
+                            @Override
+                            public void onCancelled(@NonNull @NotNull DatabaseError error) {
+
+                            }
                         });
-//                Toast.makeText(getActivity(), text, Toast.LENGTH_SHORT).show();
-//                spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-//                    @Override
-//                    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-//                        String selectedItem = parent.getItemAtPosition(position).toString();
-//                        String deviceID = binding.edtID.getText().toString();
-//                        DeviceModel deviceModel = new DeviceModel(deviceID, selectedItem, "", "C-%");
-//                        Toast.makeText(root.getContext(), selectedItem + " " + deviceID,Toast.LENGTH_SHORT).show();
-//                        mData.child("Buildings").child(building).child(room).child("deviceModel").push().setValue(deviceModel).addOnCompleteListener(new OnCompleteListener<Void>() {
-//                            @Override
-//                            public void onComplete(@NonNull @NotNull Task<Void> task) {
-//                                if (task.isSuccessful()) {
-//                                    Toast.makeText(root.getContext(), "Thêm phòng hoàn tất", Toast.LENGTH_SHORT).show();
-//                                }
-//                            }
-//                        });
-//                    }
-//
-//                    @Override
-//                    public void onNothingSelected(AdapterView<?> parent) {
-//
-//                    }
-//                });
             }
         });
 

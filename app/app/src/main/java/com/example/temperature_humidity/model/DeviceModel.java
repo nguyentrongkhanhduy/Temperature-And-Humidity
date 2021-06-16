@@ -7,14 +7,18 @@ public class DeviceModel {
     private String unit;
     private String onThreshold;
     private String offThreshold;
+    private String building;
+    private String room;
 
-    public DeviceModel(String id, String name, String data, String unit, String onThreshold, String offThreshold) {
+    public DeviceModel(String id, String name, String data, String unit, String onThreshold, String offThreshold, String room, String building) {
         this.id = id;
         this.name = name;
         this.data = data;
         this.unit = unit;
         this.onThreshold = onThreshold;
         this.offThreshold = offThreshold;
+        this.building = building;
+        this.room = room;
     }
 
     public DeviceModel() {
@@ -43,5 +47,13 @@ public class DeviceModel {
 
     public String getUnit() {
         return unit;
+    }
+
+    public String getRoom() {
+        return room;
+    }
+
+    public String getBuilding() {
+        return building;
     }
 }

@@ -83,7 +83,7 @@ public class SelectRoomFragment extends Fragment {
                     lst_rooms.add(post.getKey());
                     System.out.println(post.getKey());
                 }
-                GridViewAdapter gridViewAdapter = new GridViewAdapter(getActivity().getBaseContext(),lst_rooms);
+                GridViewAdapter gridViewAdapter = new GridViewAdapter(root.getContext(),lst_rooms);
                 gridView.setAdapter(gridViewAdapter);
             }
 

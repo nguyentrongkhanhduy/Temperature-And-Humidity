@@ -7,21 +7,11 @@
     android:layout_height="match_parent"
     tools:context=".ui.registerroom.RoomTimeFragment">
         <LinearLayout
+            android:layout_marginBottom="?attr/actionBarSize"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center_horizontal"
             android:orientation="vertical">
-            <TextView
-                android:id="@+id/editTextTextPersonName6"
-                android:layout_width="wrap_content"
-                android:layout_height="27dp"
-                android:layout_marginTop="24dp"
-                android:gravity="center"
-                android:text="Nhập thông tin đăng ký"
-                android:textColor="#000000"
-                android:textSize="20sp"
-                android:textStyle="normal|bold"/>
-
             <TextView
                 android:id="@+id/tvBD"
                 android:layout_width="wrap_content"
@@ -47,15 +37,19 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
                 <EditText
+                    android:gravity="center"
                     android:id="@+id/edtStart"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:hint="Tiết bắt đầu"
+                    android:textSize="14dp"
                     android:textColorHint="@color/gray" />
 
                 <EditText
+                    android:gravity="center"
                     android:layout_marginLeft="15dp"
                     android:id="@+id/edtEnd"
+                    android:textSize="14dp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:hint="Tiết kết thúc"
@@ -65,7 +59,7 @@
             <CalendarView
                 android:id="@+id/calView"
                 android:layout_width="match_parent"
-                android:layout_height="293dp" />
+                android:layout_height="wrap_content" />
             <LinearLayout
                 android:weightSum="2"
                 android:layout_width="match_parent"
@@ -92,7 +86,6 @@
                 android:id="@+id/btnDk"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="24dp"
                 android:text="Đăng ký"
                 android:textColor="#000000"
                 app:backgroundTint="#64E987" />
