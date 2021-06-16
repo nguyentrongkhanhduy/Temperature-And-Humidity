@@ -112,7 +112,7 @@ public class ListRoomFragment extends Fragment {
                 Bundle bundle = new Bundle();
                 bundle.putString("building", building);
                 bundle.putString("room", roomname);
-//                Navigation.findNavController(root).navigate();
+                Navigation.findNavController(root).navigate(R.id.listroom_to_device_management, bundle);
             }
         });
 

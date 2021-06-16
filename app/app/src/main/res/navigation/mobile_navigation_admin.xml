@@ -42,6 +42,9 @@
         <action
             android:id="@+id/to_room_name"
             app:destination="@id/navigation_roomname"/>
+        <action
+            android:id="@+id/listroom_to_device_management"
+            app:destination="@id/navigation_device_management"/>
 
     </fragment>
 
