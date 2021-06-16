@@ -150,11 +150,14 @@ public class DeviceManagementFragment extends Fragment {
             tvID.setText("ID: " + list.get(position).getId());
             tvData.setText("Dữ liệu: " + list.get(position).getData());
             tvUnit.setText("Đơn vị: " + list.get(position).getUnit());
+            tvThreshold.setText("Ngưỡng bật/tắt: " + list.get(position).getOnThreshold() + "/" + list.get(position).getOffThreshold());
             if (list.get(position).getName().equals("RELAY")){
+                tvUnit.setVisibility(View.GONE);
                 tvThreshold.setVisibility(View.VISIBLE);
                 image.setImageResource(R.drawable.fan);
             }
             else {
+                tvUnit.setVisibility(View.VISIBLE);
                 tvThreshold.setVisibility(View.GONE);
                 image.setImageResource(R.drawable.microchip);
             }

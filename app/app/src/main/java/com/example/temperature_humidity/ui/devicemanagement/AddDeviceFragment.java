@@ -50,7 +50,7 @@ public class AddDeviceFragment extends Fragment {
         spinnerArrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item); // The drop down view
         spinner.setAdapter(spinnerArrayAdapter);
 
-        Toast.makeText(getActivity(), room + building, Toast.LENGTH_SHORT).show();
+//        Toast.makeText(getActivity(), room + building, Toast.LENGTH_SHORT).show();
 
         mData = FirebaseDatabase.getInstance().getReference();
 

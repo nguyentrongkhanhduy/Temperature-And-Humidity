@@ -18,16 +18,16 @@
         tools:layout="@layout/fragment_classroom_admin">
         <action
             android:id="@+id/to_create_room"
-            app:destination="@id/navigation_createroom"/>
+            app:destination="@id/navigation_room_management"/>
         <action
             android:id="@+id/to_room_browsing"
             app:destination="@+id/navigation_room_browsing"
             />
     </fragment>
     <fragment
-        android:id="@+id/navigation_createroom"
+        android:id="@+id/navigation_room_management"
         android:name="com.example.temperature_humidity.ui.createroom.CreateRoomFragment"
-        android:label="@string/title_createroom"
+        android:label="@string/title_manageroom"
         tools:layout="@layout/fragment_createroom">
         <action
             android:id="@+id/to_list_room"
@@ -37,7 +37,7 @@
     <fragment
         android:id="@+id/navigation_selectcreateroom"
         android:name="com.example.temperature_humidity.ui.createroom.ListRoomFragment"
-        android:label="@string/title_createroom"
+        android:label="@string/title_manageroom"
         tools:layout="@layout/fragment_listroomadd">
         <action
             android:id="@+id/to_room_name"
@@ -73,7 +73,7 @@
     <fragment
         android:id="@+id/navigation_roomname"
         android:name="com.example.temperature_humidity.ui.createroom.RoomNameFragment"
-        android:label="@string/title_createroom"
+        android:label="@string/title_manageroom"
         tools:layout="@layout/fragment_roomname">
         <action
             android:id="@+id/to_device_management"
