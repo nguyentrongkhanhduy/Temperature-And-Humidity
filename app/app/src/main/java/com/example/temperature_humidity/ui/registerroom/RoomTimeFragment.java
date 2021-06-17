@@ -22,6 +22,7 @@ import com.example.temperature_humidity.databinding.FragmentRoomtimeBinding;
 import com.example.temperature_humidity.databinding.FragmentSelectroomBinding;
 import com.example.temperature_humidity.model.ProfileModel;
 import com.example.temperature_humidity.model.RequestModel;
+import com.example.temperature_humidity.model.HistoryUserModel;
 import com.example.temperature_humidity.model.TimeModel;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -136,7 +137,10 @@ public class RoomTimeFragment extends Fragment {
                 String requestID = dtf.format(now);     // can only make 1 new request
                 RequestModel requestModel = new
                         RequestModel(requestID,timeModel,binding.txtEmail.getText().toString(),room,building, userID);
-
+                String type = "Đăng Ký";
+                String historyID = dtf.format(now);
+                HistoryUserModel historyUserModel= new
+                        HistoryUserModel(historyID,timeModel,binding.txtEmail.getText().toString(),room,building,userID,type);
                 mDatabase.child("Request").child(requestID).setValue(requestModel).addOnCompleteListener(new OnCompleteListener<Void>() {
                     @Override
                     public void onComplete(@NonNull @NotNull Task<Void> task) {
@@ -148,6 +152,8 @@ public class RoomTimeFragment extends Fragment {
                         }
                     }
                 });
+
+                mDatabase.child("Accounts").child(userID.toString()).child("History").child(historyID).setValue(historyUserModel);
 
                 //Toast.makeText(getActivity(),timeModel.toString(), Toast.LENGTH_SHORT).show();
 

@@ -2,6 +2,7 @@ package com.example.temperature_humidity.ui.roombrowsing;
 
 import android.content.Context;
 import android.media.Image;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,6 +15,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
@@ -24,6 +26,7 @@ import com.example.temperature_humidity.databinding.FragmentLookupdateBinding;
 import com.example.temperature_humidity.databinding.FragmentRoombrowsingBinding;
 import com.example.temperature_humidity.model.AccountModel;
 import com.example.temperature_humidity.model.ApprovedModel;
+import com.example.temperature_humidity.model.HistoryUserModel;
 import com.example.temperature_humidity.model.ProfileModel;
 import com.example.temperature_humidity.model.RequestModel;
 import com.example.temperature_humidity.model.TimeModel;
@@ -40,6 +43,8 @@ import com.google.firebase.database.ValueEventListener;
 import org.jetbrains.annotations.NotNull;
 import org.w3c.dom.Text;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -136,6 +141,7 @@ public class RoomBrowsingFragment extends Fragment {
             imDecline = convertView.findViewById(R.id.imDecline);
 
             imApprove.setOnClickListener(new View.OnClickListener() {
+                @RequiresApi(api = Build.VERSION_CODES.O)
                 @Override
                 public void onClick(View v) {
                     ApprovedModel approvedModel = new ApprovedModel(list.get(position).getEmail(), list.get(position).getUid(), list.get(position).getTimeModel());
@@ -151,6 +157,17 @@ public class RoomBrowsingFragment extends Fragment {
                             .child(usableRooms.getBuilding() + "-" + usableRooms.getRoom())
                             .setValue(usableRooms);
                     mDatabase.child("Request").child(list.get(position).getReqID()).removeValue();
+                    DateTimeFormatter dtf = DateTimeFormatter.ofPattern("ddMMyyyy_HHmmss");
+                    LocalDateTime now = LocalDateTime.now();
+                    String historyID = dtf.format(now);
+                    HistoryUserModel historyUserModel= new
+                            HistoryUserModel(historyID,
+                            list.get(position).getTimeModel(),
+                            list.get(position).getEmail(),list.get(position).getRoom(),
+                            list.get(position).getBuilding(),list.get(position).getUid(),
+                            "Sử dụng");
+
+                    mDatabase.child("Accounts").child(list.get(position).getUid()).child("History").child(historyID).setValue(historyUserModel);
                     Toast.makeText(getContext(), "Đã chấp nhận yêu cầu", Toast.LENGTH_SHORT).show();
                 }
             });
