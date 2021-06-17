@@ -7,7 +7,11 @@
 
 
 
-
+    <fragment
+        android:id="@+id/navigation_userhistory"
+        android:label="@string/title_hitoryactivity"
+        android:name="com.example.temperature_humidity.ui.historyactivity.UserHistoryFragment"
+        tools:layout="@layout/fragment_userhistory"/>
     <fragment
         android:id="@+id/navigation_example"
         android:name="com.example.temperature_humidity.ui.registerroom.ExampleFragment"
@@ -110,8 +114,8 @@
             app:destination="@id/navigation_registerroom"/>
 
         <action
-            android:id="@+id/to_lookupdate"
-            app:destination="@id/navigation_lookupdate"
+            android:id="@+id/to_userhistory"
+            app:destination="@id/navigation_userhistory"
             >
 
         </action>
@@ -133,6 +137,7 @@
         <action
             android:id="@+id/profile_to_editprofile"
             app:destination="@id/navigation_editprofile"/>
+
 
     </fragment>
 
