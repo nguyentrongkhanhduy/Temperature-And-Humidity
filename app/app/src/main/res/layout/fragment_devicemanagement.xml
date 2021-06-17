@@ -14,11 +14,12 @@
     <ListView
         android:id="@+id/lvDevice"
         android:layout_width="match_parent"
-        android:layout_height="300dp"/>
+        android:layout_height="350dp"/>
     <LinearLayout
-        android:gravity="center"
+        android:layout_marginBottom="?attr/actionBarSize"
+        android:gravity="center_horizontal|bottom"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="match_parent">
         <Button
             android:id="@+id/btnAddDevice"
             android:text="Thêm thiết bị"
@@ -31,5 +32,4 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
     </LinearLayout>
-
 </LinearLayout>

@@ -1,6 +1,7 @@
 package com.example.temperature_humidity.ui.devicemanagement;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,6 +14,7 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.Navigation;
@@ -23,6 +25,8 @@ import com.example.temperature_humidity.databinding.FragmentRoomnameBinding;
 import com.example.temperature_humidity.model.AccountModel;
 import com.example.temperature_humidity.model.DeviceModel;
 import com.example.temperature_humidity.model.ProfileModel;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -83,7 +87,11 @@ public class DeviceManagementFragment extends Fragment {
             @Override
             public void onDataChange(@NonNull @NotNull DataSnapshot snapshot) {
                 List<DeviceModel> deviceModels = new ArrayList<>();
-                for (DataSnapshot post: snapshot.getChildren()){
+                for (DataSnapshot post: snapshot.child("RELAY").getChildren()){
+                    DeviceModel deviceModel = post.getValue(DeviceModel.class);
+                    deviceModels.add(deviceModel);
+                }
+                for (DataSnapshot post: snapshot.child("TEMP-HUMID").getChildren()){
                     DeviceModel deviceModel = post.getValue(DeviceModel.class);
                     deviceModels.add(deviceModel);
                 }
@@ -98,10 +106,88 @@ public class DeviceManagementFragment extends Fragment {
             }
         });
 
-        binding.lvDevice.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        binding.lvDevice.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
             @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+            public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
 
+                String tvName = ((TextView) view.findViewById(R.id.tvName)).getText().toString();
+                String tvID = ((TextView) view.findViewById(R.id.tvID)).getText().toString();
+                String[] arr_name = tvName.split(" ", 2);
+                String[] arr_id = tvID.split(" ", 2);
+                String device_name = arr_name[1];
+                String device_id = arr_id[1];
+
+//                mData.child("Buildings").child(building).child(room).child("deviceModel").child(device_name).orderByKey().equalTo(device_id).addListenerForSingleValueEvent(new ValueEventListener() {
+//                    @Override
+//                    public void onDataChange(@NonNull @NotNull DataSnapshot snapshot) {
+//                        if (snapshot.exists()){
+//                            System.out.println("HEREE");
+//                            System.out.println(snapshot);
+//                        }
+//                    }
+//
+//                    @Override
+//                    public void onCancelled(@NonNull @NotNull DatabaseError error) {
+//
+//                    }
+//                });
+
+//                Toast.makeText(root.getContext(), device_id + device_name, Toast.LENGTH_SHORT).show();
+                AlertDialog.Builder builder = new AlertDialog.Builder(root.getContext());
+                builder.setTitle(R.string.app_name);
+                builder.setMessage("Bạn thật sự muốn xoá thiết bị không?");
+                builder.setIcon(R.drawable.decline);
+                builder.setPositiveButton("Có", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        mData.child("Buildings").child(building).child(room).child("deviceModel").child(device_name).orderByKey().equalTo(device_id)
+                                .addListenerForSingleValueEvent(new ValueEventListener() {
+                                    @Override
+                                    public void onDataChange(@NonNull @NotNull DataSnapshot snapshot) {
+                                        if (snapshot.exists()){
+                                            snapshot.getRef().child(device_id).removeValue().addOnCompleteListener(new OnCompleteListener<Void>() {
+                                                @Override
+                                                public void onComplete(@NonNull @NotNull Task<Void> task) {
+                                                    if (task.isSuccessful()){
+                                                        Toast.makeText(root.getContext(), "Xoá thành công", Toast.LENGTH_SHORT).show();
+                                                    }
+                                                }
+                                            });
+
+                                        }
+                                        else{
+                                            Toast.makeText(root.getContext(), "Xoá thất bại", Toast.LENGTH_SHORT).show();
+                                        }
+                                    }
+
+                                    @Override
+                                    public void onCancelled(@NonNull @NotNull DatabaseError error) {
+
+                                    }
+                                });
+                        mData.child("Devices").child(device_name).orderByKey().equalTo(device_id)
+                                .addListenerForSingleValueEvent(new ValueEventListener() {
+                                    @Override
+                                    public void onDataChange(@NonNull @NotNull DataSnapshot snapshot) {
+                                        if (snapshot.exists()){
+                                            snapshot.getRef().removeValue();
+                                        }
+                                    }
+
+                                    @Override
+                                    public void onCancelled(@NonNull @NotNull DatabaseError error) {
+
+                                    }
+                                });
+                    }
+                });
+                builder.setNegativeButton("Không", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        dialog.dismiss();
+                    }
+                });
+                AlertDialog alert = builder.create();
+                alert.show();
+                return false;
             }
         });
 

@@ -96,7 +96,7 @@ public class AddDeviceFragment extends Fragment {
                             @Override
                             public void onDataChange(@NonNull @NotNull DataSnapshot snapshot) {
                                 if (snapshot.exists()){
-                                    Toast.makeText(root.getContext(), "Đã tồn tại thiết bị", Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(root.getContext(), "Đã tồn tại thiết bị với ID này", Toast.LENGTH_SHORT).show();
                                 }
                                 else {
                                     String on = "";
@@ -117,6 +117,7 @@ public class AddDeviceFragment extends Fragment {
                                             .child(building)
                                             .child(room)
                                             .child("deviceModel")
+                                            .child(deviceName)
                                             .child(deviceID)
                                             .setValue(deviceModel).addOnCompleteListener(new OnCompleteListener<Void>() {
                                         @Override
