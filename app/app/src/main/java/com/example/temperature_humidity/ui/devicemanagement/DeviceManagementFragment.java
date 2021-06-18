@@ -131,11 +131,10 @@ public class DeviceManagementFragment extends Fragment {
 //
 //                    }
 //                });
-
 //                Toast.makeText(root.getContext(), device_id + device_name, Toast.LENGTH_SHORT).show();
                 AlertDialog.Builder builder = new AlertDialog.Builder(root.getContext());
-                builder.setTitle(R.string.app_name);
-                builder.setMessage("Bạn thật sự muốn xoá thiết bị không?");
+                builder.setTitle("Xoá thiết bị");
+                builder.setMessage("Xoá " + device_name +"(ID:" +device_id + ")?" );
                 builder.setIcon(R.drawable.decline);
                 builder.setPositiveButton("Có", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {

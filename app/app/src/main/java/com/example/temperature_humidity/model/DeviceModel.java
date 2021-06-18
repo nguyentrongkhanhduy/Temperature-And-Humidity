@@ -10,7 +10,7 @@ public class DeviceModel {
     private String building;
     private String room;
 
-    public DeviceModel(String id, String name, String data, String unit, String onThreshold, String offThreshold, String room, String building) {
+    public DeviceModel(String id, String name, String data, String unit, String onThreshold, String offThreshold, String building, String room) {
         this.id = id;
         this.name = name;
         this.data = data;

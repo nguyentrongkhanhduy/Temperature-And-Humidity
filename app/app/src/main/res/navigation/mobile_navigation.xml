@@ -102,7 +102,12 @@
         android:id="@+id/navigation_usableRooms"
         android:name="com.example.temperature_humidity.ui.usablerooms.UsableRoomsFragment"
         android:label="@string/title_usableRooms"
-        tools:layout="@layout/fragment_usablerooms"></fragment>
+        tools:layout="@layout/fragment_usablerooms">
+        <action
+            android:id="@+id/to_under_using_room"
+            app:destination="@id/navigation_under_using_room"/>
+
+    </fragment>
 
     <fragment
         android:id="@+id/navigation_home"
@@ -142,10 +147,18 @@
     </fragment>
 
     <fragment
+        android:id="@+id/navigation_under_using_room"
+        android:name="com.example.temperature_humidity.ui.usablerooms.UnderUsingRoom"
+        android:label="@string/title_under_using_room"
+        tools:layout="@layout/fragment_under_using_room"/>
+
+    <fragment
         android:id="@+id/navigation_notifications"
         android:name="com.example.temperature_humidity.ui.notifications.NotificationsFragment"
         android:label="@string/title_notifications"
-        tools:layout="@layout/fragment_notifications" />
+        tools:layout="@layout/fragment_notifications" >
+
+    </fragment>
 
     <fragment
         android:id="@+id/navigation_editprofile"

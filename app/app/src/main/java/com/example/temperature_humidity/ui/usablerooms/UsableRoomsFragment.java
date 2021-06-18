@@ -4,7 +4,9 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.GridView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -12,8 +14,10 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
+import androidx.navigation.Navigation;
 
 import com.example.temperature_humidity.GridViewAdapter;
+import com.example.temperature_humidity.R;
 import com.example.temperature_humidity.databinding.FragmentUsableroomsBinding;
 import com.example.temperature_humidity.model.UsableRooms;
 import com.google.firebase.auth.FirebaseAuth;
@@ -62,6 +66,17 @@ public class UsableRoomsFragment extends Fragment {
             @Override
             public void onCancelled(@NonNull @NotNull DatabaseError error) {
 
+            }
+        });
+
+        gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                String roomname = ((TextView)view.findViewById(R.id.tvRoomName)).getText().toString();
+                Bundle bundle = new Bundle();
+                bundle.putString("building_room", roomname);
+                Navigation.findNavController(root).navigate(R.id.to_under_using_room, bundle);
+//                Toast.makeText(root.getContext(), roomname, Toast.LENGTH_SHORT).show();
             }
         });
 

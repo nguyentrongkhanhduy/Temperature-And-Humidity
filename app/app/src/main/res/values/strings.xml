@@ -3,6 +3,7 @@
     <string name="title_home">Trang chủ</string>
     <string name="title_profile">Hồ sơ</string>
     <string name="title_notifications">Thông báo</string>
+    <string name="title_under_using_room">Phòng đang sử dụng</string>
     <string name="title_editprofile">Chỉnh sửa thông tin</string>
     <string name="title_registerroom">Đăng ký phòng</string>
     <string name="title_example">Ví dụ</string>
