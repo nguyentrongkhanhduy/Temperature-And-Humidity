@@ -6,6 +6,16 @@
     app:startDestination="@id/navigation_home_admin">
 
     <fragment
+        android:id="@+id/navigation_edit_device"
+        android:name="com.example.temperature_humidity.ui.devicemanagement.EditDeviceFragment"
+        android:label="@string/title_edit_device"
+        tools:layout="@layout/fragment_edit_device">
+        <action
+            android:id="@+id/to_device_management"
+            app:destination="@id/navigation_device_management"/>
+    </fragment>
+
+    <fragment
         android:id="@+id/navigation_room_browsing"
         android:name="com.example.temperature_humidity.ui.roombrowsing.RoomBrowsingFragment"
         android:label="@string/title_roombrowsing"
@@ -48,6 +58,8 @@
 
     </fragment>
 
+
+
     <fragment
         android:id="@+id/navigation_device_management"
         android:name="com.example.temperature_humidity.ui.devicemanagement.DeviceManagementFragment"
@@ -60,6 +72,9 @@
             android:id="@+id/done_add_room"
             app:destination="@id/navigation_selectcreateroom"
             />
+        <action
+            android:id="@+id/to_edit_device"
+            app:destination="@id/navigation_edit_device"/>
     </fragment>
 
     <fragment

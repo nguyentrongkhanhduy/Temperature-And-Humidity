@@ -182,7 +182,7 @@ public class UnderUsingRoom extends Fragment {
                     .child(list.get(position).getRoom())
                     .child("deviceModel")
                     .child("TEMP-HUMID")
-                    .child(list.get(position).getId())
+                    .child(list.get(0).getId())
                     .child("unit").addListenerForSingleValueEvent(new ValueEventListener() {
                 @Override
                 public void onDataChange(@NonNull @NotNull DataSnapshot snapshot) {
@@ -208,10 +208,10 @@ public class UnderUsingRoom extends Fragment {
                 swt.setChecked(true);
             }
 
-            swt.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            swt.setOnClickListener(new View.OnClickListener() {
                 @Override
-                public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                    if (isChecked){
+                public void onClick(View v) {
+                    if (swt.isChecked()){
                         mData.child("Buildings").child(list.get(position).getBuilding())
                                 .child(list.get(position).getRoom())
                                 .child("deviceModel")

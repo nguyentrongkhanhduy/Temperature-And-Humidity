@@ -106,6 +106,24 @@ public class DeviceManagementFragment extends Fragment {
             }
         });
 
+        binding.lvDevice.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Bundle bundle = new Bundle();
+                String tvName = ((TextView)view.findViewById(R.id.tvName)).getText().toString();
+                String tvID = ((TextView)view.findViewById(R.id.tvID)).getText().toString();
+                String[] arr_name = tvName.split(" ", 2);
+                String deviceName = arr_name[1];
+                String[] arr_ID = tvID.split(" ", 2);
+                String deviceID = arr_ID[1];
+                String[] device = {building, room, deviceName, deviceID};
+                bundle.putStringArray("device", device);
+                if (deviceName.equals("RELAY")) {
+                    Navigation.findNavController(root).navigate(R.id.to_edit_device, bundle);
+                }
+            }
+        });
+
         binding.lvDevice.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
             @Override
             public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
@@ -186,7 +204,7 @@ public class DeviceManagementFragment extends Fragment {
                 });
                 AlertDialog alert = builder.create();
                 alert.show();
-                return false;
+                return true;
             }
         });
 
