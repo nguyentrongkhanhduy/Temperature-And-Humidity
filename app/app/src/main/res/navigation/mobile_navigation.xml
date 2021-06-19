@@ -150,7 +150,11 @@
         android:id="@+id/navigation_under_using_room"
         android:name="com.example.temperature_humidity.ui.usablerooms.UnderUsingRoom"
         android:label="@string/title_under_using_room"
-        tools:layout="@layout/fragment_under_using_room"/>
+        tools:layout="@layout/fragment_under_using_room">
+        <action
+            android:id="@id/to_usableRooms"
+            app:destination="@id/navigation_usableRooms"/>
+    </fragment>
 
     <fragment
         android:id="@+id/navigation_notifications"

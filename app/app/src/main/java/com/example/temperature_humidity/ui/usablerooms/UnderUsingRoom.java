@@ -11,18 +11,21 @@ import android.widget.CompoundButton;
 import android.widget.ImageView;
 import android.widget.Switch;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
+import androidx.navigation.Navigation;
 
 import com.example.temperature_humidity.R;
 import com.example.temperature_humidity.databinding.FragmentSelectroomBinding;
 import com.example.temperature_humidity.databinding.FragmentUnderUsingRoomBinding;
 import com.example.temperature_humidity.model.DeviceModel;
 import com.example.temperature_humidity.ui.devicemanagement.DeviceManagementFragment;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -114,6 +117,21 @@ public class UnderUsingRoom extends Fragment {
 
                     }
                 });
+
+        binding.btnEnd.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mData.child("Accounts").child(FirebaseAuth.getInstance().getCurrentUser().getUid()).child("usableRooms")
+                        .child(building_room)
+                        .removeValue(new DatabaseReference.CompletionListener() {
+                            @Override
+                            public void onComplete(@Nullable @org.jetbrains.annotations.Nullable DatabaseError error, @NonNull @NotNull DatabaseReference ref) {
+                                Toast.makeText(root.getContext(), "Đã kết thúc phiên sử dụng phòng", Toast.LENGTH_SHORT).show();
+                                Navigation.findNavController(root).navigate(R.id.to_usableRooms);
+                            }
+                        });
+            }
+        });
 
         return root;
     }

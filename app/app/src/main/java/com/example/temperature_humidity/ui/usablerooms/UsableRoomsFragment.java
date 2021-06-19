@@ -59,7 +59,7 @@ public class UsableRoomsFragment extends Fragment {
                     UsableRooms usableRoom = post.getValue(UsableRooms.class);
                     lst.add(usableRoom.getBuilding() + "-" + usableRoom.getRoom());
                 }
-                GridViewAdapter gridViewAdapter = new GridViewAdapter(getActivity().getBaseContext(),lst);
+                GridViewAdapter gridViewAdapter = new GridViewAdapter(root.getContext(), lst);
                 gridView.setAdapter(gridViewAdapter);
             }
 
