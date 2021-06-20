@@ -13,9 +13,9 @@ import requests
 from datetime import datetime
 
 
-cred = credentials.Certificate('firebase-sdk.json')
+cred = credentials.Certificate('firebaseSDK.json')
 firebase_admin.initialize_app(cred, {
-    'databaseURL': 'https://test-ed0fd-default-rtdb.firebaseio.com/'
+    'databaseURL': 'https://temperatureandhumidity-14a04-default-rtdb.firebaseio.com/'
 })
 
 ref = db.reference('/')
@@ -102,8 +102,8 @@ ref = db.reference('/')
     }
 })'''
 #done setting up the database
-path_relay = "dunglam2000vn/feeds/bk-iot-relay" 
-path_temp_humid = "dunglam2000vn/feeds/bk-iot-temp-humid"
+path_relay = "dadn/feeds/bk-iot-relay" 
+path_temp_humid = "dadn/feeds/bk-iot-temp-humid"
 
 hostName = "192.168.1.214"
 serverPort = 8080
@@ -252,7 +252,7 @@ def on_message(client, userdata, msg):
 def MQTT():
     client.on_connect = on_connect
     client.on_message = on_message
-    client.username_pw_set("dunglam2000vn","aio_KzTp99VQhvzxUsO5FouTPFFArcGq")
+    client.username_pw_set("dadn","aio_LoEF89DG0cDrRqjXYJLYY12qibj4")
     client.connect("io.adafruit.com", 1883, 60)
     client.subscribe(path_relay)
     client.subscribe(path_temp_humid)
@@ -262,7 +262,7 @@ def MQTT():
 
 class MyServer(BaseHTTPRequestHandler):
     def do_GET(self):
-        now = datetime.today().strftime('%Y-%m-%d-%H:%M:%S')
+        now = datetime.today().strftime('%Y/%m/%d-%H:%M:%S')
         self.send_response(200)
         self.send_header("Content-type", "text/html")
         self.end_headers()

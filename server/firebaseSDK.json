@@ -1,0 +1,12 @@
+{
+  "type": "service_account",
+  "project_id": "temperatureandhumidity-14a04",
+  "private_key_id": "dede7fe9ca2d66a48fe839a0cbf9593a8ec29162",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQDDThTsvc3Dmi7V\nG5C9oKhvqHiE2WiPxsKaRoRQdf4ytw3h7DlDtwOtN9D3R6wrJSuZTXfs+NPCF6iT\nHWImwLPh06OC2p7xQw3kLccAPtKm2gYIwvaGHX466rxbIFrXIOcEeFZRrpE53MIl\nIxnqiv4ismpGKz0SPyrdl7TOLuwyXMP0Xxg6QV/tjaFcgMsVZfBqPYvrSb4QCFq1\nMMU59HgVyInogwQb6R8AoHgvpg8Hc9/6bA7rCzpUPyurAhtsV/FlN3J8nA4/J6ft\notiS3umIMLJ1I9FDMqQn9Mvy6L5dBLVjcKtzgWGi1kAcjZu/Zt+3qKgJNr7BEHCv\nojmbxCFLAgMBAAECggEACyV+rjrwQ79IovhYHL/O59MpUF5eyFiOAg4Pk86te6l/\njQBVYwGj9RPgGkIol6x0aOMcpWqsyJa0aUkJBrCC07BSKbAJLY3SfM5cCC3jCeDG\n7WMV0iEGyPKys09iaoVsieXFpL3IzhDvslI8MsBMsXWV+SaTQreriPVqkps89xbD\nVfOKEYr7A6u7LljqzJimcYkdiF5jPjqk/i6AgEVDgrKBrKDwTJ27ZDB1CzHQRU+7\n5ro5HWsPMExjGgOxhgn6SWrMZnhjwZuN41eSw3I0j/OelhjXtb3+c1gEYiuIOWo3\nKIbNYGOS4O9pK+goh9uVY6JRQlE/JnRXapmosLH2aQKBgQDykxxeEKnQOOUQtdzf\n4AN5+bfwNiieMCThzT9pj/8J+c6VVEyLZFQwACS1je6YcfTw4uOP1ikgU3lRwc5S\nOYw04x3piLkdSMuA0X3GAXuHKqI8rURpru4p8xw3QJV7pv2a35GI3MNko4X879H7\nGmrk0+JOz/8O96mY7ZiLmQk2lQKBgQDOHTyckQ1EpcFaAVIYsCQKMgptxZtYRmyM\ncnARZVllE9SbC88yIxqOjFKzh5TGvr5vQReq110e6AxdqMQG89ETUAoIoFTzs0O1\nHRghKvQvuslOoL1PcnoT879YEOWE8dzP6DBoEXyhLieIDWi2hbiGHGW21UGIhVXs\nYtni9h1gXwKBgEgEVvqyVcgk7BTu+VlaB44yDmL5oUt9naWQKxBrGNvcV3HMKkGE\nEt6BXGSuc7S8uGy/37G3clRPlAgq0tdkkHSvLRVFazf/gbOH/qBHlmYFyU7cXiBG\nOB0qOSlKOlcQt+BAGdQZPsVlKwVyKdQz/qJbKageZmoKK0bk21IuqCaVAoGANwc1\nPHO5gB9k3LvHiFHWfWZYxG/ihpHevyx6YRqW4FaIB5ECk1ct6urp1YaYIOuh+h/9\nyp3O/cZkLsk09Mo5gpd25lCv/ZRZukv3Oju2j9uljTl68XAVyafk6QUx0emk01kh\nO1eX14xz/23dDAXtetiwCz0qTuGSTBckJuUgeK8CgYEAwAhXKkPblAAiecWZLsGf\nBmuu2SHGVZc3MHbaacmFC0MJf3DY5fvOYhP+/WiZcVCLmI2PLA8KpBdKLL/RDR1J\n9RteTR1os3FI/C43OyblXruvSoECFwpPlBLYyJjbsxambIbgl/nZcz0C9G+gynuk\nv7zeY12Lma9inWrRDJQln5Y=\n-----END PRIVATE KEY-----\n",
+  "client_email": "firebase-adminsdk-1edvi@temperatureandhumidity-14a04.iam.gserviceaccount.com",
+  "client_id": "111426927866086574011",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/firebase-adminsdk-1edvi%40temperatureandhumidity-14a04.iam.gserviceaccount.com"
+}
