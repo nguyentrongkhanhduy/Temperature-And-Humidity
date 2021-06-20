@@ -33,14 +33,20 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import org.jetbrains.annotations.NotNull;
+import org.json.JSONObject;
 
+import java.io.InputStream;
+import java.net.URL;
+import java.net.URLConnection;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 public class UnderUsingRoom extends Fragment {
     FragmentUnderUsingRoomBinding binding;
     private DatabaseReference mData;
-
+    private FirebaseAuth mAuth;
 
     @Nullable
     @org.jetbrains.annotations.Nullable
@@ -65,6 +71,7 @@ public class UnderUsingRoom extends Fragment {
         binding.tvRoomname.setText(building_room);
 
         mData = FirebaseDatabase.getInstance().getReference();
+        mAuth = FirebaseAuth.getInstance();
 
         mData.child("Buildings").child(building).child(room).child("deviceModel").child("TEMP-HUMID")
                 .addValueEventListener(new ValueEventListener() {
@@ -176,6 +183,13 @@ public class UnderUsingRoom extends Fragment {
             swt = convertView.findViewById(R.id.swt);
             String data = list.get(position).getData();
 
+            String id = list.get(position).getId();
+            String name = list.get(position).getName();
+            String unit = list.get(position).getUnit();
+            String building = list.get(position).getBuilding();
+            String room = list.get(position).getRoom();
+            String userID = mAuth.getCurrentUser().getUid();
+
             tvNameID.setText("Thiết bị: " + list.get(position).getName() + " - ID: " +list.get(position).getId());
 
             mData.child("Buildings").child(list.get(position).getBuilding())
@@ -220,6 +234,28 @@ public class UnderUsingRoom extends Fragment {
                                 .child("data").setValue("1");
                         mData.child("Devices").child("RELAY").child(list.get(position).getId())
                                 .child("data").setValue("1");
+                        ExecutorService executor = Executors.newSingleThreadExecutor();
+                        executor.submit(() -> {
+                            try {
+                                String query = String.format("{ \"id\":\"%s\", " +
+                                        "\"name\":\"%s\", " +
+                                        "\"data\":\"%s\", " +
+                                        "\"unit\":\"%s\", " +
+                                        "\"building\":\"%s\", " +
+                                        "\"room\":\"%s\", " +
+                                        "\"user\":\"%s\" }"
+                                ,id, name, "1", unit, building, room, userID);
+                                String url = "http://192.168.1.101:8080/";
+                                URLConnection connection = new URL(url + query).openConnection();
+                                InputStream in = connection.getInputStream();
+                                //connection.setRequestProperty("Accept-Charset", "UTF-8");
+                            }
+                            catch(Exception e){
+                                System.out.println("__________________________");
+                                e.printStackTrace();
+                            }
+
+                        });
                     }
                     else{
                         mData.child("Buildings").child(list.get(position).getBuilding())
@@ -230,6 +266,28 @@ public class UnderUsingRoom extends Fragment {
                                 .child("data").setValue("0");
                         mData.child("Devices").child("RELAY").child(list.get(position).getId())
                                 .child("data").setValue("0");
+                        ExecutorService executor = Executors.newSingleThreadExecutor();
+                        executor.submit(() -> {
+                            try {
+                                String query = String.format("{ \"id\":\"%s\", " +
+                                                "\"name\":\"%s\", " +
+                                                "\"data\":\"%s\", " +
+                                                "\"unit\":\"%s\", " +
+                                                "\"building\":\"%s\", " +
+                                                "\"room\":\"%s\", " +
+                                                "\"user\":\"%s\" }"
+                                        ,id, name, "0", unit, building, room, userID);
+                                String url = "http://192.168.1.101:8080/";
+                                URLConnection connection = new URL(url + query).openConnection();
+                                InputStream in = connection.getInputStream();
+                                //connection.setRequestProperty("Accept-Charset", "UTF-8");
+                            }
+                            catch(Exception e){
+                                System.out.println("__________________________");
+                                e.printStackTrace();
+                            }
+
+                        });
                     }
                 }
             });
