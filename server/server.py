@@ -262,7 +262,8 @@ def MQTT():
 
 class MyServer(BaseHTTPRequestHandler):
     def do_GET(self):
-        now = datetime.today().strftime('%Y/%m/%d-%H:%M:%S')
+        #now = datetime.today().strftime('%Y/%m/%d-%H:%M:%S')
+        now = datetime.today().strftime('%d/%m/%Y-%H:%M:%S')
         self.send_response(200)
         self.send_header("Content-type", "text/html")
         self.end_headers()
