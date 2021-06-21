@@ -105,7 +105,7 @@ ref = db.reference('/')
 path_relay = "dadn/feeds/bk-iot-relay" 
 path_temp_humid = "dadn/feeds/bk-iot-temp-humid"
 
-hostName = "192.168.1.101"
+hostName = "192.168.1.214"
 serverPort = 8080
 
 client = mqtt.Client()
@@ -118,6 +118,7 @@ def on_connect(client, userdata, flags, rc):
 
 # The callback for when a PUBLISH message is received from the server.
 def on_message(client, userdata, msg):
+    now = datetime.now().strftime('%d/%m/%Y %H:%M:%S.%f')[:-3]
     data = msg.payload.decode("utf-8")
     message = json.loads(data)
     if (msg.topic == path_relay):
@@ -215,9 +216,33 @@ def on_message(client, userdata, msg):
                         if (x['offThreshold'] != '' and int(x['offThreshold']) >= int(temp) and x['data'] == '1'):
                             send_message = '{ "id":"%s", "name":"%s", "data":"%s", "unit":"%s" }' % (x['id'],x['name'],'0',x['unit'])
                             client.publish(path_relay,send_message)
+                            history = db.reference('/History')
+                            history.push({
+                                'id': x['id'],
+                                'name': x['name'],
+                                'data': '0',
+                                'unit': x['unit'],
+                                'building': x['building'],
+                                'room': x['room'],
+                                'user': '',
+                                'time': now,
+                                'mode': 'auto'
+                            })
                         elif (x['onThreshold'] != '' and int(x['onThreshold']) < int(temp) and x['data'] == '0'):
                             send_message = '{ "id":"%s", "name":"%s", "data":"%s", "unit":"%s" }' % (x['id'],x['name'],'1',x['unit'])
                             client.publish(path_relay,send_message)
+                            history = db.reference('/History')
+                            history.push({
+                                'id': x['id'],
+                                'name': x['name'],
+                                'data': '1',
+                                'unit': x['unit'],
+                                'building': x['building'],
+                                'room': x['room'],
+                                'user': '',
+                                'time': now,
+                                'mode': 'auto'
+                            })
                 else:
                     pass
             #auto part of RELAY in Buildings
@@ -252,7 +277,7 @@ def on_message(client, userdata, msg):
 def MQTT():
     client.on_connect = on_connect
     client.on_message = on_message
-    client.username_pw_set("dadn","aio_cREs28czE5OUEkEDYBZw4uhLgj70")
+    client.username_pw_set("dadn","aio_fTdV43gu9oG6L4VG0uFkeoDhsLSe")
     client.connect("io.adafruit.com", 1883, 60)
     client.subscribe(path_relay)
     client.subscribe(path_temp_humid)
@@ -263,7 +288,7 @@ def MQTT():
 class MyServer(BaseHTTPRequestHandler):
     def do_GET(self):
         #now = datetime.today().strftime('%Y/%m/%d-%H:%M:%S')
-        now = datetime.today().strftime('%d/%m/%Y-%H:%M:%S')
+        now = datetime.now().strftime('%d/%m/%Y %H:%M:%S.%f')[:-3]
         self.send_response(200)
         self.send_header("Content-type", "text/html")
         self.end_headers()
@@ -286,7 +311,8 @@ class MyServer(BaseHTTPRequestHandler):
                     'building': receive['building'],
                     'room': receive['room'],
                     'user': receive['user'],
-                    'time': now
+                    'time': now,
+                    'mode': 'manual'
                 })
             except:
                 print('its not json bro')
