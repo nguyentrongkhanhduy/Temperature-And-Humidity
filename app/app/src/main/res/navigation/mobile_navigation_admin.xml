@@ -127,9 +127,18 @@
             android:id="@+id/to_manage_accounts"
             app:destination="@id/navigation_manage_accounts" />
         <action
-            android:id="@+id/to_device_control"
-            app:destination="@id/navigation_fan_control" />
+            android:id="@+id/to_logs"
+            app:destination="@id/navigation_logs" />
     </fragment>
+
+    <fragment
+        android:id="@+id/navigation_logs"
+        android:name="com.example.temperature_humidity.ui.logs.LogsFragment"
+        android:label="@string/title_logs"
+        tools:layout="@layout/fragment_logs">
+
+    </fragment>
+
     <fragment
         android:id="@+id/navigation_profile_admin"
         android:name="com.example.temperature_humidity.ui.profile.ProfileFragment"

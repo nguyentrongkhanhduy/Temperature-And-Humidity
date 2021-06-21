@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.ListView;
@@ -15,6 +16,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
+import androidx.navigation.Navigation;
 
 import com.example.temperature_humidity.R;
 import com.example.temperature_humidity.databinding.FragmentUserhistoryBinding;
@@ -37,6 +39,7 @@ public class UserHistoryFragment extends Fragment {
     private DatabaseReference mDatabase;
     private FirebaseAuth mAuth;
     private FragmentUserhistoryBinding binding;
+
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         binding = FragmentUserhistoryBinding.inflate(inflater, container, false);
@@ -71,6 +74,23 @@ public class UserHistoryFragment extends Fragment {
             @Override
             public void onCancelled(@NonNull @NotNull DatabaseError error) {
 
+            }
+        });
+
+        binding.lvHistory.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                String type = ((TextView)view.findViewById(R.id.tvType)).getText().toString();
+                    String building_room = ((TextView)view.findViewById(R.id.tvRoom)).getText().toString();
+                    String period = ((TextView)view.findViewById(R.id.tvPeriod)).getText().toString();
+                    String date = ((TextView)view.findViewById(R.id.tvDate)).getText().toString();
+                    String hisID = ((TextView)view.findViewById(R.id.tvHID)).getText().toString();
+                    Bundle bundle = new Bundle();
+                    bundle.putString("building_room", building_room);
+                    bundle.putString("date", date);
+                    bundle.putString("period", period);
+                    bundle.putString("hisID", hisID);
+                    Navigation.findNavController(root).navigate(R.id.to_history_detail, bundle);
             }
         });
 
@@ -109,17 +129,19 @@ public class UserHistoryFragment extends Fragment {
             LayoutInflater layoutInflater = (LayoutInflater)context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             if(convertView == null)
                 convertView = LayoutInflater.from(context).inflate(R.layout.item_history, null);
-            TextView tvType, tvRoom, tvPeriod, tvDate;
+            TextView tvType, tvRoom, tvPeriod, tvDate, tvHID;
             tvType = convertView.findViewById(R.id.tvType);
             tvRoom = convertView.findViewById(R.id.tvRoom);
             tvPeriod = convertView.findViewById(R.id.tvPeriod);
             tvDate = convertView.findViewById(R.id.tvDate);
+            tvHID = convertView.findViewById(R.id.tvHID);
             TimeModel timeModel = list.get(position).getTimeModel();
 
             tvType.setText(list.get(position).getType());
             tvRoom.setText(list.get(position).getBuilding() + " - " + list.get(position).getRoom());
             tvDate.setText(timeModel.getDate());
             tvPeriod.setText(timeModel.getStartTime() + " - " + timeModel.getEndTime());
+            tvHID.setText(list.get(position).getHisID());
 
             ImageView imDecline = convertView.findViewById(R.id.imDecline);
 

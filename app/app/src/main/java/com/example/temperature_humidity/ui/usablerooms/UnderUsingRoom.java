@@ -2,7 +2,9 @@ package com.example.temperature_humidity.ui.usablerooms;
 
 import android.bluetooth.BluetoothClass;
 import android.content.Context;
+import android.os.Build;
 import android.os.Bundle;
+import android.provider.ContactsContract;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,6 +17,7 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
@@ -24,6 +27,8 @@ import com.example.temperature_humidity.R;
 import com.example.temperature_humidity.databinding.FragmentSelectroomBinding;
 import com.example.temperature_humidity.databinding.FragmentUnderUsingRoomBinding;
 import com.example.temperature_humidity.model.DeviceModel;
+import com.example.temperature_humidity.model.HistoryDetailModel;
+import com.example.temperature_humidity.model.TimeModel;
 import com.example.temperature_humidity.ui.devicemanagement.DeviceManagementFragment;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
@@ -38,6 +43,8 @@ import org.json.JSONObject;
 import java.io.InputStream;
 import java.net.URL;
 import java.net.URLConnection;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.ExecutorService;
@@ -47,7 +54,9 @@ public class UnderUsingRoom extends Fragment {
     FragmentUnderUsingRoomBinding binding;
     private DatabaseReference mData;
     private FirebaseAuth mAuth;
-
+    String building_room;
+    String ca;
+    String historyID;
     @Nullable
     @org.jetbrains.annotations.Nullable
     @Override
@@ -63,10 +72,13 @@ public class UnderUsingRoom extends Fragment {
         ActionBar actionBar = ((AppCompatActivity) getActivity()).getSupportActionBar();
         actionBar.setDisplayHomeAsUpEnabled(false);
 
-        String building_room = getArguments().getString("building_room");
+        building_room = getArguments().getString("building_room");
         String[] arr = building_room.split("-", 2);
         String building = arr[0];
         String room = arr[1];
+        ca = getArguments().getString("ca");
+
+//        Toast.makeText(root.getContext(), building_room + ca, Toast.LENGTH_SHORT).show();
 
         binding.tvRoomname.setText(building_room);
 
@@ -221,6 +233,37 @@ public class UnderUsingRoom extends Fragment {
             else{
                 swt.setChecked(true);
             }
+
+//            mData.child("Accounts").child(userID).child("History")
+//                    .addValueEventListener(new ValueEventListener() {
+//                        @RequiresApi(api = Build.VERSION_CODES.O)
+//                        @Override
+//                        public void onDataChange(@NonNull @NotNull DataSnapshot snapshot) {
+//                            for (DataSnapshot post: snapshot.getChildren()){
+//                                TimeModel x = post.child("timeModel").getValue(TimeModel.class);
+//                                String date = x.getDate();
+//                                String[] dateItems = date.split("/");
+//                                String end = x.getEndTime();
+//                                String start = x.getStartTime();
+//
+//                                String type = post.child("type").getValue(String.class);
+//                                if (type.equals("Sử dụng")){
+//                                    if (building_room.equals(post.child("building").getValue(String.class)
+//                                            +"-"+post.child("room").getValue(String.class))
+//                                            && ca.equals(dateItems[0]+"-"+dateItems[1]+"-"+dateItems[2] + " "+
+//                                            start+"-"+end)){
+//                                        historyID = post.child("hisID").getValue(String.class);
+//                                        break;
+//                                    }
+//                                }
+//                            }
+//                        }
+//
+//                        @Override
+//                        public void onCancelled(@NonNull @NotNull DatabaseError error) {
+//
+//                        }
+//                    });
 
             swt.setOnClickListener(new View.OnClickListener() {
                 @Override

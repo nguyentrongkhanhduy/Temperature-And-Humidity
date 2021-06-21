@@ -2,6 +2,7 @@ package com.example.temperature_humidity.ui.registerroom;
 
 import android.os.Build;
 import android.os.Bundle;
+import android.provider.ContactsContract;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -122,43 +123,78 @@ public class RoomTimeFragment extends Fragment {
                 EditText edtEnd = (EditText) root.findViewById(R.id.edtEnd);
                 String endTime = edtEnd.getText().toString();
 
-                TimeModel timeModel = new TimeModel(startTime,endTime, date);
+                if (Integer.parseInt(startTime) <= 0 || Integer.parseInt(endTime) <= 0 || Integer.parseInt(endTime)<=Integer.parseInt(startTime)){
+                    Toast.makeText(root.getContext(),"Thời gian không hợp lệ", Toast.LENGTH_SHORT).show();
+                }
+                else {
+                    TimeModel timeModel = new TimeModel(startTime, endTime, date);
 
-                // get user email, in txtEmail
+                    // get user email, in txtEmail
 
-                // get building + room, already in variables at line 59-60
+                    // get building + room, already in variables at line 59-60
 
-                // create RequestModel
+                    // create RequestModel
 
-                DateTimeFormatter dtf = DateTimeFormatter.ofPattern("ddMMyyyy_HHmmss");
-                LocalDateTime now = LocalDateTime.now();
+                    DateTimeFormatter dtf = DateTimeFormatter.ofPattern("ddMMyyyy_HHmmss");
+                    LocalDateTime now = LocalDateTime.now();
 
 
-                String requestID = dtf.format(now);     // can only make 1 new request
-                RequestModel requestModel = new
-                        RequestModel(requestID,timeModel,binding.txtEmail.getText().toString(),room,building, userID);
-                String type = "Đăng Ký";
-                String historyID = dtf.format(now);
-                HistoryUserModel historyUserModel= new
-                        HistoryUserModel(historyID,timeModel,binding.txtEmail.getText().toString(),room,building,userID,type);
-                mDatabase.child("Request").child(requestID).setValue(requestModel).addOnCompleteListener(new OnCompleteListener<Void>() {
-                    @Override
-                    public void onComplete(@NonNull @NotNull Task<Void> task) {
-                        if (task.isSuccessful()){
-                            Toast.makeText(getActivity(), "Đăng ký thành công", Toast.LENGTH_SHORT).show();
-                        }
-                        else {
-                            Toast.makeText(getActivity(), "Đăng ký thất bại", Toast.LENGTH_SHORT).show();
-                        }
-                    }
-                });
+                    String requestID = dtf.format(now);     // can only make 1 new request
+                    RequestModel requestModel = new
+                            RequestModel(requestID, timeModel, binding.txtEmail.getText().toString(), room, building, userID);
+                    String type = "Đăng Ký";
+                    String historyID = dtf.format(now);
+                    HistoryUserModel historyUserModel = new
+                            HistoryUserModel(historyID, timeModel, binding.txtEmail.getText().toString(), room, building, userID, type);
+                    String[] dateFormat = date.split("/");
+                    String ca = dateFormat[0] + "-" + dateFormat[1] + "-" + dateFormat[2] + " " + startTime + "-" + endTime;
+                mDatabase.child("Buildings").child(building).child(room).child("approvedModel")
+                        .addValueEventListener(new ValueEventListener() {
+                            @Override
+                            public void onDataChange(@NonNull @NotNull DataSnapshot snapshot) {
+                                Boolean exists = false;
+                                for (DataSnapshot post: snapshot.getChildren()){
+                                    TimeModel x = post.child("timeModel").getValue(TimeModel.class);
+                                    String ngay = x.getDate();
+                                    if (ngay.equals(date)) {
+                                        Integer s = Integer.parseInt(x.getStartTime());
+                                        Integer e = Integer.parseInt(x.getEndTime());
+                                        Integer bd = Integer.parseInt(startTime);
+                                        Integer kt = Integer.parseInt(endTime);
 
-                mDatabase.child("Accounts").child(userID.toString()).child("History").child(historyID).setValue(historyUserModel);
+                                        if ((bd >= s) && (bd <= e) || (kt >= s) && (kt <= e)) {
+                                            exists = true;
+                                            break;
+                                        }
+                                    }
+                                }
+                                if (exists){
+                                    Toast.makeText(root.getContext(), "Bị trùng thời gian", Toast.LENGTH_SHORT).show();
+                                }
+                                else{
+                                    mDatabase.child("Request").child(requestID).setValue(requestModel).addOnCompleteListener(new OnCompleteListener<Void>() {
+                                        @Override
+                                        public void onComplete(@NonNull @NotNull Task<Void> task) {
+                                            if (task.isSuccessful()) {
+                                                Toast.makeText(getActivity(), "Đăng ký thành công", Toast.LENGTH_SHORT).show();
+                                            } else {
+                                                Toast.makeText(getActivity(), "Đăng ký thất bại", Toast.LENGTH_SHORT).show();
+                                            }
+                                        }
+                                    });
 
-                //Toast.makeText(getActivity(),timeModel.toString(), Toast.LENGTH_SHORT).show();
+                                    mDatabase.child("Accounts").child(userID.toString()).child("History").child(historyID).setValue(historyUserModel);
+                                }
+                            }
 
-                // navigate back to RegisterRoomFragment
-                // TODO
+                            @Override
+                            public void onCancelled(@NonNull @NotNull DatabaseError error) {
+
+                            }
+                        });
+
+
+                }
             }
         });
 

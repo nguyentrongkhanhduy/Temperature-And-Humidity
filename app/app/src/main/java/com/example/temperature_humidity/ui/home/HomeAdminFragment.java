@@ -56,10 +56,10 @@ public class HomeAdminFragment extends Fragment {
             }
         });
 
-        binding.deviceControl.setOnClickListener(new View.OnClickListener() {
+        binding.logs.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Navigation.findNavController(root).navigate(R.id.to_device_control);
+                Navigation.findNavController(root).navigate(R.id.to_logs);
             }
         });
 

@@ -144,18 +144,32 @@ public class RoomBrowsingFragment extends Fragment {
                 @RequiresApi(api = Build.VERSION_CODES.O)
                 @Override
                 public void onClick(View v) {
+                    String[] dateFormat = list.get(position).getTimeModel().getDate().split("/");
+                    String ca = dateFormat[0] + "-" + dateFormat[1] + "-" + dateFormat[2] + " " +
+                            list.get(position).getTimeModel().getStartTime() + "-" +
+                            list.get(position).getTimeModel().getEndTime();
                     ApprovedModel approvedModel = new ApprovedModel(list.get(position).getEmail(), list.get(position).getUid(), list.get(position).getTimeModel());
                     mDatabase.child("Buildings")
                             .child(list.get(position).getBuilding())
                             .child(list.get(position).getRoom())
                             .child("approvedModel")
-                            .push().setValue(approvedModel);
+                            .child(ca).setValue(approvedModel);
                     UsableRooms usableRooms = new UsableRooms(list.get(position).getBuilding(),list.get(position).getRoom());
                     mDatabase.child("Accounts")
                             .child(list.get(position).getUid())
                             .child("usableRooms")
                             .child(usableRooms.getBuilding() + "-" + usableRooms.getRoom())
                             .setValue(usableRooms);
+
+                    mDatabase.child("Accounts")
+                            .child(list.get(position).getUid())
+                            .child("usableRooms")
+                            .child(usableRooms.getBuilding() + "-" + usableRooms.getRoom())
+                            .child("TimeList")
+                            .child(dateFormat[0] + "-" + dateFormat[1] + "-" + dateFormat[2] + " " +
+                                    list.get(position).getTimeModel().getStartTime() + "-" +
+                                    list.get(position).getTimeModel().getEndTime())
+                            .setValue(list.get(position).getTimeModel());
                     mDatabase.child("Request").child(list.get(position).getReqID()).removeValue();
                     DateTimeFormatter dtf = DateTimeFormatter.ofPattern("ddMMyyyy_HHmmss");
                     LocalDateTime now = LocalDateTime.now();

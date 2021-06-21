@@ -92,4 +92,10 @@
                 android:src="@drawable/decline" />
         </LinearLayout>
     </LinearLayout>
+    <TextView
+        android:id="@+id/tvHID"
+        android:visibility="gone"
+        android:text="ahihi"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
 </LinearLayout>

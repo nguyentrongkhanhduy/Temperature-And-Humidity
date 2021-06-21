@@ -119,18 +119,18 @@
                 android:layout_centerInParent="true">
 
                 <ImageView
-                    android:id="@+id/device_control"
+                    android:id="@+id/logs"
                     android:clickable="true"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:background="@drawable/rounded_rectangle"
                     android:padding="16dp"
-                    android:src="@drawable/ic_device" />
+                    android:src="@drawable/ic_log" />
             </LinearLayout>
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Thiết bị"
+                android:text="Lịch sử hoạt động"
                 android:layout_marginTop="10dp"
                 android:textStyle="bold"
                 android:textColor="@color/black"

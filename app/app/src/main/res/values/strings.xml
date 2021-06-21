@@ -2,13 +2,15 @@
     <string name="app_name">Temperature_Humidity</string>
     <string name="title_home">Trang chủ</string>
     <string name="title_profile">Hồ sơ</string>
+    <string name="title_logs">Lịch sử hoạt động</string>
     <string name="title_notifications">Thông báo</string>
     <string name="title_under_using_room">Phòng đang sử dụng</string>
     <string name="title_editprofile">Chỉnh sửa thông tin</string>
     <string name="title_registerroom">Đăng ký phòng</string>
     <string name="title_example">Ví dụ</string>
+    <string name="title_history_detail">Chi tiết lịch sử</string>
     <string name="title_manageroom">Quản lý phòng</string>
-    <string name="title_hitoryactivity">Lịch sử hoạt động</string>
+    <string name="title_hitoryactivity">Nhật ký hoạt động</string>
     <string name="title_manageaccounts">Quản lý tài khoản</string>
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="hint_AddAccountName">Nhập tên tài khoản...</string>
@@ -19,5 +21,6 @@
     <string name="title_usableRooms">Phòng học</string>
     <string name="title_devicemanagement">Quản lý thiết bị</string>
     <string name="title_adddevice">Thêm thiết bị</string>
+    <string name="title_listtime">Danh sách ca</string>
     <string name="title_edit_device">Chỉnh sửa thiết bị</string>
 </resources>

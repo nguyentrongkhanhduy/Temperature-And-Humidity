@@ -105,7 +105,7 @@ ref = db.reference('/')
 path_relay = "dadn/feeds/bk-iot-relay" 
 path_temp_humid = "dadn/feeds/bk-iot-temp-humid"
 
-hostName = "192.168.1.214"
+hostName = "192.168.1.101"
 serverPort = 8080
 
 client = mqtt.Client()
@@ -252,7 +252,7 @@ def on_message(client, userdata, msg):
 def MQTT():
     client.on_connect = on_connect
     client.on_message = on_message
-    client.username_pw_set("dadn","aio_LoEF89DG0cDrRqjXYJLYY12qibj4")
+    client.username_pw_set("dadn","aio_IcPz20fSBIkb9DCo39dGoDw3iWOC")
     client.connect("io.adafruit.com", 1883, 60)
     client.subscribe(path_relay)
     client.subscribe(path_temp_humid)
@@ -268,6 +268,7 @@ class MyServer(BaseHTTPRequestHandler):
         self.send_header("Content-type", "text/html")
         self.end_headers()
         content = self.path[1:]
+        print('ahi' + content)
         message = urllib.parse.unquote(content)
         if (message == 'favicon.ico' or message == ''):
             pass

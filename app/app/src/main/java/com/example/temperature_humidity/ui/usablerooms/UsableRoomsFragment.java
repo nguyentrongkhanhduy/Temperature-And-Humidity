@@ -75,7 +75,7 @@ public class UsableRoomsFragment extends Fragment {
                 String roomname = ((TextView)view.findViewById(R.id.tvRoomName)).getText().toString();
                 Bundle bundle = new Bundle();
                 bundle.putString("building_room", roomname);
-                Navigation.findNavController(root).navigate(R.id.to_under_using_room, bundle);
+                Navigation.findNavController(root).navigate(R.id.to_list_time, bundle);
 //                Toast.makeText(root.getContext(), roomname, Toast.LENGTH_SHORT).show();
             }
         });
