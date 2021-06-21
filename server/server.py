@@ -252,7 +252,7 @@ def on_message(client, userdata, msg):
 def MQTT():
     client.on_connect = on_connect
     client.on_message = on_message
-    client.username_pw_set("dadn","aio_IcPz20fSBIkb9DCo39dGoDw3iWOC")
+    client.username_pw_set("dadn","aio_cREs28czE5OUEkEDYBZw4uhLgj70")
     client.connect("io.adafruit.com", 1883, 60)
     client.subscribe(path_relay)
     client.subscribe(path_temp_humid)
