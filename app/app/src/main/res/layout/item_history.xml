@@ -5,19 +5,20 @@
     android:layout_height="wrap_content"
     android:padding="5dp"
     android:weightSum="6">
+
     <LinearLayout
-        android:gravity="center"
+        android:layout_width="100dp"
+        android:layout_height="match_parent"
         android:layout_weight="1"
-        android:layout_width="wrap_content"
         android:background="@drawable/btngreen"
-        android:layout_height="match_parent">
+        android:gravity="center">
 
         <TextView
             android:id="@+id/tvType"
-            android:layout_width="62dp"
-            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:layout_height="37dp"
             android:gravity="center"
-            android:text="Đăng Ký"
+            android:text="Bật Relay 1"
             android:textColor="#ffffff"
             android:textSize="17dp"
             android:textStyle="bold" />
@@ -35,14 +36,14 @@
             android:layout_width="67dp"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:text="H1  201"
+            android:text="H1-201"
             android:textColor="#ffffff"
-            android:textSize="15dp"
+            android:textSize="16dp"
             android:textStyle="bold" />
     </LinearLayout>
 
     <LinearLayout
-        android:layout_width="100dp"
+        android:layout_width="160dp"
         android:layout_height="match_parent"
         android:layout_marginLeft="5dp"
         android:layout_weight="1"
@@ -57,7 +58,7 @@
             android:gravity="center"
             android:text="5 - 7"
             android:textColor="#ffffff"
-            android:textSize="15dp"
+            android:textSize="16dp"
             android:textStyle="bold" />
 
         <TextView
@@ -67,7 +68,7 @@
             android:gravity="center"
             android:text="15/6/2021"
             android:textColor="#ffffff"
-            android:textSize="15dp"
+            android:textSize="20dp"
             android:textStyle="bold" />
     </LinearLayout>
     <LinearLayout

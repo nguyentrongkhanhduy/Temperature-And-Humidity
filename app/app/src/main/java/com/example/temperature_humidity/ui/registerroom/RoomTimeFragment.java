@@ -177,14 +177,14 @@ public class RoomTimeFragment extends Fragment {
                                         public void onComplete(@NonNull @NotNull Task<Void> task) {
                                             if (task.isSuccessful()) {
                                                 Toast.makeText(getActivity(), "Đăng ký thành công", Toast.LENGTH_SHORT).show();
+                                                mDatabase.child("Accounts").child(userID.toString()).child("History").child(historyID).setValue(historyUserModel);
                                             } else {
                                                 Toast.makeText(getActivity(), "Đăng ký thất bại", Toast.LENGTH_SHORT).show();
                                             }
                                         }
                                     });
 
-                                    mDatabase.child("Accounts").child(userID.toString()).child("History").child(historyID).setValue(historyUserModel);
-                                }
+                                    }
                             }
 
                             @Override

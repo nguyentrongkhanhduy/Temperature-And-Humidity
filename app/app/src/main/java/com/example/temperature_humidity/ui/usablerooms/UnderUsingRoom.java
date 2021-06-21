@@ -28,6 +28,7 @@ import com.example.temperature_humidity.databinding.FragmentSelectroomBinding;
 import com.example.temperature_humidity.databinding.FragmentUnderUsingRoomBinding;
 import com.example.temperature_humidity.model.DeviceModel;
 import com.example.temperature_humidity.model.HistoryDetailModel;
+import com.example.temperature_humidity.model.HistoryUserModel;
 import com.example.temperature_humidity.model.TimeModel;
 import com.example.temperature_humidity.ui.devicemanagement.DeviceManagementFragment;
 import com.google.firebase.auth.FirebaseAuth;
@@ -43,13 +44,17 @@ import org.json.JSONObject;
 import java.io.InputStream;
 import java.net.URL;
 import java.net.URLConnection;
+import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
+@RequiresApi(api = Build.VERSION_CODES.O)
 public class UnderUsingRoom extends Fragment {
     FragmentUnderUsingRoomBinding binding;
     private DatabaseReference mData;
@@ -57,6 +62,7 @@ public class UnderUsingRoom extends Fragment {
     String building_room;
     String ca;
     String historyID;
+
     @Nullable
     @org.jetbrains.annotations.Nullable
     @Override
@@ -201,6 +207,8 @@ public class UnderUsingRoom extends Fragment {
             String building = list.get(position).getBuilding();
             String room = list.get(position).getRoom();
             String userID = mAuth.getCurrentUser().getUid();
+            String email = mAuth.getCurrentUser().getEmail();
+            Calendar c = Calendar.getInstance();
 
             tvNameID.setText("Thiết bị: " + list.get(position).getName() + " - ID: " +list.get(position).getId());
 
@@ -271,6 +279,18 @@ public class UnderUsingRoom extends Fragment {
                                 .child("data").setValue("1");
                         mData.child("Devices").child("RELAY").child(list.get(position).getId())
                                 .child("data").setValue("1");
+
+
+                        String type = "Bật "+ list.get(position).getName() + " " + list.get(position).getId();
+                        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("ddMMyyyy_HHmmss");
+                        LocalDateTime now = LocalDateTime.now();
+                        String historyID = dtf.format(now);
+                        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+                        String ondate = sdf.format(c.getTime());
+                        TimeModel timeModel = new TimeModel("","",ondate);
+                        HistoryUserModel historyUserModel = new
+                                HistoryUserModel(historyID, timeModel,email, room, building, userID, type);
+                        mData.child("Accounts").child(userID.toString()).child("History").child(historyID).setValue(historyUserModel);
                         ExecutorService executor = Executors.newSingleThreadExecutor();
                         executor.submit(() -> {
                             try {
@@ -303,6 +323,18 @@ public class UnderUsingRoom extends Fragment {
                                 .child("data").setValue("0");
                         mData.child("Devices").child("RELAY").child(list.get(position).getId())
                                 .child("data").setValue("0");
+
+                        String type = "Tắt "+ list.get(position).getName() + " " + list.get(position).getId();
+                        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+                        String offdate = sdf.format(c.getTime());
+                        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("ddMMyyyy_HHmmss");
+                        LocalDateTime now = LocalDateTime.now();
+                        String historyID = dtf.format(now);
+                        TimeModel timeModel = new TimeModel("","",offdate);
+                        HistoryUserModel historyUserModel = new
+                                HistoryUserModel(historyID, timeModel,email, room, building, userID, type);
+                        mData.child("Accounts").child(userID.toString()).child("History").child(historyID).setValue(historyUserModel);
+
                         ExecutorService executor = Executors.newSingleThreadExecutor();
                         executor.submit(() -> {
                             try {
