@@ -105,7 +105,7 @@ ref = db.reference('/')
 path_relay = "dadn/feeds/bk-iot-relay" 
 path_temp_humid = "dadn/feeds/bk-iot-temp-humid"
 
-hostName = "192.168.1.214"
+hostName = "192.168.1.101"
 serverPort = 8080
 
 client = mqtt.Client()
@@ -228,8 +228,8 @@ def on_message(client, userdata, msg):
                                 'user': '',
                                 'time': now,
                                 'mode': 'auto',
-                                'temp-humid': data,
-                                'temp-humid-unit': data_unit
+                                'temp_humid': data,
+                                'temp_humid_unit': data_unit
                             })
                         elif (x['onThreshold'] != '' and int(x['onThreshold']) < int(temp) and x['data'] == '0'):
                             send_message = '{ "id":"%s", "name":"%s", "data":"%s", "unit":"%s" }' % (x['id'],x['name'],'1',x['unit'])
@@ -245,8 +245,8 @@ def on_message(client, userdata, msg):
                                 'user': '',
                                 'time': now,
                                 'mode': 'auto',
-                                'temp-humid': data,
-                                'temp-humid-unit': data_unit
+                                'temp_humid': data,
+                                'temp_humid_unit': data_unit
                             })
                 else:
                     pass
@@ -282,7 +282,7 @@ def on_message(client, userdata, msg):
 def MQTT():
     client.on_connect = on_connect
     client.on_message = on_message
-    client.username_pw_set("dadn","aio_jgvq82u5shScTPmaMTkeXAMgtGGD")
+    client.username_pw_set("dadn","aio_CiZQ86qgiNxOgledRBr5iPI7KKrW")
     client.connect("io.adafruit.com", 1883, 60)
     client.subscribe(path_relay)
     client.subscribe(path_temp_humid)
@@ -327,8 +327,8 @@ class MyServer(BaseHTTPRequestHandler):
                     'user': receive['user'],
                     'time': now,
                     'mode': 'manual',
-                    'temp-humid': data,
-                    'temp-humid-unit': data_unit
+                    'temp_humid': data,
+                    'temp_humid_unit': data_unit
                 })
             except:
                 print('its not json bro')

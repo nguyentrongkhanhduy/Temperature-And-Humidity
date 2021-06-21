@@ -10,12 +10,16 @@ public class HistoryDetailModel {
     private String building;
     private String room;
     private String mode;
+    private String temp_humid;
+    private String temp_humid_unit;
 
     public HistoryDetailModel() {
 
     }
 
-    public HistoryDetailModel(String id, String name, String data, String unit, String user, String time, String building, String room, String mode) {
+    public HistoryDetailModel(String id, String name, String data, String unit,
+                              String user, String time, String building, String room, String mode,
+                              String temp_humid, String temp_humid_unit) {
         this.id = id;
         this.name = name;
         this.data = data;
@@ -25,6 +29,17 @@ public class HistoryDetailModel {
         this.building = building;
         this.room = room;
         this.mode = mode;
+        this.temp_humid = temp_humid;
+        this.temp_humid_unit = temp_humid_unit;
+    }
+
+
+    public String getTemp_humid() {
+        return temp_humid;
+    }
+
+    public String getTemp_humid_unit() {
+        return temp_humid_unit;
     }
 
     public String getBuilding() {

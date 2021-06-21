@@ -204,23 +204,7 @@ public class UnderUsingRoom extends Fragment {
 
             tvNameID.setText("Thiết bị: " + list.get(position).getName() + " - ID: " +list.get(position).getId());
 
-            mData.child("Buildings").child(list.get(position).getBuilding())
-                    .child(list.get(position).getRoom())
-                    .child("deviceModel")
-                    .child("TEMP-HUMID")
-                    .child(list.get(0).getId())
-                    .child("unit").addListenerForSingleValueEvent(new ValueEventListener() {
-                @Override
-                public void onDataChange(@NonNull @NotNull DataSnapshot snapshot) {
-                    tvDV1.setText(snapshot.getValue(String.class));
-                    tvDV2.setText(snapshot.getValue(String.class));
-                }
 
-                @Override
-                public void onCancelled(@NonNull @NotNull DatabaseError error) {
-
-                }
-            });
 
 
 
@@ -234,36 +218,46 @@ public class UnderUsingRoom extends Fragment {
                 swt.setChecked(true);
             }
 
-//            mData.child("Accounts").child(userID).child("History")
-//                    .addValueEventListener(new ValueEventListener() {
-//                        @RequiresApi(api = Build.VERSION_CODES.O)
-//                        @Override
-//                        public void onDataChange(@NonNull @NotNull DataSnapshot snapshot) {
-//                            for (DataSnapshot post: snapshot.getChildren()){
-//                                TimeModel x = post.child("timeModel").getValue(TimeModel.class);
-//                                String date = x.getDate();
-//                                String[] dateItems = date.split("/");
-//                                String end = x.getEndTime();
-//                                String start = x.getStartTime();
-//
-//                                String type = post.child("type").getValue(String.class);
-//                                if (type.equals("Sử dụng")){
-//                                    if (building_room.equals(post.child("building").getValue(String.class)
-//                                            +"-"+post.child("room").getValue(String.class))
-//                                            && ca.equals(dateItems[0]+"-"+dateItems[1]+"-"+dateItems[2] + " "+
-//                                            start+"-"+end)){
-//                                        historyID = post.child("hisID").getValue(String.class);
-//                                        break;
-//                                    }
-//                                }
-//                            }
+
+//            mData.child("Buildings").child(list.get(position).getBuilding())
+//                    .child(list.get(position).getRoom())
+//                    .child("deviceModel")
+//                    .child("TEMP-HUMID")
+//                    .child(list.get(0).getId())
+//                    .child("unit").addValueEventListener(new ValueEventListener() {
+//                @Override
+//                public void onDataChange(@NonNull @NotNull DataSnapshot snapshot) {
+//                    String dv = snapshot.getValue(String.class);
+//                    if (!dv.equals("C-%")) {
+//                        if (dv.equals("F-%")){
+//                            Double onT = Double.parseDouble(tvOnThreshold.getText().toString());
+//                            Double offT = Double.parseDouble(tvOffThreshold.getText().toString());
+//                            Double new_onT = onT * 1.8 + 32;
+//                            Double new_offT = offT * 1.8 + 32;
+//                            tvOnThreshold.setText(new_onT.toString());
+//                            tvOffThreshold.setText(new_offT.toString());
+//                            tvDV1.setText("F-%");
+//                            tvDV2.setText("F-%");
 //                        }
-//
-//                        @Override
-//                        public void onCancelled(@NonNull @NotNull DatabaseError error) {
-//
+//                        else if (dv.equals("K-%")){
+//                            Double onT = Double.parseDouble(tvOnThreshold.getText().toString());
+//                            Double offT = Double.parseDouble(tvOffThreshold.getText().toString());
+//                            Double new_onT = onT + 273.15;
+//                            Double new_offT = offT * 273.15;
+//                            tvOnThreshold.setText(new_onT.toString());
+//                            tvOffThreshold.setText(new_offT.toString());
+//                            tvDV1.setText("K-%");
+//                            tvDV2.setText("K-%");
 //                        }
-//                    });
+//                    }
+//                }
+//
+//                @Override
+//                public void onCancelled(@NonNull @NotNull DatabaseError error) {
+//
+//                }
+//            });
+
 
             swt.setOnClickListener(new View.OnClickListener() {
                 @Override

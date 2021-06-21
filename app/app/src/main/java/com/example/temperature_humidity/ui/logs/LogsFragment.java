@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -105,7 +106,10 @@ public class LogsFragment extends Fragment {
             LayoutInflater layoutInflater = (LayoutInflater)context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             if(convertView == null)
                 convertView = LayoutInflater.from(context).inflate(R.layout.item_history_detail, null);
-            TextView tvContent, tvTemp, tvHumid, tvTime, tvMode, tvEmail;
+            TextView tvContent, tvTemp, tvHumid, tvTime, tvMode, tvEmail, tvDV;
+            LinearLayout llEmail;
+            llEmail = convertView.findViewById(R.id.llEmail);
+            tvDV = convertView.findViewById(R.id.tvDV);
             tvContent = convertView.findViewById(R.id.tvContent);
             tvEmail = convertView.findViewById(R.id.tvEmail);
             tvHumid = convertView.findViewById(R.id.tvHumid);
@@ -123,8 +127,11 @@ public class LogsFragment extends Fragment {
 
             tvContent.setText(list.get(position).getName() + list.get(position).getId() + ": " + data_text);
             tvMode.setText(list.get(position).getMode());
+            if (list.get(position).getMode().equals("auto")){
+                llEmail.setVisibility(View.GONE);
+            }
 
-            mData.child("Accounts").child(userID).child("profileModel").child("email").addValueEventListener(new ValueEventListener() {
+            mData.child("Accounts").child(list.get(position).getUser()).child("profileModel").child("email").addValueEventListener(new ValueEventListener() {
                 @Override
                 public void onDataChange(@NonNull @NotNull DataSnapshot snapshot) {
                     String email = snapshot.getValue(String.class);
@@ -138,30 +145,14 @@ public class LogsFragment extends Fragment {
             });
 
 
+            String temphumid = list.get(position).getTemp_humid();
+            String[] arr_th = temphumid.split("-");
+            String temp = arr_th[0];
+            String humid = arr_th[1];
+            tvTemp.setText(temp);
+            tvHumid.setText(humid);
 
-            mData.child("Buildings").child(list.get(position).getBuilding()).child(list.get(position).getRoom())
-                    .child("deviceModel")
-                    .child("TEMP-HUMID")
-                    .addValueEventListener(new ValueEventListener() {
-                        @Override
-                        public void onDataChange(@NonNull @NotNull DataSnapshot snapshot) {
-                            List<DeviceModel> deviceModels = new ArrayList<>();
-                            for (DataSnapshot post : snapshot.getChildren()){
-                                deviceModels.add(post.getValue(DeviceModel.class));
-                            }
-                            String temphumid = deviceModels.get(0).getData();
-                            String[] arr_th = temphumid.split("-");
-                            String temp = arr_th[0];
-                            String humid = arr_th[1];
-                            tvTemp.setText(temp);
-                            tvHumid.setText(humid);
-                        }
-
-                        @Override
-                        public void onCancelled(@NonNull @NotNull DatabaseError error) {
-
-                        }
-                    });
+            tvDV.setText(list.get(position).getTemp_humid_unit());
 
             tvTime.setText(list.get(position).getTime());
 

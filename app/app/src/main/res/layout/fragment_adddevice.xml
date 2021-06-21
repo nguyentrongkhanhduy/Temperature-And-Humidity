@@ -95,6 +95,25 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"/>
                 </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    >
+                    <TextView
+                        android:textSize="20dp"
+                        android:fontFamily="sans-serif-condensed"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Đơn vị"
+                        />
+                    <EditText
+                        android:id="@+id/edtUnit"
+                        android:textSize="20dp"
+                        android:textStyle="bold"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"/>
+                </LinearLayout>
             <RelativeLayout
                 android:layout_marginBottom="?attr/actionBarSize"
                 android:gravity="center_horizontal"
