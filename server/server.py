@@ -118,7 +118,7 @@ def on_connect(client, userdata, flags, rc):
 
 # The callback for when a PUBLISH message is received from the server.
 def on_message(client, userdata, msg):
-    now = datetime.now().strftime('%d/%m/%Y %H:%M:%S.%f')[:-3]
+    now = datetime.now().strftime('%d/%m/%Y %H:%M:%S')
     data = msg.payload.decode("utf-8")
     message = json.loads(data)
     if (msg.topic == path_relay):
@@ -201,6 +201,7 @@ def on_message(client, userdata, msg):
         building = child.get()['building']
         room = child.get()['room']
         data = child.get()['data']
+        data_unit = child.get()['unit']
         #print(data)
         if (building == '' or room == '' or data == ''):
             pass
@@ -226,7 +227,9 @@ def on_message(client, userdata, msg):
                                 'room': x['room'],
                                 'user': '',
                                 'time': now,
-                                'mode': 'auto'
+                                'mode': 'auto',
+                                'temp-humid': data,
+                                'temp-humid-unit': data_unit
                             })
                         elif (x['onThreshold'] != '' and int(x['onThreshold']) < int(temp) and x['data'] == '0'):
                             send_message = '{ "id":"%s", "name":"%s", "data":"%s", "unit":"%s" }' % (x['id'],x['name'],'1',x['unit'])
@@ -241,7 +244,9 @@ def on_message(client, userdata, msg):
                                 'room': x['room'],
                                 'user': '',
                                 'time': now,
-                                'mode': 'auto'
+                                'mode': 'auto',
+                                'temp-humid': data,
+                                'temp-humid-unit': data_unit
                             })
                 else:
                     pass
@@ -277,7 +282,7 @@ def on_message(client, userdata, msg):
 def MQTT():
     client.on_connect = on_connect
     client.on_message = on_message
-    client.username_pw_set("dadn","aio_fTdV43gu9oG6L4VG0uFkeoDhsLSe")
+    client.username_pw_set("dadn","aio_jgvq82u5shScTPmaMTkeXAMgtGGD")
     client.connect("io.adafruit.com", 1883, 60)
     client.subscribe(path_relay)
     client.subscribe(path_temp_humid)
@@ -288,7 +293,7 @@ def MQTT():
 class MyServer(BaseHTTPRequestHandler):
     def do_GET(self):
         #now = datetime.today().strftime('%Y/%m/%d-%H:%M:%S')
-        now = datetime.now().strftime('%d/%m/%Y %H:%M:%S.%f')[:-3]
+        now = datetime.now().strftime('%d/%m/%Y %H:%M:%S')
         self.send_response(200)
         self.send_header("Content-type", "text/html")
         self.end_headers()
@@ -302,6 +307,15 @@ class MyServer(BaseHTTPRequestHandler):
                 receive = json.loads(message)
                 send_message = '{ "id":"%s", "name":"%s", "data":"%s", "unit":"%s" }' % (receive['id'],receive['name'],receive['data'],receive['unit'])
                 client.publish(path_relay,send_message)
+                temp_humid = db.reference('/Devices/TEMP-HUMID')
+                data = ''
+                data_unit = ''
+                for x in temp_humid.get():
+                    if (x):
+                        if (x['building'] == receive['building'] and x['room'] == receive['room']):
+                            data = x['data']
+                            data_unit = x['unit']
+                            break
                 ref = db.reference('/History')
                 ref.push({
                     'id': receive['id'],
@@ -312,7 +326,9 @@ class MyServer(BaseHTTPRequestHandler):
                     'room': receive['room'],
                     'user': receive['user'],
                     'time': now,
-                    'mode': 'manual'
+                    'mode': 'manual',
+                    'temp-humid': data,
+                    'temp-humid-unit': data_unit
                 })
             except:
                 print('its not json bro')
