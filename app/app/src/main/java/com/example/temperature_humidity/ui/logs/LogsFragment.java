@@ -130,6 +130,9 @@ public class LogsFragment extends Fragment {
             if (list.get(position).getMode().equals("auto")){
                 llEmail.setVisibility(View.GONE);
             }
+            else {
+                llEmail.setVisibility(View.VISIBLE);
+            }
 
             mData.child("Accounts").child(list.get(position).getUser()).child("profileModel").child("email").addValueEventListener(new ValueEventListener() {
                 @Override
