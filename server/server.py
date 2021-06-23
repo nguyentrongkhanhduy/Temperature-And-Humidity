@@ -105,7 +105,7 @@ ref = db.reference('/')
 path_relay = "dadn/feeds/bk-iot-relay" 
 path_temp_humid = "dadn/feeds/bk-iot-temp-humid"
 
-hostName = "192.168.1.101"
+hostName = "192.168.1.214"
 serverPort = 8080
 
 client = mqtt.Client()
@@ -212,7 +212,7 @@ def on_message(client, userdata, msg):
             #auto part of RELAY in Devices
             relay = db.reference('/Devices/RELAY')
             for x in relay.get():
-                if (x):
+                if (x and isinstance(x,dict)):
                     if (x['building'] == building and x['room'] == room):
                         if (x['offThreshold'] != '' and int(x['offThreshold']) >= int(temp) and x['data'] == '1'):
                             send_message = '{ "id":"%s", "name":"%s", "data":"%s", "unit":"%s" }' % (x['id'],x['name'],'0',x['unit'])
@@ -253,7 +253,7 @@ def on_message(client, userdata, msg):
             #auto part of RELAY in Buildings
             relay_b = db.reference('/Buildings/%s/%s/deviceModel/RELAY' % (building,room))
             for x in relay_b.get():
-                if(x):
+                if(x and isinstance(x,dict)):
                     if (x['building'] == building and x['room'] == room):
                         if (x['offThreshold'] != '' and int(x['offThreshold']) >= int(temp) and x['data'] == '1'):
                             send_message = '{ "id":"%s", "name":"%s", "data":"%s", "unit":"%s" }' % (x['id'],x['name'],'0',x['unit'])
@@ -282,7 +282,7 @@ def on_message(client, userdata, msg):
 def MQTT():
     client.on_connect = on_connect
     client.on_message = on_message
-    client.username_pw_set("dadn","aio_kMXM03EyH9eyKm5NsEN5ODTdiWuG")
+    client.username_pw_set("dadn","aio_CJxE89AgQzlYF1HItHHeOEefBFAd")
     client.connect("io.adafruit.com", 1883, 60)
     client.subscribe(path_relay)
     client.subscribe(path_temp_humid)
