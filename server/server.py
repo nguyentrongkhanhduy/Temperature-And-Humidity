@@ -202,6 +202,8 @@ def on_message(client, userdata, msg):
         room = child.get()['room']
         data = child.get()['data']
         data_unit = child.get()['unit']
+        id = child.get()['id']
+        name = child.get()['name']
         #print(data)
         if (building == '' or room == '' or data == ''):
             pass
@@ -209,6 +211,28 @@ def on_message(client, userdata, msg):
             split = data.split('-')
             temp = split[0]
             humid = split[1]
+            #update Notifications
+            noti_threshold = db.reference('/NotificationThreshold').get()
+            cold = noti_threshold['cold']
+            hot = noti_threshold['hot']
+            fire = noti_threshold['fire']
+            noti = db.reference('/Notifications/%s-%s' % (building,room))
+            check = '0'
+            if (fire != '' and int(fire) < int(temp)):
+                check = 'fire'
+            elif (hot != '' and int(hot) < int(temp)):
+                check = 'hot'
+            elif (cold != '' and int(cold) > int(temp)):
+                check = 'cold'
+            if (check != '0'):
+                noti.update({
+                    'building': building,
+                    'room': room,
+                    'temp_humid':data,
+                    'temp_humid_unit': data_unit,
+                    'time': now,
+                    'event': check
+                })
             #auto part of RELAY in Devices
             relay = db.reference('/Devices/RELAY')
             for x in relay.get():
@@ -263,6 +287,7 @@ def on_message(client, userdata, msg):
                             client.publish(path_relay,send_message)
                 else:
                     pass
+            
         
         
     
@@ -282,7 +307,7 @@ def on_message(client, userdata, msg):
 def MQTT():
     client.on_connect = on_connect
     client.on_message = on_message
-    client.username_pw_set("dadn","aio_CJxE89AgQzlYF1HItHHeOEefBFAd")
+    client.username_pw_set("dadn","aio_utum09RQUWzU7195Vvy7FTsxC9Co")
     client.connect("io.adafruit.com", 1883, 60)
     client.subscribe(path_relay)
     client.subscribe(path_temp_humid)
