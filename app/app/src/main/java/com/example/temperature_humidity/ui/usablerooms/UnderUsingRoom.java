@@ -285,7 +285,7 @@ public class UnderUsingRoom extends Fragment {
                         DateTimeFormatter dtf = DateTimeFormatter.ofPattern("ddMMyyyy_HHmmss");
                         LocalDateTime now = LocalDateTime.now();
                         String historyID = dtf.format(now);
-                        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+                        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
                         String ondate = sdf.format(c.getTime());
                         TimeModel timeModel = new TimeModel("","",ondate);
                         HistoryUserModel historyUserModel = new
@@ -302,7 +302,7 @@ public class UnderUsingRoom extends Fragment {
                                         "\"room\":\"%s\", " +
                                         "\"user\":\"%s\" }"
                                 ,id, name, "1", unit, building, room, userID);
-                                String url = "http://192.168.1.10:8080/";
+                                String url = "http://192.168.1.8:8080/";
                                 URLConnection connection = new URL(url + query).openConnection();
                                 InputStream in = connection.getInputStream();
                                 //connection.setRequestProperty("Accept-Charset", "UTF-8");
@@ -325,7 +325,7 @@ public class UnderUsingRoom extends Fragment {
                                 .child("data").setValue("0");
 
                         String type = "Tắt "+ list.get(position).getName() + " " + list.get(position).getId();
-                        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+                        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
                         String offdate = sdf.format(c.getTime());
                         DateTimeFormatter dtf = DateTimeFormatter.ofPattern("ddMMyyyy_HHmmss");
                         LocalDateTime now = LocalDateTime.now();
@@ -346,7 +346,7 @@ public class UnderUsingRoom extends Fragment {
                                                 "\"room\":\"%s\", " +
                                                 "\"user\":\"%s\" }"
                                         ,id, name, "0", unit, building, room, userID);
-                                String url = "http://192.168.1.10:8080/";
+                                String url = "http://192.168.1.8:8080/";
                                 URLConnection connection = new URL(url + query).openConnection();
                                 InputStream in = connection.getInputStream();
                                 //connection.setRequestProperty("Accept-Charset", "UTF-8");

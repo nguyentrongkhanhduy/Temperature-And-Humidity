@@ -105,7 +105,7 @@ ref = db.reference('/')
 path_relay = "dadn/feeds/bk-iot-relay" 
 path_temp_humid = "dadn/feeds/bk-iot-temp-humid"
 
-hostName = "192.168.1.10"
+hostName = "192.168.1.8"
 serverPort = 8080
 
 client = mqtt.Client()
@@ -306,7 +306,7 @@ def on_message(client, userdata, msg):
 def MQTT():
     client.on_connect = on_connect
     client.on_message = on_message
-    client.username_pw_set("dadn","aio_NvXU42S9H80Ak3cWpf5RnEvAwfwK")
+    client.username_pw_set("dadn","aio_VpJa29ThQs9RXMlNo1pGwJZ56Mtg")
     client.connect("io.adafruit.com", 1883, 60)
     client.subscribe(path_relay)
     client.subscribe(path_temp_humid)
