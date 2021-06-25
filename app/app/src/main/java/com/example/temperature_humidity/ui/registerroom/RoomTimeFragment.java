@@ -123,7 +123,7 @@ public class RoomTimeFragment extends Fragment {
                 EditText edtEnd = (EditText) root.findViewById(R.id.edtEnd);
                 String endTime = edtEnd.getText().toString();
 
-                if (Integer.parseInt(startTime) <= 0 || Integer.parseInt(endTime) <= 0 || Integer.parseInt(endTime)<=Integer.parseInt(startTime)){
+                if (startTime.isEmpty() || endTime.isEmpty() || Integer.parseInt(startTime) <= 0 || Integer.parseInt(endTime) <= 0 || Integer.parseInt(endTime)<=Integer.parseInt(startTime)){
                     Toast.makeText(root.getContext(),"Thời gian không hợp lệ", Toast.LENGTH_SHORT).show();
                 }
                 else {

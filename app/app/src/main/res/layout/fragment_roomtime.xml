@@ -37,6 +37,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
                 <EditText
+                    android:inputType="number"
                     android:gravity="center"
                     android:id="@+id/edtStart"
                     android:layout_width="wrap_content"
@@ -46,6 +47,7 @@
                     android:textColorHint="@color/gray" />
 
                 <EditText
+                    android:inputType="number"
                     android:gravity="center"
                     android:layout_marginLeft="15dp"
                     android:id="@+id/edtEnd"
