@@ -302,7 +302,7 @@ public class UnderUsingRoom extends Fragment {
                                         "\"room\":\"%s\", " +
                                         "\"user\":\"%s\" }"
                                 ,id, name, "1", unit, building, room, userID);
-                                String url = "http://192.168.1.101:8080/";
+                                String url = "http://192.168.1.10:8080/";
                                 URLConnection connection = new URL(url + query).openConnection();
                                 InputStream in = connection.getInputStream();
                                 //connection.setRequestProperty("Accept-Charset", "UTF-8");
@@ -346,7 +346,7 @@ public class UnderUsingRoom extends Fragment {
                                                 "\"room\":\"%s\", " +
                                                 "\"user\":\"%s\" }"
                                         ,id, name, "0", unit, building, room, userID);
-                                String url = "http://192.168.1.101:8080/";
+                                String url = "http://192.168.1.10:8080/";
                                 URLConnection connection = new URL(url + query).openConnection();
                                 InputStream in = connection.getInputStream();
                                 //connection.setRequestProperty("Accept-Charset", "UTF-8");

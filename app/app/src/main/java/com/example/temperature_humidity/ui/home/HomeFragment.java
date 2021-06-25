@@ -27,13 +27,13 @@ import org.jetbrains.annotations.NotNull;
 
 public class HomeFragment extends Fragment {
     private DatabaseReference mDatabase;
-    private HomeViewModel homeViewModel;
+    //private HomeViewModel homeViewModel;
     private FragmentHomeBinding binding;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        homeViewModel =
-                new ViewModelProvider(this).get(HomeViewModel.class);
+        //homeViewModel =
+        //        new ViewModelProvider(this).get(HomeViewModel.class);
         ((AppCompatActivity) getActivity()).getSupportActionBar().hide();
         binding = FragmentHomeBinding.inflate(inflater, container, false);
         View root = binding.getRoot();

@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingVertical="10dp">
+
+    <ImageView
+        android:id="@+id/imageNoti"
+        android:layout_width="56dp"
+        android:layout_height="64dp"
+        android:layout_weight="0"
+        app:srcCompat="@drawable/ic_hot" />
+
+    <LinearLayout
+        android:layout_width="224dp"
+        android:layout_height="64dp"
+        android:layout_weight="0"
+        android:orientation="vertical"
+        android:paddingHorizontal="10dp">
+
+        <TextView
+            android:id="@+id/tvNotiTextRoom"
+            android:layout_width="208dp"
+            android:layout_height="32dp"
+            android:gravity="center_vertical"
+            android:text="Nhiệt độ ___ ở phòng H0-000"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/tvNotiTime"
+            android:layout_width="208dp"
+            android:layout_height="32dp"
+            android:text="Lúc hh:mm:ss, ngày dd/mm/yyyy" />
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/tvNotiData"
+        android:layout_width="64dp"
+        android:layout_height="64dp"
+        android:layout_weight="0"
+        android:gravity="center"
+        android:text="35 °C"
+        android:textSize="20sp" />
+
+</LinearLayout>
