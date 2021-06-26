@@ -64,9 +64,11 @@ public class AddDeviceFragment extends Fragment {
                 String deviceName = spinner.getSelectedItem().toString();
                 if (deviceName.equals("RELAY")){
                     binding.llRelay.setVisibility(View.VISIBLE);
+                    binding.llUnit.setVisibility(View.GONE);
                 }
                 else{
                     binding.llRelay.setVisibility(View.GONE);
+                    binding.llUnit.setVisibility(View.VISIBLE);
                 }
             }
 
@@ -99,34 +101,76 @@ public class AddDeviceFragment extends Fragment {
                                     Toast.makeText(root.getContext(), "Đã tồn tại thiết bị với ID này", Toast.LENGTH_SHORT).show();
                                 }
                                 else {
-                                    String on = "";
-                                    String off = "";
-
-                                    String unit = "C-%";
-                                    String data = "0";
-
-                                    if (deviceName.equals("RELAY")){
-                                        on = binding.edtOnThreshold.getText().toString();
-                                        off = binding.edtOffThreshold.getText().toString();
-                                        unit = "";
-                                    }
-                                    DeviceModel deviceModel = new DeviceModel(deviceID, deviceName, data, unit, on, off, building, room);
-                                    mData.child("Devices").child(deviceName).child(deviceID).setValue(deviceModel);
+                                    if (deviceName.equals("TEMP-HUMID")) {
+                                        mData.child("Buildings").child(building).child(room).child("deviceModel").child("TEMP-HUMID")
+                                                .addListenerForSingleValueEvent(new ValueEventListener() {
+                                                    @Override
+                                                    public void onDataChange(@NonNull @NotNull DataSnapshot snapshot) {
+                                                        if (snapshot.exists()){
+                                                            Toast.makeText(root.getContext(), "Một phòng chỉ được có tối đa 1 TEMP-HUMID", Toast.LENGTH_SHORT).show();
+                                                        }
+                                                        else {
+                                                            String th_on = "";
+                                                            String th_off = "";
+                                                            String th_unit = binding.edtUnit.getText().toString();
+                                                            String th_data = "-";
+                                                            DeviceModel deviceModel = new DeviceModel(deviceID, deviceName, th_data, th_unit, th_on, th_off, building, room);
+                                                            mData.child("Devices").child(deviceName).child(deviceID).setValue(deviceModel);
 //                        Toast.makeText(root.getContext(), selectedItem + " " + deviceID,Toast.LENGTH_SHORT).show();
-                                    mData.child("Buildings")
-                                            .child(building)
-                                            .child(room)
-                                            .child("deviceModel")
-                                            .child(deviceName)
-                                            .child(deviceID)
-                                            .setValue(deviceModel).addOnCompleteListener(new OnCompleteListener<Void>() {
-                                        @Override
-                                        public void onComplete(@NonNull @NotNull Task<Void> task) {
-                                            if (task.isSuccessful()) {
-                                                Toast.makeText(root.getContext(), "Thêm thiết bị thành công", Toast.LENGTH_SHORT).show();
-                                            }
+                                                            mData.child("Buildings")
+                                                                    .child(building)
+                                                                    .child(room)
+                                                                    .child("deviceModel")
+                                                                    .child(deviceName)
+                                                                    .child(deviceID)
+                                                                    .setValue(deviceModel).addOnCompleteListener(new OnCompleteListener<Void>() {
+                                                                @Override
+                                                                public void onComplete(@NonNull @NotNull Task<Void> task) {
+                                                                    if (task.isSuccessful()) {
+                                                                        Toast.makeText(root.getContext(), "Thêm thiết bị thành công", Toast.LENGTH_SHORT).show();
+                                                                    }
+                                                                }
+                                                            });
+                                                        }
+                                                    }
+
+                                                    @Override
+                                                    public void onCancelled(@NonNull @NotNull DatabaseError error) {
+
+                                                    }
+                                                });
+                                    } else {
+
+
+                                        String on = "";
+                                        String off = "";
+
+                                        String unit = binding.edtUnit.getText().toString();
+                                        String data = "0";
+
+                                        if (deviceName.equals("RELAY")) {
+                                            on = binding.edtOnThreshold.getText().toString();
+                                            off = binding.edtOffThreshold.getText().toString();
+                                            unit = "";
                                         }
-                                    });
+                                        DeviceModel deviceModel = new DeviceModel(deviceID, deviceName, data, unit, on, off, building, room);
+                                        mData.child("Devices").child(deviceName).child(deviceID).setValue(deviceModel);
+//                        Toast.makeText(root.getContext(), selectedItem + " " + deviceID,Toast.LENGTH_SHORT).show();
+                                        mData.child("Buildings")
+                                                .child(building)
+                                                .child(room)
+                                                .child("deviceModel")
+                                                .child(deviceName)
+                                                .child(deviceID)
+                                                .setValue(deviceModel).addOnCompleteListener(new OnCompleteListener<Void>() {
+                                            @Override
+                                            public void onComplete(@NonNull @NotNull Task<Void> task) {
+                                                if (task.isSuccessful()) {
+                                                    Toast.makeText(root.getContext(), "Thêm thiết bị thành công", Toast.LENGTH_SHORT).show();
+                                                }
+                                            }
+                                        });
+                                    }
                                 }
                             }
 
