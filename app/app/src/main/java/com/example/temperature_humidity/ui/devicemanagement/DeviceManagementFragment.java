@@ -186,7 +186,7 @@ public class DeviceManagementFragment extends Fragment {
                                     @Override
                                     public void onDataChange(@NonNull @NotNull DataSnapshot snapshot) {
                                         if (snapshot.exists()){
-                                            snapshot.getRef().removeValue();
+                                            snapshot.getRef().child(device_id).removeValue();
                                         }
                                     }
 
